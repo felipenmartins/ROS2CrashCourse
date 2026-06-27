@@ -8,18 +8,28 @@ Examples are provided for the [iRobot Create3](https://iroboteducation.github.io
 
 The course is organized in 3 chapters that cover ROS 2 and its core concepts, and one extra chapter dedicated to the Create3 robot: 
 
- - **Chapter 1: What is ROS?**
- 	- Overview of ROS
- 	- The history of ROS
- 	- Why use ROS?
- - **Chapter 2: Working with ROS**
- 	- The ROS Graph
- 	- ROS Actions 
- - **Chapter 3: The ROS Ecosystem** 
- 	- Managing ROS workspaces
- 	- Simulation with ROS 
- 	- Creating packages
-- **Chapter 4: Programming the Create3 robot**
+- [**Chapter 1: What is ROS?**](/Chapter-1/readme.md)
+  - The history of ROS
+  - Why use ROS?
+  - Overview of ROS
+  - Summary of CLI commands
+- [**Chapter 2: Working with ROS**](/Chapter-2/readme.md)
+  - TurtleSim
+  - The ROS Graph
+  - Nodes, Messages, Topics
+  - Writting a node in Python
+  - ROS Actions 
+- [**Chapter 3: The ROS Ecosystem**](/Chapter-3/readme.md) 
+  - ROS Packages
+  - Workspaces
+  - Simulation
+  - RViz and TFs
+  - Launch files
+  - Bags
+- [**Chapter 4: Working with the iRobot Create3**](/Chapter-4/readme.md)
+  - Overview of the Create3
+  - Activity 1 - IR sensors and LED pannel
+  - Activity 2 - Actions with the physical buttons   
 
 
 ### Intended Learning Outcomes:
