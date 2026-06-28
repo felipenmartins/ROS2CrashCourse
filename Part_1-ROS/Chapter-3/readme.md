@@ -1,9 +1,9 @@
-# Lecture 3: The ROS Ecosystem
+# Chapter 3 - The ROS Ecosystem
 
-This lecture will cover a few very important concepts that will allow you to fully harness the power of ROS2. You will be able to create and build your own custom packages and learn how to use RVIZ and Gazebo, two of the most useful simulation tools in ROS.
+This chapter will cover a few very important concepts that will allow you to fully harness the power of ROS2. You will be able to create and build your own custom packages and learn how to use RVIZ and Gazebo, two of the most useful simulation tools in ROS.
 
 ### Objectives
-By the end of this lecture you should be able to:
+By the end of this chapter you should be able to:
 - Create and build custom packages using the `colcon` build tool
 - Create custom launch files for your projects
 - Use RVIZ and Gazebo to simulate the Create3 robot
@@ -452,6 +452,7 @@ Now we can replay our recorded topic data by simply running the following comman
  
  These same concepts can of course be applied to any ros topic. Common use cases include collecting sensor data for training, optimizing, or testing sensor fusion algorithms.
  
- 
- 
-
+ ## Navigation menu
+- Continue to [Part 2 - Create3](/Part_2-Create3/readme.md)
+- Go back to [Part 1 - ROS](/Part_1-ROS/readme.md)
+- Go to the [Main page](/readme.md)

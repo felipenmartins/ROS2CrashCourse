@@ -1,4 +1,4 @@
-# Lecture 2: Working with ROS
+# Chapter 2 - Working with ROS
 
 This lecture will cover two essential communication paradigms in ROS: Node-Topic communication and ROS Actions.
 
@@ -698,8 +698,8 @@ If you have access to a Create3 robot, follow the instructions in [Chapter 4](/C
  Using a combination of these two communication paradigms, we can create complex robotics projects, as well as work with the nodes provided by ROS packages, exponentially extending our projects' capabilities! 
  
  We will be covering how we can download and add ROS packages to our projects in the next chapter, as well as cover a few of the most prominent ones.
- 
- 
- 
- 
- 
+
+## Navigation menu
+- Continue to [Chapter 3 - The ROS Ecosystem](/Part_1-ROS/Chapter-3/readme.md)
+- Go back to [Part 1 - ROS](/Part_1-ROS/readme.md)
+- Go to the [Main page](/readme.md)
