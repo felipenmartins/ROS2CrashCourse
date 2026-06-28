@@ -35,24 +35,20 @@ ROS is :
 ### A brief history of ROS
 ROS was first developed by two Stanford researchers to accelerate the initial phase of development of most robotics projects, which mostly consisted of what  they described as ‘reinventing the wheel’. ROS was later picked up by robotics incubator [Willow Garage](https://en.wikipedia.org/wiki/Willow_Garage), which continued its development until it was dissolved and the project was picked up again by [Open Robotics](https://www.openrobotics.org/), which is the current entity behind ROS.
 
-As ROS began initially as a platform for researchers , it had become apparent by 2015 that its current capabilities were not adequate for widespread commercial use. ROS2 was created as a direct result of this realization. 
+As ROS began initially as a platform for researchers , it had become apparent by 2015 that its current capabilities were not adequate for widespread commercial use. ROS 2 was created as a direct result of this realization. 
 
-ROS2 is the second generation of ROS that is built from the ground-up to  to handle industrial and commercial use.
+ROS 2 is the second generation of ROS that is built from the ground-up to  to handle industrial and commercial use.
 
 ### Why ROS?
 The most important question to ask when adopting a new technology is why? Why should I spend the time and effort to learn and  become familiar with this new technology, after all, new technologies come and go very quickly in the software world.
 
-ROS2’s development was and continues to be guided by a ‘Technical Steering Committee’ that consists of the juggernauts of the robotics and software development field today.  It contains the likes of Amazon, Toyota, Ubuntu, Microsoft, Samsung, iRobot, and many more.
-![ROS TSC](https://cdn.codeground.org/nsr/images/img/researchareas/openSource-article3_02.png)
+ROS 2’s development was and continues to be guided by a ‘Technical Steering Committee’ composed by several representatives of the robotics community. The wide spread usage of ROS in the robotics field makes it one of the most important tools to master for developers or engineers wanting to enter the field of robotics.
 
-The presence of this technical committee and the current uses of ROS2 in the robotics field make ROS one of the most important tools to master for developers or engineers wanting to enter the field of robotics
+ROS currently powers robots in various domains, from [Astrobee](https://www.nasa.gov/astrobee), NASA’s free-flying robots that have been active in the ISS for years, to [Open-RMF](https://www.open-rmf.org/), a modular software system that enables sharing and interoperability between multiple fleets of robots and physical infrastructure, like doors, elevators and building management systems. 
 
-### ROS in the Industry
-ROS currently powers robots in various domains, from [Astrobee](https://www.nasa.gov/astrobee), NASA’s free-flying robots that have been active in the ISS for years, to [RMF](https://www.openrobotics.org/customer-stories/open-rmf), a complete framework that supports a multidomain fleet of medical robots for the Singapore Ministry of Health. 
+[ROSIndustrial](https://rosindustrial.org/) is an extension of the ROS platform specifically made to facilitate the transfer of robotics research into the industrial field. It currently boasts over 80 industrial leaders from all around the world such as ABB, Siemens, Boeing, BMW, Panasonic, Universal Robots and many more. 
 
-[ROSIndustrial](https://rosindustrial.org/) is an extension of the ROS platform specifically made to facilitate the transfer of robotics research into the industrial field. It currently boasts over 80 industrial leaders from all around the world such as ABB, Siemens, AWS, BMW, and many more. 
-
-![ROS Industrial Cosnortium](https://images.squarespace-cdn.com/content/v1/51df34b1e4b08840dcfd2841/5f2d08b4-2f38-41af-b19f-8fa90ff71a72/Logo-montage_2022-Sept1-wide-tp+copy-s.jpg?format=750w)
+![ROS Industrial Cosnortium](https://images.squarespace-cdn.com/content/v1/51df34b1e4b08840dcfd2841/e4f98f71-31eb-436f-aa1c-4d4f969343ac/Logo-montage_2026-April27-tp-s.jpg?format=1500w)
 
 ## 1.4 - An Overview of ROS
 Before moving onto the next chapter, let's go over a few important ROS concepts that we will encounter in the workshop. If there is something that you don't quite fully understand yet, don't worry, we will be covering them all in detail during the workshop
@@ -76,7 +72,7 @@ ROS Bags are a format for saving and playing back ROS message data. Bags are usu
 
 ### The ROS Filesystem 
 A ROS workspace is a directory with a particular structure that houses any ROS project. The minimum requirement for a ROS workspace is a /src directory that contains the source code for all the packages in the project. 
-The build tool used in ROS2 is colcon, which has many quality of life improvements that make building and managing ROS workspaces easier. 
+The build tool used in ROS 2 is colcon, which has many quality of life improvements that make building and managing ROS workspaces easier. 
 
 ### ROS CLI Commands
 Most of our interaction with ROS will be through the terminal or command line, so it is useful to get familiar with the common terminal commands and with common ROS terminal commands . Don’t worry about memorizing them all now, they will be referenced again as they are used throughout the activities, as well as other commands not mentioned here. 
@@ -102,6 +98,6 @@ Most of our interaction with ROS will be through the terminal or command line, s
 After completing this chapter, you should have a general understanding of ROS and its importance for the robotics community. In Chapter 2 we will dive into some core topics to better understand how to work and start coding with ROS.
 
 ## Navigation menu
-- Continue to [Chapter 2 - Working with ROS](/Part_1-ROS/Chapter-2/readme.md)
+- Continue to [Chapter 2 - Fundamental Concepts of ROS](/Part_1-ROS/Chapter-2/readme.md)
 - Go back to [Part 1 - ROS](/Part_1-ROS/readme.md)
 - Go to the [Main page](/readme.md)
