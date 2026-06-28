@@ -699,6 +699,9 @@ If you have access to an iRobot Create3, follow the activities in [Part 2](/Part
  
  We will be covering how we can download and add ROS packages to our projects in the next chapter, as well as cover a few of the most prominent ones.
 
+## Conclusion
+In this chapter you delve into core ROS concepts, like nodes, topics, and actions. You also create custom nodes using Python3 to subscribe and publish to ROS topics, and to use ROS actions. This should have given you a clear understanding of how to work with ROS and how to create simple nodes for it. In the next chapter you will learn more about other tools that are part of the ROS ecosystem.
+
 ## Navigation menu
 - Continue to [Chapter 3 - The ROS Ecosystem](/Part_1-ROS/Chapter-3/readme.md)
 - Go back to [Part 1 - ROS](/Part_1-ROS/readme.md)
