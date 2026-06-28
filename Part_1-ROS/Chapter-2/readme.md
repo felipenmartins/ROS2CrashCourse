@@ -1,4 +1,4 @@
-# Chapter 2 - Working with ROS
+# Chapter 2 - Fundamental Concepts of ROS
 
 This lecture will cover two essential communication paradigms in ROS: Node-Topic communication and ROS Actions.
 
@@ -34,7 +34,7 @@ Nodes can communicate with other nodes in a variety of ways, the most common met
 
 For this activity, we will be exploring a few ros2 commands that allow us to interact with and inspect nodes. 
 
-This activity can also be found in the ROS2 wiki [here](https://docs.ros.org/en/foxy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html).
+This activity can also be found in the ROS2 wiki [here](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html).
 
 #### Command 1: ros2 run
 
@@ -94,7 +94,7 @@ A node may publish data to multiple topics and simultaneously have subscriptions
 For this activity, we will be getting familiar with ROS topics using some ros2
 commands and the `turtlesim` package.
 
-This activity can also be found in the ROS2 wiki [here](https://docs.ros.org/en/foxy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Topics.html).
+This activity can also be found in the ROS2 wiki [here](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html).
 
 
 #### Command 1: ros2 topic list
@@ -423,7 +423,7 @@ Actions use a client-server model, similar to the publisher-subscriber model of 
 
 In this activity, we will get get familiar with how exactly actions work by sending and examining actions by inspecting them from terminal. We will be using the `turtlesim` package again for this activity.
 
-**This activity can also be found in the [ROS2 docs](https://docs.ros.org/en/foxy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html).**
+This activity can also be found in the [ROS2 docs](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html).
 
 
 ### Tasks
@@ -686,7 +686,7 @@ Your terminal will return the message:
 You will continue to receive feedback, the remaining radians, until the goal is complete.
 
 #### 7 - Practice on the iRobot Create3
-If you have access to a Create3 robot, follow the instructions in [Chapter 4](/Chapter-4/readme.md) to practice the concepts above on a real robot.
+If you have access to an iRobot Create3, follow the activities in [Part 2](/Part_2-Create3/readme.md) to practice the concepts above on a real robot.
  
  --- 
  
