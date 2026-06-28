@@ -7,7 +7,7 @@ This part covers fundamental ROS 2 concepts to equip you with the knowledge to r
   - Why use ROS?
   - Overview of ROS
   - Summary of CLI commands
-- [**Chapter 2 - FUndamental Concepts of ROS**](/Part_1-ROS/Chapter-2/readme.md)
+- [**Chapter 2 - Fundamental Concepts of ROS**](/Part_1-ROS/Chapter-2/readme.md)
   - TurtleSim
   - The ROS Graph
   - Nodes, Messages, Topics
