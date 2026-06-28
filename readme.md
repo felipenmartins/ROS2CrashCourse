@@ -2,7 +2,7 @@
 
 Welcome to the ROS 2 Crash Course!
 
-This course covers fundamental ROS 2 concepts to equip you with the knowledge to run and create your own Python code to control robots. It is organized in 2 parts: one that covers ROS 2 and its core concepts, and another dedicated to applying such concepts on the Create3 robot.
+This course covers fundamental concepts of ROS 2 to equip you with the knowledge to run and create your own Python code for robots. It is organized in 2 parts: Part 1 covers ROS 2 and its core concepts, whereas Part 2 is dedicated to the application of such concepts on the Create3 robot.
 
 The course structure is:
 
@@ -14,7 +14,7 @@ This part covers fundamental ROS 2 concepts. It can be followed even if you don'
   - Why use ROS?
   - Overview of ROS
   - Summary of CLI commands
-- **Chapter 2: FUndamental Concepts of ROS**
+- **Chapter 2: Fundamental Concepts of ROS**
   - TurtleSim
   - The ROS Graph
   - Nodes, Messages, Topics
