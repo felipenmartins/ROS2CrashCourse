@@ -31,13 +31,12 @@ This part covers fundamental ROS 2 concepts. It can be followed even if you don'
 ## [Part 2 - Create3](/Part_2-Create3/readme.md)
 This part provides activities for the [iRobot Create3](https://iroboteducation.github.io/create3_docs/) educational robot, so you can apply the concepts discussed in part 1. 
 
-- Overview of the Create3
-- Activity 1 - IR sensors and LED pannel
-- Activity 2 - Actions with the physical buttons   
+- **Overview of the Create3**
+- **Activity 1 - IR sensors and LED pannel**
+- **Activity 2 - Actions with the physical buttons**  
 
----
 
-### Intended Learning Outcomes:
+## Intended Learning Outcomes:
 By the end of this course, you should be able to: 
 - Understand fundamental concepts of ROS 2
 - Run ROS 2 commands and nodes from the terminal
