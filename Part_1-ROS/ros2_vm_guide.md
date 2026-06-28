@@ -1,4 +1,4 @@
-# ROS 2 VM Setup Guide
+# ROS 2 Virtual Machine Setup Guide
 
 This guide provides instructions to create a virtual machine with Ubuntu 24.04, ROS 2 Jazzy, Terminator, and VSCode. This virtual machine will enable you to follow the ROS 2 Crash Course on Windows or Apple machines.
 
@@ -24,24 +24,26 @@ VMware Workstation Pro is free for personal, educational, and commercial use. Ho
 
 > **Hyper-V note:** If you use Docker Desktop, WSL2, or Windows Sandbox, VMware 26H1 is compatible with the Windows Hypervisor Platform. No need to disable Hyper-V.
 
-### 1.3 Import the VM
+### 1.3 Import the VM (in case you have the .ova file)
 If you already have a virtual machine file, you can follow the instructions below to import and run it on your computer. If not, skip to section 2.
 
 > ⚠️ **Important!** Apple Silicon mac (M series) users cannot import a VM built for x86 (Intel-compatible) processors, and vice-versa. If you do not have a file compatible with your hardware, you need to create your own virtual machine by following the VM Creation Instructions below. 
 
-1. Open VMware → **File → Open** → select the `.ova` file.
+1. Open VMware and click File → Open → select the `.ova` file.
 2. Follow the import wizard (accept defaults).
-3. Before starting: go to VM → Settings and configure it with the following parameters:
+3. Before starting the VM: go to Settings and configure it with the following parameters:
   * RAM: 4 GB minimum, 8 GB recommended
-  * CPUs: 2–4 cores
+  * CPUs: 2-4 cores
   * Network: Bridged Adapter (not NAT)
-  * USB: Enable USB 3.0 controller→ Network Adapter** → set to **Bridged**.
-4. Start the VM and log in with username `ros2`, password `ros2`.
+  * USB: Enable USB 3.0 controller → Network Adapter → set to Bridged
+4. Start the VM and log in (the VM provided by Hanze has username `ros2`, password `ros2`).
 
 If you are using **VirtualBox**, the procedure is similar:
-1. **File → Import Appliance** → select the `.ova` file.
+1. File → Import Appliance → select the `.ova` file.
 2. Configure the VM with the same settings listed above.
 3. Start and log in.
+
+The next steps need to be followed only if you want to create your own virtual machine (`.ova` file). If your VM is already running, you can go back to the [Main page](/readme.md).
 
 ---
 
@@ -358,3 +360,9 @@ You can **share the `.ova` file** via USB drive, Google Drive, or a file server.
 
 [2] A. Ayala, F. Cruz, D. Campos, R. Rubio, B. Fernandes and R. Dazeley, "A Comparison of Humanoid Robot Simulators: A Quantitative Approach," 2020 Joint IEEE 10th International Conference on Development and Learning and Epigenetic Robotics (ICDL-EpiRob), Valparaiso, Chile, 2020, pp. 1-6, doi: 10.1109/ICDL-EpiRob48136.2020.9278116.  - Available at: [https://arxiv.org/pdf/2008.04627](https://arxiv.org/pdf/2008.04627)
 
+---
+
+## Navigation menu
+- Go to [Part 1 - ROS](/Part_1-ROS/readme.md)
+- Go to [Part 2 - Create3](/Part_2-Create3/readme.md)
+- Go to the [Main page](/readme.md)
