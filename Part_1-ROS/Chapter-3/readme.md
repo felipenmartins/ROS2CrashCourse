@@ -27,10 +27,10 @@ Often, you will need to install packages to interface sensors or external device
 
 Here are some commonly used ROS packages that you might come across:
 
-- ##### [Moveit](https://moveit.ros.org/)
-  Moveit is a motion planning framework based on ROS. It is one of the most comprehensive and widely used ROS packages. It provides complete motion and grasp planning support for robotic manipulators of all types. It is widely used in a variety of fields and is used by NASA, Google, Microsoft, and Samsung.
+- [**MoveIt**](https://moveit.ai/)
+  MoveIt is a motion planning framework based on ROS. It is one of the most comprehensive and widely used ROS packages. It provides complete motion and grasp planning support for robotic manipulators of all types. It is widely used in a variety of fields and is used by NASA, Google, Microsoft, and Samsung.
 
-- ##### [Nav2](https://navigation.ros.org/)
+- [**Nav2**](https://docs.nav2.org/)
 
   Nav2 is the successor of the ROS Navigation Stack. It provides easily-customizable methods that can complete dynamic path planning, compute velocities for motors, avoid obstacles, and structure recovery behaviors. It is used for all types of navigation applications and is currently being used by companies such as Toyota and [Elroy Air](https://elroyair.com/).
 
@@ -228,20 +228,18 @@ If you open the Gazebo window, you will see that the robot is currently in an em
  
  RViz is used to visualize all kinds of robot data, from sensor data to actuators. A very important distinction to make is that unlike Gazebo, *RViz does not output any data on its own*, it just visualizes already existing data
  
- ### 3.3.3 Activity: Visualizing tf data using RVIZ
+### 3.3.3 Activity: Visualizing tf data using RVIZ
  
- #### Background: TF
- In all robotics applications, keeping track of various objects' locations in relation to both one another and to their environment is an essential, yet  complex, task. For example, in the case below, a camera can locate the objects relative to its own coordinate frame. However, this information is not useful to the robot unless it is related to its base coordinate frame (i.e: it is not enough to know the objects are 1 meter away from camera, the robot needs to know where the objects are in the room!). 
+#### Background: TF
+In all robotics applications, keeping track of various objects' locations in relation to both one another and to their environment is an essential, yet  complex, task. For example, in the case below, a camera can locate the objects relative to its own coordinate frame. However, this information is not useful to the robot unless it is related to its base coordinate frame (i.e: it is not enough to know the objects are 1 meter away from camera, the robot needs to know where the objects are in the room!). 
+  
+![Relationships-between-coordinate-systems-To-construct-the-3D-models-a-coordinate-frame](https://user-images.githubusercontent.com/71664900/193244415-acfac6e1-fd92-419a-b565-e32db0f348b5.png)
  
+Often times, there will be at least 5 different coordinate frames in a robotic application. Maintaining the unique transformations from and to each of these frames, especially when they might be constantly changing, is no easy task.
  
- ![Relationships-between-coordinate-systems-To-construct-the-3D-models-a-coordinate-frame](https://user-images.githubusercontent.com/71664900/193244415-acfac6e1-fd92-419a-b565-e32db0f348b5.png)
- 
- Often times, there will be at least 5 different coordinate frames in a robotic application. Maintaining the unique transformations from and to each of these frames, especially when they might be constantly changing, is no easy task.
- 
- ROS provides a package that optimizes this process. A description of the `tf` package from the [ros wiki](http://wiki.ros.org/tf):
- > tf is a package that lets the user keep track of multiple coordinate frames over time. tf maintains the relationship between coordinate frames in a tree structure buffered in time, and lets the user transform points, vectors, etc between any two coordinate frames at any desired point in time.
- 
- **Note that with ROS2, `tf2` is the supported transform package, you can read all the changes [here](http://wiki.ros.org/tf2/Migration)**
+ROS provides a package that optimizes this process: tf2 is a package to keep track of multiple coordinate frames over time. It publishes the relationship between coordinate frames using a tree structure, allowing the transformation between coordinate frames at any point in time.
+
+An introduction and simple demo of the `tf2` package is [available here](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Tf2/Introduction-To-Tf2.html).
  
  #### Task1: Using `tf2` tools
  
