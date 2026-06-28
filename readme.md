@@ -9,18 +9,18 @@ The course structure is:
 ## [Part 1 - ROS](/Part_1-ROS/readme.md)
 This part covers fundamental ROS 2 concepts. It can be followed even if you don't have access to a physical robot.
 
-- [**Chapter 1: What is ROS?**](/Chapter-1/readme.md)
+- **Chapter 1: What is ROS?**
   - The history of ROS
   - Why use ROS?
   - Overview of ROS
   - Summary of CLI commands
-- [**Chapter 2: FUndamental Concepts of ROS**](/Chapter-2/readme.md)
+- **Chapter 2: FUndamental Concepts of ROS**
   - TurtleSim
   - The ROS Graph
   - Nodes, Messages, Topics
   - Writting a node in Python
   - ROS Actions 
-- [**Chapter 3: The ROS Ecosystem**](/Chapter-3/readme.md) 
+- **Chapter 3: The ROS Ecosystem** 
   - ROS Packages
   - Workspaces
   - Simulation
@@ -31,7 +31,7 @@ This part covers fundamental ROS 2 concepts. It can be followed even if you don'
 ## [Part 2 - Create3](/Part_2-Create3/readme.md)
 This part provides activities for the [iRobot Create3](https://iroboteducation.github.io/create3_docs/) educational robot, so you can apply the concepts discussed in part 1. 
 
-- [**Overview of the Create3**](/Chapter-4/readme.md)
+- Overview of the Create3
 - Activity 1 - IR sensors and LED pannel
 - Activity 2 - Actions with the physical buttons   
 
