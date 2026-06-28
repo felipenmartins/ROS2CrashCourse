@@ -44,9 +44,6 @@ By the end of this course, you should be able to:
 - Interact with and program ROS-enabled robots
 
 
-## Credits
-This repository was forked from [ROSWorkshop](https://github.com/Marwan-Refaat/ROSWorkshop), originally prepared by Marwan Refaat when on a summer internship at Hanze University of Applied Sciences. It was later updated and modified.
-
 ## Setup Requirements
 ### Software
 The software requirements for this course are:
@@ -59,6 +56,9 @@ A guide to create a Virtual Machine with Ubuntu and ROS 2 is [available here.](/
 
 ### Hardware (optional)
 The demonstration platform used in this course is the [iRobot Create3](https://iroboteducation.github.io/create3_docs/) educational robot, so a working Create3 robot is required to complete the activities in Part 2.
+
+## Credits
+This repository was forked from [ROSWorkshop](https://github.com/Marwan-Refaat/ROSWorkshop), originally prepared by Marwan Refaat when on a summer internship at Hanze University of Applied Sciences. It was later updated and modified.
 
 ## License
 This project is licensed under the terms of the [MIT license](/LICENSE.md).
