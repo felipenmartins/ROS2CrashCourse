@@ -13,13 +13,15 @@ This part covers fundamental ROS 2 concepts. It can be followed even if you don'
   - The history of ROS
   - Why use ROS?
   - Overview of ROS
-  - Summary of CLI commands
+  - Summary of ROS commands
+
 - **Chapter 2: Fundamental Concepts of ROS**
   - TurtleSim
   - The ROS Graph
   - Nodes, Messages, Topics
-  - Writting a node in Python
   - ROS Actions 
+  - Writting a node in Python
+
 - **Chapter 3: The ROS Ecosystem** 
   - ROS Packages
   - Workspaces
@@ -40,11 +42,20 @@ This part provides activities for the [iRobot Create3](https://iroboteducation.g
 By the end of this course, you should be able to: 
 - Understand fundamental concepts of ROS 2
 - Run ROS 2 commands and nodes from the terminal
-- Develop custom ROS 2 packages that include custom nodes, topics and actions using Python
+- Write Python code to develop custom ROS 2 packages that include custom nodes, topics and actions
 - Interact with and program ROS-enabled robots
 
 
-## Setup Requirements
+## Requirements
+### Linux command line
+This course assumes that you are familiar with the Linux Terminal commands. You don't need to be an advanced Linux user, but you should know how to:
+- access the command line 
+- investigate and navigate the folder structure (list and access files and folders)
+- perform basic file manipulation (create, delete, copy and move files)
+- how to run command as a super user
+
+If you are new to Linux, I recommend the tutorial [The Linux command line for beginners](https://ubuntu.com/desktop/docs/en/latest/tutorial/the-linux-command-line-for-beginners/), which covers all above topics.
+
 ### Software
 The software requirements for this course are:
 

@@ -76,24 +76,21 @@ The ROS Computation Graph is the network of peer-to-peer processes that compute 
 A ROS workspace is a directory with a particular structure that houses any ROS project. The minimum requirement for a ROS workspace is a `/src` directory that contains the source code for all the packages in the project. The build tool used in ROS 2 is `colcon`, which has many features that help building and managing ROS workspaces. 
 
 ### ROS CLI Commands
-Most of our interaction with ROS will be through the terminal or command line, so it is useful to get familiar with the common Linux terminal commands and with common ROS terminal commands. Don’t worry about memorizing them all now, they will be referenced again as they are used throughout the activities, as well as other commands not mentioned here. 
+Most of our interaction with ROS will be through the terminal or command line, so it is useful to get familiar with the common Linux terminal commands and with common ROS terminal commands. 
 
-- **Linux Terminal Commands**
-  - `ls` to list all directories and folders in current directory
-  - `cd <directory-name>` to move to a different directory
-  - `mkdir <directory-name>` to create a new directory
-  - `touch <file-name>` to create a new empty file
-  - `git clone <repo-link>` to download a github repository  	
+If you are new to Linux, I recommend the tutorial [The Linux command line for beginners](https://ubuntu.com/desktop/docs/en/latest/tutorial/the-linux-command-line-for-beginners/). Don’t worry about memorizing all commands now! they will be referenced again as they are used throughout the activities. 
 
-- **ROS Terminal Commands**
-  - `ros2 run <package-name> <executable-name>` to run a node from the specified package
-  - `ros2 launch <package-name> <launch-file>`  to launch several nodes simultaneouly as specified in the launch file
-  - `ros2 node list` to list all running nodes
-  - `ros2 node info <node-name>` to get information about a certain node (topics subscribed and published to, action servers/clients, etc..)
-  - `ros2 topic list` to list all active topics
-  - `ros2 topic echo <topic-name>` to print out the topic's messages
-  - `ros2 topic info <topic-name>` to get information about a topic (# of publishers and subsrcribers, message type)
-  - `ros2 interface show <message/action-type>` to get information about a message or action
+**Some ROS 2 Terminal Commands**
+Some commonly used ROS 2 commands are listed below:
+
+- `ros2 run <package-name> <executable-name>` to run a node from the specified package
+- `ros2 launch <package-name> <launch-file>`  to launch several nodes simultaneouly as specified in the launch file
+- `ros2 node list` to list all running nodes
+- `ros2 node info <node-name>` to get information about a certain node (topics subscribed and published to, action servers/clients, etc..)
+- `ros2 topic list` to list all active topics
+- `ros2 topic echo <topic-name>` to print out the topic's messages
+- `ros2 topic info <topic-name>` to get information about a topic (# of publishers and subsrcribers, message type)
+- `ros2 interface show <message/action-type>` to get information about a message or action
   
 ## Conclusion
 After completing this chapter, you should have a general understanding of ROS and its importance for the robotics community. In Chapter 2 we will dive into some core topics to better understand how to work with ROS and how to write Python code for ROS.
