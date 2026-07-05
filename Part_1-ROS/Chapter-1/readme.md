@@ -82,18 +82,8 @@ Most of our interaction with ROS will be through the terminal or command line, s
 
 If you are new to Linux, I recommend the tutorial [The Linux command line for beginners](https://ubuntu.com/desktop/docs/en/latest/tutorial/the-linux-command-line-for-beginners/). Don’t worry about memorizing all commands now! they will be referenced again as they are used throughout the activities. 
 
-**Some ROS 2 Terminal Commands**
-Some commonly used ROS 2 commands are listed below:
+In the next chapters we will study several ROS 2 commands that run in the terminal. A summary of [useful ROS 2 commands is available here](/Part_1-ROS/Chapter-1/ros2_commands.md).
 
-- `ros2 run <package-name> <executable-name>` to run a node from the specified package
-- `ros2 launch <package-name> <launch-file>`  to launch several nodes simultaneouly as specified in the launch file
-- `ros2 node list` to list all running nodes
-- `ros2 node info <node-name>` to get information about a certain node (topics subscribed and published to, action servers/clients, etc..)
-- `ros2 topic list` to list all active topics
-- `ros2 topic echo <topic-name>` to print out the topic's messages
-- `ros2 topic info <topic-name>` to get information about a topic (# of publishers and subsrcribers, message type)
-- `ros2 interface show <message/action-type>` to get information about a message or action
-  
 ## Conclusion
 After completing this chapter, you should have a general understanding of ROS and its importance for the robotics community. In Chapter 2 we will dive into some core topics to better understand how to work with ROS and how to write Python code for ROS.
 
