@@ -3,7 +3,7 @@
 This chapter covers two essential communication paradigms in ROS: Node-Topic communication and ROS Actions.
 
 ### Objectives
-By the end of this lecture you should be able to:
+By the end of this chapter you should be able to:
 - Interact with and inspect ROS nodes, topics, and actions from the terminal  
 - Read sensor data from various topics
 - Create custom nodes using Python3 that can both subscribe and publish to ROS topics
