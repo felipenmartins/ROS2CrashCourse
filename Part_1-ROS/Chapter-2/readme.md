@@ -27,7 +27,7 @@ As mentioned before, nodes are modular, executable programs that serve a single 
 Nodes can communicate with other nodes in a variety of ways, the most common method being through topics.
 
 ### 2.1.2 Activity: Working with nodes
-For this activity, we will be exploring a few ROS 2 commands that allow us to interact with and inspect nodes. This activity can also be found in the ROS2 wiki [here](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html).
+For this activity, we will be exploring a few ROS 2 commands that allow us to interact with and inspect nodes. This activity can also be found in the [ROS2 wiki](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html).
 
 #### Command 1: ros2 run
 The command `ros2 run` launches an executable from a package:
@@ -64,9 +64,9 @@ Open another new terminal and start the teleop node with the command:
 ros2 run turtlesim turtle_teleop_key
 ```
 
-Here, we are searching the ``turtlesim`` package again, this time for the executable named ``turtle_teleop_key``.
+Here, we are searching the `turtlesim` package again, this time for the executable named `turtle_teleop_key`.
 
-Return to the terminal where you ran ``ros2 node list`` and run it again. You will now see the names of two active nodes:
+Return to the terminal where you ran `ros2 node list` and run it again. You will now see the names of two active nodes:
 ```
 /turtlesim
 /teleop_turtle
@@ -87,7 +87,7 @@ In this activity, you will get familiar with ROS topics using some `ros2`
 commands and the `turtlesim` package. This activity can also be found in the [ROS 2 wiki](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html).
 
 #### Command 3: ros2 topic list
-Run the command ``ros2 topic list`` in a new terminal. You will get a list of all the topics currently active in the system:
+Run the command `ros2 topic list` in a new terminal. You will get a list of all the topics currently active in the system:
 ```bash
     /parameter_events
     /rosout
@@ -96,7 +96,7 @@ Run the command ``ros2 topic list`` in a new terminal. You will get a list of al
     /turtle1/pose
 ```
 
-The command ``ros2 topic list -t`` will return the same list of topics, but with the topic's message type appended in brackets:
+The command `ros2 topic list -t` will return the same list of topics, but with the topic's message type appended in brackets:
 
 ```bash
     /parameter_events [rcl_interfaces/msg/ParameterEvent]
@@ -170,7 +170,7 @@ This tells you that the `Twist` expresses velocity as two vectors of three eleme
 ```
 ---
  
-### 2.1.5 - Activity: Writting code for topics!
+### 2.1.5 - Activity: Writting Python code for topics
 Although the terminal commands are very useful, we can't create complete projects this way. This activity will focus on creating a couple of talker-listener ROS 2 nodes using Python. One node, the talker, will send a simple string message, and the second node, the listener, will print that message to the terminal.
  
 #### Background: `rclpy`
@@ -235,7 +235,7 @@ from std_msgs.msg import String
 ```
 
 #### Defining our class(es)
-ROS 2's coding conventions encourage us to write object-oriented code, meaning we have to organize our code into classes. In the second section we define our class as a subclass of the `Node` class provided by `rcply`. Doing so will allow our class to create a node, add subscribers and publishers, and do everything a ROS 2 node can do.
+ROS 2's coding conventions encourage us to write object-oriented code, meaning we have to organize our code into classes. We define our `talker` class as a subclass of the `Node` class provided by `rcply`. Doing so will allow our class to create a node, add subscribers and publishers, and do everything a ROS 2 node can do.
  
 ``` python
 # Define the talker class based on the Node class from rclpy library
@@ -297,65 +297,62 @@ if __name__ == '__main__':
 ```
 
 #### Task 1: Creating the subcriber node
-Since we already went over the code for the  'talker' node, we will now create the code for the subscriber node. 
+Since we already went over the code for the talker node, we will now create the code for the subscriber node. To save some time, you can use the template shown below and fill out the sections marked with a `#! Write Your Code Here!`.
 
-To save some time, most of the 'boilerplate' code is below, with the sections you need to fill out marked with a `#! Write Your Code Here!`
-
-You can find the code inside the `scripts` folder inside the `create3_ws/src` directory.
+You can also find the template [here](/Part_2-Create3/create3_ws/src/scripts/listenerDemo.py).
 
 ```python
 import rclpy
 from rclpy.node import Node
 
 #! Write your code here!
-#Import the String message from the std_msgs package
-
+# Import the String message from the std_msgs package
 
 class listener(Node):
-
     def __init__(self):
         super().__init__("listener")
-        self.subscriber = self.create_subscription(String,"myTopic",self.sub_callback,10)
+        self.subscriber = self.create_subscription(String, "myTopic", self.sub_callback, 10)
 
-    def sub_callback(self,msg):
+    def sub_callback(self, msg):
     	#! Write your code here! 
-        #Print the message to the terminal
+        # Print the message to the terminal
         
 
 def main():
     rclpy.init()
 	
     #! Write your code here! 
-    
     #Create an instance of your class
-    
     #'Spin' the node
-
 
 if __name__ == '__main__':
     main()
 ```
 
 #### Task 2: Test your code!
-It's now time to test our code. To run the code, open a new terminal and navigate to the `scripts` folder like so:
+It's now time to test our code. To run the code, open a new terminal and navigate to the `scripts` directory (replace `create3_ws` by the name of your ROS2 workspace):
 
-	cd ~/create3_ws/src/scripts
+```bash
+cd ~/create3_ws/src/scripts
+```
+
+Now run your first python script:
+```bash 
+python3 talkerDemo.py
+```
+
+To run your second script, open a new terminal window and repeat the same process, this time running the listener script:
+```bash 
+python3 listenerDemo.py
+```
+
+You should now be able to see the "talker" node's message being published on the `myTopic` topic and see the same message being printed to the terminal where your "listener" node is running.
  
- Now run your first python script like so:
+Run the commands `ros2 topic list` and `ros2 topic echo` to check that the messages are being published to the correct topic.
+
+---
  
- 	python3 talkerDemo.py
- 
- 
- To run your second script, open a new terminal window and repeat the same process, this time running the "listener" script.
- 
- You should now be able to see the "talker" node's message being published on the `myTopic` topic and see the same message being printed to the terminal where your "listener" node is running.
- 
- You can verify that the messages are being published to the correct topic by using the `ros2 topic list` and `ros2 topic echo` commands!
- 
- ---
- 
-  
- ## 2.2 ROS2 Actions
+## 2.2 Actions
 
 Although the node-topic communication paradigm is very flexible, some applications are not well suited for this method of communication. For example,navigation applications require multiple long running tasks that would be inefficient if done using the node-topic paradigm. 
 
@@ -637,19 +634,14 @@ You will continue to receive feedback, the remaining radians, until the goal is 
 #### 7 - Practice on the iRobot Create3
 If you have access to an iRobot Create3, follow the activities in [Part 2](/Part_2-Create3/readme.md) to practice the concepts above on a real robot.
  
- --- 
- 
- ### 2.3 - Recap!
- 
- 
- By this point, we have covered the two most common ways ROS nodes can interact with one another, topics and actions!
- 
- Using a combination of these two communication paradigms, we can create complex robotics projects, as well as work with the nodes provided by ROS packages, exponentially extending our projects' capabilities! 
- 
- We will be covering how we can download and add ROS packages to our projects in the next chapter, as well as cover a few of the most prominent ones.
+--- 
 
 ## Conclusion
-In this chapter you delve into core ROS concepts, like nodes, topics, and actions. You also create custom nodes using Python3 to subscribe and publish to ROS topics, and to use ROS actions. This should have given you a clear understanding of how to work with ROS and how to create simple nodes for it. In the next chapter you will learn more about other tools that are part of the ROS ecosystem.
+In this chapter you studied and practiced core ROS 2 concepts, like nodes, topics, and actions. You also created custom nodes using Python to subscribe and publish to ROS topics, and to use ROS actions. This should have given you a clear understanding of how to work with ROS 2 and how to create simple nodes for it. 
+
+For a quick reference, check out this list of [commonly used ROS 2 commands](/Part_1-ROS/Chapter-1/ros2_commands.md).
+
+In the next chapter you will learn more about other tools that are part of the ROS ecosystem. We will cover how to download and add ROS packages to our projects, and discuss a few of the most prominent ones.
 
 ## Navigation menu
 - Continue to [Chapter 3 - The ROS Ecosystem](/Part_1-ROS/Chapter-3/readme.md)
