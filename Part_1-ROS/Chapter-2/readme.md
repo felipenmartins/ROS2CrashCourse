@@ -10,7 +10,7 @@ By the end of this chapter you should be able to:
 - Create custom nodes that use ROS actions
 
 
-## 2.0 Turtlesim
+## 2.1 Turtlesim
 We will use a ROS2 package called `turtlesim` when introducing new concepts. A description of `turtlesim` from the [ROS2 guide](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html):
 
 > Turtlesim is a lightweight simulator for learning ROS 2. It illustrates what ROS 2 does at the most basic level to give you an idea of what you will do with a real robot or a robot simulation later on. 
@@ -18,15 +18,15 @@ We will use a ROS2 package called `turtlesim` when introducing new concepts. A d
 ![turtlesim](https://docs.ros.org/en/jazzy/_images/turtlesim.png)
 ##### Figure 1. TurtleSim screenshot - the turtle in the center serve as a robot that can be controlled via mesages published to specific topics. _Source: [ROS Docs](https://docs.ros.org/en/jazzy/)_
 
-## 2.1 Nodes and Topics
+## 2.2 Nodes and Topics
 Node-topic communication is the most common communication paradigm used in ROS projects. It is most commonly used between nodes that publish/subscribe to continuous streams of data as is the case with most sensor data. 
 
-### 2.1.1 Nodes
+### 2.2.1 Nodes
 As mentioned before, nodes are modular, executable programs that serve a single purpose, such as controlling a motor or recording data from a sensor. A complete robotics project in ROS consists of multiple nodes running simultaneously.
 
 Nodes can communicate with other nodes in a variety of ways, the most common method being through topics.
 
-### 2.1.2 Activity: Working with nodes
+### 2.2.2 Activity: Working with nodes
 For this activity, we will be exploring a few ROS 2 commands that allow us to interact with and inspect nodes. This activity can also be found in the [ROS2 wiki](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html).
 
 #### Command 1: ros2 run
@@ -76,13 +76,13 @@ Keep those nodes running for now.
 
 ---
 
-### 2.1.3 Topics
+### 2.2.3 Topics
 Topics are a vital element of the ROS graph that act as a bus for nodes to exchange data in the form of messages. Topics can receive messages from one or more nodes publishing to it, and deliver those messages to one or more nodes that are subscribed to it. A node may publish to a topic or to multiple topics, and simultaneously have subscriptions to one or more topics. Figure 2 illustrates this concept.
 
 ![Multiple node-topic communication](https://docs.ros.org/en/foxy/_images/Topic-MultiplePublisherandMultipleSubscriber.gif)
 ##### Figure 2. Nodes exchanging messages via topics. _Source: [ROS 2 Documentation: Jazzy](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html)_
 
-### 2.1.4 Activity: Working with topics
+### 2.2.4 Activity: Working with topics
 In this activity, you will get familiar with ROS topics using some `ros2`
 commands and the `turtlesim` package. This activity can also be found in the [ROS 2 wiki](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html).
 
@@ -170,7 +170,7 @@ This tells you that the `Twist` expresses velocity as two vectors of three eleme
 ```
 ---
  
-### 2.1.5 Activity: Writting Python code for topics
+### 2.2.5 Activity: Writting Python code for topics
 Although the terminal commands are very useful, we can't create complete projects this way. This activity will focus on creating a couple of talker-listener ROS 2 nodes using Python. One node, the talker, will send a simple string message, and the second node, the listener, will print that message to the terminal.
  
 #### Background: `rclpy`
@@ -352,7 +352,7 @@ Run the commands `ros2 topic list` and `ros2 topic echo` to check that the messa
 
 ---
  
-## 2.2 Actions
+## 2.3 Actions
 The node-topic communication paradigm is very flexible. However, some applications are not well suited for this method of communication. For example, navigation applications require multiple long running tasks that would be inefficient if done using the node-topic paradigm. 
 
 Actions are another type of communication in ROS 2, intended for long running tasks. They consist of three parts: a goal, feedback, and a result. Actions return a steady-stream of feedback and can be canceled at any time during their executions.
@@ -362,7 +362,7 @@ Actions use a client-server model, similar to the publisher-subscriber model of 
 ![Actions ROS2](https://docs.ros.org/en/foxy/_images/Action-SingleActionClient.gif)
 ##### Figure 3. An “action client” node (left) sends a goal to an “action server” node (right) that acknowledges it and returns a stream of feedback and a result. _Source: [ROS 2 Documentation: Jazzy](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html)_
 
-### 2.2.1 Activity: Getting familiar with actions
+### 2.3.1 Activity: Getting familiar with actions
 In this activity, we will get get familiar with how exactly actions work by sending and examining actions by inspecting them from terminal. We will be using the `turtlesim` package again. This activity can also be found in the [ROS2 docs](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html).
 
 #### Setup

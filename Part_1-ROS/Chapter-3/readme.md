@@ -1,12 +1,12 @@
 # Chapter 3 - The ROS Ecosystem
 
-This chapter will cover a few very important concepts that will allow you to fully harness the power of ROS2. You will be able to create and build your own custom packages and learn how to use RVIZ and Gazebo, two of the most useful simulation tools in ROS.
+This chapter covers a few important concepts that will allow you to fully harness the power of ROS 2. You will be able to create and build your own custom packages and learn how to use RViz and Gazebo, two very useful tools for visualization and simulation in ROS.
 
 ### Objectives
 By the end of this chapter you should be able to:
 - Create and build custom packages using the `colcon` build tool
 - Create custom launch files for your projects
-- Use RVIZ and Gazebo to simulate the Create3 robot
+- Use RViz and Gazebo to simulate the Create3 robot
 
 ## 3.1 - ROS Packages
 
