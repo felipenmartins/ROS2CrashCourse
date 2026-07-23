@@ -4,121 +4,92 @@ This chapter covers a few important concepts that will allow you to fully harnes
 
 ### Objectives
 By the end of this chapter you should be able to:
+- Understand and create a ROS workspace
 - Create and build custom packages using the `colcon` build tool
 - Create custom launch files for your projects
 - Use RViz and Gazebo to simulate the Create3 robot
 
-## 3.1 - ROS Packages
+## 3.1 ROS Packages
+Software in ROS is organized into packages. A *ROS package* can contain nodes, ROS-independent libraries, datasets, configuration files, third-party software, or anything else that logically constitutes a useful module. 
 
-####  What are packages?
-Software in ROS is divided into packages. A package can contain ROS nodes, a ROS-independent library, a dataset, configuration files, a third-party piece of software, or anything else that logically constitutes a useful module. 
+A package can be considered a *container for your ROS 2 code*. If you want to be able to install your code or share it with others, then you’ll need it organized in a package. With packages, you can release your ROS 2 work and allow others to build and use it, and you can do the same with software developed by the ROS community.
 
-A package can be considered a container for your ROS 2 code. If you want to be able to install your code or share it with others, then you’ll need it organized in a package. With packages, you can release your ROS 2 work and allow others to build and use it easily.
-
-
-
-#### Useful Packages
-
+### 3.1.1 Useful Packages
 One of the biggest advantages of using ROS is its community and vast collection of packages. A lot of the most common use cases in robotics have official ROS packages created and supported by the team behind ROS, and for virtually any other use case, you can probably find a communty-created ROS package.
 
-Often, you will need to install packages to interface sensors or external devices such as cameras with your ROS project. You might also need to install a ROS package that contains an algorithm that might help you in your project (e.g: Sensor-Fusion or Localization). For almost all of these cases, you will be able to find them on Github, but you will often need to check if they are compatible with your version of ROS.
+Often, you will need to install packages to interface sensors or external devices such as cameras, LiDARs or other sensors with your ROS-based robot. You might also need to install a ROS package that contains an algorithm that might help you in your project (e.g: sensor-fusion, localization, or mapping). For almost all of these cases, you will be able to find them on Github, but you will often need to check if they are compatible with your version of ROS.
 
+Some commonly used ROS packages that you should at least know about are:
 
+- [**Nav2**](http://nav2.org/) is the successor of the ROS Navigation Stack for mobile robot navigation. It provides easily-customizable methods for dynamic path planning, obstacle avoidance, behavior tree implementation etc.. It is used for all types of navigation applications, including drone navigation (see [Elroy Air](https://elroyair.com/)).
 
-Here are some commonly used ROS packages that you might come across:
+- [**MoveIt**](https://moveit.ai/) is a motion planning framework based on ROS. It is one of the most comprehensive and widely used ROS packages. It provides complete motion and grasp planning support for robotic manipulators of all types. It is widely used in a variety of fields and companies, like NASA, Google, Microsoft, and Samsung.
 
-- [**MoveIt**](https://moveit.ai/)
-  MoveIt is a motion planning framework based on ROS. It is one of the most comprehensive and widely used ROS packages. It provides complete motion and grasp planning support for robotic manipulators of all types. It is widely used in a variety of fields and is used by NASA, Google, Microsoft, and Samsung.
+## 3.2 ROS Workspace
+A ROS workspace is a directory with a particular structure that houses ROS projects. The minimum requirement for a ROS workspace is a `/src` directory that contains the source code for all the packages in the project. 
 
-- [**Nav2**](https://docs.nav2.org/)
+### 3.2.1 Anatomy of a ROS workspace 
+The structure of a ROS 2 workspace will typically consist of the workspace directory (here called `ros2_ws`) with 4 sub-directories:
+```bash
+ros2_ws
+  ├── build
+  ├── install
+  ├── log
+  └── src
+```
 
-  Nav2 is the successor of the ROS Navigation Stack. It provides easily-customizable methods that can complete dynamic path planning, compute velocities for motors, avoid obstacles, and structure recovery behaviors. It is used for all types of navigation applications and is currently being used by companies such as Toyota and [Elroy Air](https://elroyair.com/).
+- `/build` is where intermediate files are stored. For each package, a sub-directory will be created.
+- `/install` is where each package will be installed to. By default, each package will be installed into a separate sub-directory, i.e: `/install/package_name`.
+- `/log` contains logs about each build invocation.
+- `/src` contains all the source code. This is the directpry where you can create new files and clone source code from other sources.
 
-
-
-
-## 3.2 - The ROS Workspace
-
-
-A ROS workspace is a directory with a particular structure that houses any ROS project. The minimum requirement for a ROS workspace is a /src directory that contains the source code for all the packages in the project. 
-
-#### The anatomy of a ROS workspace 
-  The structure of a ROS workspace will typically consist of these 4 directories:
-
-- `/src`: This directory contains all the source code, where you can create new files and clone source code from sources
-
-- `/build` This is the directory where intermediate files are stored. For each package a subfolder will be created in which e.g. CMake is being invoked.
-- `/install`   This is the directory where each package will be installed to. By default each package will be installed into a separate subdirectory, i.e: /install/package_name.
-- `/log`  This directory contains logs about each build invocation
-
-
-
-#### Using `colcon`
-
-##### Background
-To create a ROS2 workspace, we will be using `colcon`, which is the build tool used in ROS2. Build tools are programs that automate the creation of executable programs from source code. For our case, building our workspace is what allows us to use commands such as `ros2 run` as it creates an executable format that ROS can find and execute.
-
-`colcon`has many quality of life improvements that make building and managing ROS workspaces easier. For example, `colcon` generates the /build, /install, and /log directories by default.
-
-
-
-
-
-### Activity 3.2.1: Creating your own workspace!
-
+### 3.2.2 Activity: Creating your own workspace
 In almost all cases, it is recommended that every ROS project should be in a seperate workspace. This allows for clear separation between packages and makes building projects a lot more hassle-free. This activity will focus on creating a new workspace, cloning some dependencies from Github, and sourcing our new package!
 
-#### Tasks:
+#### Task 1 - Create an empty directory
+To create a ROS workspace, we need to start with an empty folder. Navigate to your home directory and create an empty folder named `ros2_ws`:
+```bash
+cd ~
+mkdir ros2_ws
+```
 
-#### 0 - Create an empty directory
-Before we can create a ROS workspace, we need to first start with an empty folder, so navigate to the home directory and create an empty folder with the `mkdir` command:
+Navigate to your workspace folder and create a new folder called `src`:
+```bash
+cd ros2_ws
+mkdir src
+```
 
-	cd ~
-    mkdir ros2_ws
+This is the basic skeleton of any ROS 2 workspace. You can add any source code or packages you want to build in the `src` folder.
 
+#### Task 2 - Clone packages
+Now we will clone a couple of packages that we will need to use: the [Create3 simulation](https://github.com/iRobotEducation/create3_sim) and the [Create3 examples](https://github.com/iRobotEducation/create3_examples) packages. We will download them from their respective Github repositories. 
 
-Now navigate to your workspace folder and create a new folder called `src`	
+Navigate to the `src` directory in your workspace and clone the packages from GitHub:
+```bash
+cd ~/ros2_ws/src
+git clone https://github.com/iRobotEducation/create3_sim
+git clone https://github.com/iRobotEducation/create3_examples.git --branch jazzy
+```
 
+Proceed to the next step after the download has been completed.
 
-	cd ros2_ws
-    mkdir src
+#### Task 3 - Install dependencies
+Some ROS packages require other packages to work properly (we say that they _depend_ on other packages). The packages we just downloaded need a lot of other packages and other system-dependencies before they can be used. Downloading such dependencies manually would take a very long time and would be prone to error. `rosdep` is a command-line tool for installing dependencies related to ROS packages.
 
-This is the basic skeleton of any ROS2 workspace. You can add any source code or packages you want to build in the `src` folder.
+To install the dependencies for the packages installed, navigate to the top of your workspace and use the `rosdep install` command:
 
+```bash
+cd ~/ros2_ws/
+rosdep install --from-path src --ignore-src -yi
+```
+This will install all the required dependencies in the workspace. This process may take a while depending on how extensive the packages are and how fast your system and Internet connection are.
 
-#### 1 - Clone a package
-
-Now we will clone a few packages that we will need to use alongside our package. We will go into detail of what these packages include in a later section.
-
-We will be cloning the [Create3 simulation]([here](https://github.com/iRobotEducation/create3_sim)) and [Create3 examples](https://github.com/iRobotEducation/create3_examples) packages from their respective Github repos. 
-
-
-Navigate to your workspace's`src` directory and clone the package from Github:
-
-	cd ~/ros2_ws/src
-    git clone https://github.com/iRobotEducation/create3_sim
-    git clone https://github.com/iRobotEducation/create3_examples
-
-Wait for the download to complete, then proceed to the next step.
-
-#### 2 - Install dependencies using `rosdep`
-
-
-`rosdep` is a command-line tool for installing system dependencies. It's frequently used to install dependencies for ROS packages. 
-
-For example, the package we just downloaded needs a lot of other packages and other system-dependencies before it can be used, but downloading them manually will take a very long time. For this, we just simply use `rosdep`.
-
-To install the dependencies for the packages installed in our workspace, we navigate to the top of our directory and use the `rosdep install` command:
-
-	cd ..
-	rosdep install --from-path src -yi
-
-This will install all the required dependencies in the workspace. This process may or may not take a while depending on how extensive the packages are and how fast your system and Internet connection are.
-
-
-#### 3- Build Your Workspace!
-
+#### Task 4 - Build the workspace
 Now that we downloaded all the required dependencies, we can finally build our workspace!
+
+To build a workspace, we will use `colcon`, which is the build tool used in ROS 2. Build tools are programs that automate the creation of executable files from source code. For our case, building our workspace is what allows us to use commands such as `ros2 run` as it creates an executable format that ROS can find and execute.
+
+`colcon`has many quality of life improvements that make building and managing ROS workspaces easier. For example, `colcon` generates the `/build`, `/install`, and `/log` directories by default.
 
 Build your workspace using the `colcon build` command:
 
@@ -296,7 +267,7 @@ To see the Create3's frames visualized in RViz, you can click on the checkbox ne
  
  In this activity, we will go back our good friend turtlesim to see an example of how launch files work. We will be creating a simple launch file that launches the turtlesim node as well as the teleop node at the same time.
  
- This activity can also be found on the ROS2 docs [here.](https://docs.ros.org/en/foxy/Tutorials/Intermediate/Launch/Creating-Launch-Files.html)
+ This activity can also be found on the ROS2 docs [here.](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Launch/Creating-Launch-Files.html)
  
  
  #### Tasks
@@ -332,7 +303,7 @@ Copy and paste the code below into your launch files:
 </launch>
 ```
 
-As you can see, the syntax for launch files is relatively intuitive. You can find out a lot more of what launch files are capable of by following the [ros2 tutorials here](https://docs.ros.org/en/foxy/Tutorials/Intermediate/Launch/Launch-Main.html)
+As you can see, the syntax for launch files is relatively intuitive. You can find out a lot more of what launch files are capable of by following the [ros2 tutorials here](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Launch/Launch-Main.html)
 
 #### 2- Launch!
 
@@ -358,13 +329,13 @@ Fortunately, ROS provides a utility that allows for easy data persistence!
 
 The `rosbag` utility allows you to store and replay topic data through the CLI commands.
 
-You can find out all about the package again through the  [ros2 tutorials here](https://docs.ros.org/en/foxy/Tutorials/Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html).
+You can find out all about the package again through the  [ros2 tutorials here](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html).
 
 ### 3.5.1 - A `rosbag` demo
 
 In this very short demo, we will try recording a few topics in turtlesim using the `rosbag2` package and replay them back in real time
 
-This activity can be found on the ROS2 wiki [here](https://docs.ros.org/en/galactic/Tutorials/Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html)
+This activity can be found on the ROS2 wiki [here](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html)
 
 #### Task 0 - Setup
 
