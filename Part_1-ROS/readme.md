@@ -2,18 +2,20 @@
 
 This part covers fundamental concepts of ROS 2 to equip you with the knowledge to run and create your own Python code for robots. It is organized in 3 chapters that cover ROS 2 and its core concepts: 
 
-- [**Chapter 1 - What is ROS?**](/Part_1-ROS/Chapter-1/readme.md)
-  - The history of ROS
+- [**Chapter 1 - Fundamental Concepts of ROS**](/Part_1-ROS/Chapter-1/readme.md)
+  - ROS overview and history
   - Why use ROS?
-  - Overview of ROS
-  - Summary of CLI commands
-- [**Chapter 2 - Fundamental Concepts of ROS**](/Part_1-ROS/Chapter-2/readme.md)
+  - Main concepts (packages, workspaces, nodes, topics etc.)
+  - Activity: Creating your own workspace and running your first nodes
+
+- [**Chapter 2 - Diving into Nodes, Topics and Actions**](/Part_1-ROS/Chapter-2/readme.md)
   - TurtleSim
   - The ROS Graph
   - Nodes, Messages, Topics
+  - ROS Actions
   - Writting a node in Python
-  - ROS Actions 
-- [**Chapter 3 - The ROS Ecosystem**](/Part_1-ROS/Chapter-3/readme.md) 
+
+- [**Chapter 3: The ROS Ecosystem**](/Part_1-ROS/Chapter-3/readme.md)
   - ROS Packages
   - Workspaces
   - Simulation
@@ -22,6 +24,7 @@ This part covers fundamental concepts of ROS 2 to equip you with the knowledge t
   - Bags
 
 ## Software Requirements
+
 The software requirements for this course are:
 
 - [Ubuntu 24.04](https://releases.ubuntu.com/24.04/) 
@@ -29,9 +32,11 @@ The software requirements for this course are:
 - The [iRobot Create3 Platform interfaces](https://github.com/iRobotEducation/irobot_create_msgs) package is required to work with this robot.
 
 ### Virtual Machine
+
 If you are running Windows or macOS, you can create a virtual machine to run ROS. A guide to create a Virtual Machine with Ubuntu and ROS 2 is [available here.](/Part_1-ROS/ros2_vm_guide.md)
 
 ## Navigation menu
+
 - Start with [Chapter 1 - What is ROS?](/Part_1-ROS/Chapter-1/readme.md)
 - Go to [Part 2 - Create3](/Part_2-Create3/readme.md)
 - Go to the [Main page](/readme.md)
