@@ -2,19 +2,23 @@
 
 This chapter covers a few important concepts that will allow you to fully harness the power of ROS 2. You will be able to create and build your own custom packages and learn how to use RViz and Gazebo, two very useful tools for visualization and simulation in ROS.
 
-### Objectives
+## Objectives
+
 By the end of this chapter you should be able to:
+
 - Understand and create a ROS workspace
 - Create and build custom packages using the `colcon` build tool
 - Create custom launch files for your projects
 - Use RViz and Gazebo to simulate the Create3 robot
 
 ## 3.1 ROS Packages
+
 Software in ROS is organized into packages. A *ROS package* can contain nodes, ROS-independent libraries, datasets, configuration files, third-party software, or anything else that logically constitutes a useful module. 
 
 A package can be considered a *container for your ROS 2 code*. If you want to be able to install your code or share it with others, then you’ll need it organized in a package. With packages, you can release your ROS 2 work and allow others to build and use it, and you can do the same with software developed by the ROS community.
 
 ### 3.1.1 Useful Packages
+
 One of the biggest advantages of using ROS is its community and vast collection of packages. A lot of the most common use cases in robotics have official ROS packages created and supported by the team behind ROS, and for virtually any other use case, you can probably find a communty-created ROS package.
 
 Often, you will need to install packages to interface sensors or external devices such as cameras, LiDARs or other sensors with your ROS-based robot. You might also need to install a ROS package that contains an algorithm that might help you in your project (e.g: sensor-fusion, localization, or mapping). For almost all of these cases, you will be able to find them on Github, but you will often need to check if they are compatible with your version of ROS.
@@ -25,66 +29,39 @@ Some commonly used ROS packages that you should at least know about are:
 
 - [**MoveIt**](https://moveit.ai/) is a motion planning framework based on ROS. It is one of the most comprehensive and widely used ROS packages. It provides complete motion and grasp planning support for robotic manipulators of all types. It is widely used in a variety of fields and companies, like NASA, Google, Microsoft, and Samsung.
 
-## 3.2 ROS Workspace
-A ROS workspace is a directory with a particular structure that houses ROS projects. The minimum requirement for a ROS workspace is a `/src` directory that contains the source code for all the packages in the project. 
+### 3.2.2 Activity: Adding Packages to the Create3 workspace
 
-### 3.2.1 Anatomy of a ROS workspace 
-The structure of a ROS 2 workspace will typically consist of the workspace directory (here called `ros2_ws`) with 4 sub-directories:
-```bash
-ros2_ws
-  ├── build
-  ├── install
-  ├── log
-  └── src
-```
+This activity will focus on adding new packages to the Create3 workspace. We will clone some dependencies from Github, and build it again.
 
-- `/build` is where intermediate files are stored. For each package, a sub-directory will be created.
-- `/install` is where each package will be installed to. By default, each package will be installed into a separate sub-directory, i.e: `/install/package_name`.
-- `/log` contains logs about each build invocation.
-- `/src` contains all the source code. This is the directpry where you can create new files and clone source code from other sources.
+#### Step 1 - Clone packages
 
-### 3.2.2 Activity: Creating your own workspace
-In almost all cases, it is recommended that every ROS project should be in a seperate workspace. This allows for clear separation between packages and makes building projects a lot more hassle-free. This activity will focus on creating a new workspace, cloning some dependencies from Github, and sourcing our new package!
-
-#### Task 1 - Create an empty directory
-To create a ROS workspace, we need to start with an empty folder. Navigate to your home directory and create an empty folder named `ros2_ws`:
-```bash
-cd ~
-mkdir ros2_ws
-```
-
-Navigate to your workspace folder and create a new folder called `src`:
-```bash
-cd ros2_ws
-mkdir src
-```
-
-This is the basic skeleton of any ROS 2 workspace. You can add any source code or packages you want to build in the `src` folder.
-
-#### Task 2 - Clone packages
 Now we will clone a couple of packages that we will need to use: the [Create3 simulation](https://github.com/iRobotEducation/create3_sim) and the [Create3 examples](https://github.com/iRobotEducation/create3_examples) packages. We will download them from their respective Github repositories. 
 
 Navigate to the `src` directory in your workspace and clone the packages from GitHub:
+
 ```bash
-cd ~/ros2_ws/src
+cd ~/create3_ws/src
 git clone https://github.com/iRobotEducation/create3_sim
 git clone https://github.com/iRobotEducation/create3_examples.git --branch jazzy
 ```
 
 Proceed to the next step after the download has been completed.
 
-#### Task 3 - Install dependencies
+#### Step 2 - Install dependencies
+
 Some ROS packages require other packages to work properly (we say that they _depend_ on other packages). The packages we just downloaded need a lot of other packages and other system-dependencies before they can be used. Downloading such dependencies manually would take a very long time and would be prone to error. `rosdep` is a command-line tool for installing dependencies related to ROS packages.
 
 To install the dependencies for the packages installed, navigate to the top of your workspace and use the `rosdep install` command:
 
 ```bash
-cd ~/ros2_ws/
+cd ~/create3_ws/
 rosdep install --from-path src --ignore-src -yi
 ```
+
 This will install all the required dependencies in the workspace. This process may take a while depending on how extensive the packages are and how fast your system and Internet connection are.
 
-#### Task 4 - Build the workspace
+#### Step 3 - Build the workspace
+
 Now that we downloaded all the required dependencies, we can finally build our workspace!
 
 To build a workspace, we will use `colcon`, which is the build tool used in ROS 2. Build tools are programs that automate the creation of executable files from source code. For our case, building our workspace is what allows us to use commands such as `ros2 run` as it creates an executable format that ROS can find and execute.
@@ -93,25 +70,25 @@ To build a workspace, we will use `colcon`, which is the build tool used in ROS 
 
 Build your workspace using the `colcon build` command:
 
-	cd ~/ros2_ws
-	colcon build --symlink-install
-    
+```bash
+cd ~/create3_ws
+colcon build --symlink-install
+```
+
 This process usually takes a while, depending again on the speed of the system. When the build process is complete you should see a message similar to this:
 
-	Summary: 12 packages finished [5min 54s]
+```bash
+Summary: 12 packages finished [5min 54s]
+```
 
+#### Step 4 - Source your workspace
 
-#### 4 - Source your installation
+Remember that you need to source your workspace every time you open a new terminal in order to run the packages installed in it:
 
-Now that we built our workspace, it is time to 'source' our installation. 'Sourcing' an installation is a very important step that allows the package to be usable by running a bash script that executes a few required setup actions behind the scenes (e.g: Setting environment variables). 
-
-You will need to run this command every time you open a new terminal in order to run the packages installed in your workspace
-
-	cd ~/ros2_ws
-    source install/local_setup.bash
-
-Alternatively, you can add this line to the end of the `.bashrc` file, which is ran every time a new terminal is opened. However, this is not recommended as it might some times create conflicts.
-
+```bash
+cd ~/create3_ws
+source install/local_setup.bash
+```
 
 #### 5 - Test your installation!
 
