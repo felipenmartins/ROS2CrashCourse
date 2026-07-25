@@ -7,22 +7,23 @@ This course covers fundamental concepts of ROS 2 to equip you with the knowledge
 The course structure is:
 
 ## [Part 1 - ROS](/Part_1-ROS/readme.md)
+
 This part covers fundamental ROS 2 concepts. It can be followed even if you don't have access to a physical robot.
 
-- **Chapter 1: What is ROS?**
-  - The history of ROS
+- **Chapter 1 - Fundamental Concepts of ROS**
+  - ROS overview and history
   - Why use ROS?
-  - Overview of ROS
-  - Summary of ROS commands
+  - Main concepts (packages, workspaces, nodes, topics etc.)
+  - Activity: Creating your own workspace and running your first nodes
 
-- **Chapter 2: Fundamental Concepts of ROS**
+- **Chapter 2 - Diving into Nodes, Topics and Actions**
   - TurtleSim
   - The ROS Graph
   - Nodes, Messages, Topics
-  - ROS Actions 
+  - ROS Actions
   - Writting a node in Python
 
-- **Chapter 3: The ROS Ecosystem** 
+- **Chapter 3: The ROS Ecosystem**
   - ROS Packages
   - Workspaces
   - Simulation
@@ -31,25 +32,29 @@ This part covers fundamental ROS 2 concepts. It can be followed even if you don'
   - Bags
 
 ## [Part 2 - Create3](/Part_2-Create3/readme.md)
-This part provides activities for the [iRobot Create3](https://iroboteducation.github.io/create3_docs/) educational robot, so you can apply the concepts discussed in part 1. 
+
+This part provides activities for the [iRobot Create3](https://iroboteducation.github.io/create3_docs/) educational robot, so you can apply the concepts discussed in part 1.
 
 - **Overview of the Create3**
 - **Activity 1 - IR sensors and LED pannel**
 - **Activity 2 - Actions with the physical buttons**  
 
+## Intended Learning Outcomes
 
-## Intended Learning Outcomes:
-By the end of this course, you should be able to: 
+By the end of this course, you should be able to:
+
 - Understand fundamental concepts of ROS 2
 - Run ROS 2 commands and nodes from the terminal
 - Write Python code to develop custom ROS 2 packages that include custom nodes, topics and actions
 - Interact with and program ROS-enabled robots
 
-
 ## Requirements
+
 ### Linux command line
+
 This course assumes that you are familiar with the Linux Terminal commands. You don't need to be an advanced Linux user, but you should know how to:
-- access the command line 
+
+- access the command line
 - investigate and navigate the folder structure (list and access files and folders)
 - perform basic file manipulation (create, delete, copy and move files)
 - how to run command as a super user
@@ -57,6 +62,7 @@ This course assumes that you are familiar with the Linux Terminal commands. You 
 If you are new to Linux, I recommend the tutorial [The Linux command line for beginners](https://ubuntu.com/desktop/docs/en/latest/tutorial/the-linux-command-line-for-beginners/), which covers all above topics.
 
 ### Software
+
 The software requirements for this course are:
 
 - [Ubuntu 24.04](https://releases.ubuntu.com/24.04/) 
@@ -66,10 +72,13 @@ The software requirements for this course are:
 A guide to create a Virtual Machine with Ubuntu and ROS 2 is [available here.](/Part_1-ROS/ros2_vm_guide.md)
 
 ### Hardware (optional)
+
 The demonstration platform used in this course is the [iRobot Create3](https://iroboteducation.github.io/create3_docs/) educational robot, so a working Create3 robot is required to complete the activities in Part 2.
 
-## Credits
-This repository was forked from [ROSWorkshop](https://github.com/Marwan-Refaat/ROSWorkshop), originally prepared by Marwan Refaat when on a summer internship at Hanze University of Applied Sciences. It was later updated and modified.
+## Acknowledgment
+
+An early version of this course was prepared by Marwan Refaat when on a summer internship at Hanze University of Applied Sciences. This repository was forked from his  [ROSWorkshop](https://github.com/Marwan-Refaat/ROSWorkshop) and was built on top of his  work. Thank you, Marwan!
 
 ## License
+
 This project is licensed under the terms of the [MIT license](/LICENSE.md).
