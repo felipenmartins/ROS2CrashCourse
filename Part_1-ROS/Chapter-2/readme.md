@@ -1,6 +1,6 @@
-# Chapter 2 - Fundamental Concepts of ROS
+# Chapter 2 - Diving into Nodes, Topics and Actions
 
-This chapter covers two essential communication paradigms in ROS: Node-Topic communication and ROS Actions.
+This chapter dives into two essential communication paradigms in ROS: Node-Topic communication and ROS Actions.
 
 ### Objectives
 By the end of this chapter you should be able to:
@@ -8,7 +8,6 @@ By the end of this chapter you should be able to:
 - Read sensor data from various topics
 - Create custom nodes using Python3 that can both subscribe and publish to ROS topics
 - Create custom nodes that use ROS actions
-
 
 ## 2.1 Turtlesim
 We will use a ROS2 package called `turtlesim` when introducing new concepts. A description of `turtlesim` from the [ROS2 guide](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html):
@@ -176,7 +175,7 @@ Although the terminal commands are very useful, we can't create complete project
 #### Background: `rclpy`
 `rclpy` is the Python client library for ROS 2. It is the primary library that we will be using to implement ROS features in Python. Before starting the activity, we are going to briefly go over the general structure for most of the Python scripts we will be creating during this workshop and explain what each section does. 
 
-The following is an example of a simple node that publishes the message "Marco!" every 0.5 seconds:
+The Python script below is the one that we ran in Chapter 1: it is a simple node that publishes the message "Marco!" every 0.5 seconds. Take a look at the code.
 
 ```python
 # Import Libraries
@@ -330,10 +329,10 @@ if __name__ == '__main__':
 ```
 
 #### Task 2: Test your code
-It's now time to test our code. To run the code, open a new terminal and navigate to the `scripts` directory (replace `create3_ws` by the name of your ROS2 workspace):
+It's now time to test our code. To run the code, open a new terminal and navigate to the `scripts` directory of the Cretae3 workspace:
 
 ```bash
-cd ~/create3_ws/src/scripts
+cd ~/ros2_ws/src/scripts
 ```
 
 Now run your first python script:
