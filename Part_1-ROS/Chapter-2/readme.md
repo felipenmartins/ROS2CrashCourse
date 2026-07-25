@@ -2,39 +2,47 @@
 
 This chapter dives into two essential communication paradigms in ROS: Node-Topic communication and ROS Actions.
 
-### Objectives
+## Objectives
+
 By the end of this chapter you should be able to:
+
 - Interact with and inspect ROS nodes, topics, and actions from the terminal  
 - Read sensor data from various topics
 - Create custom nodes using Python3 that can both subscribe and publish to ROS topics
 - Create custom nodes that use ROS actions
 
 ## 2.1 Turtlesim
-We will use a ROS2 package called `turtlesim` when introducing new concepts. A description of `turtlesim` from the [ROS2 guide](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html):
 
-> Turtlesim is a lightweight simulator for learning ROS 2. It illustrates what ROS 2 does at the most basic level to give you an idea of what you will do with a real robot or a robot simulation later on. 
+Turtlesim is a lightweight simulator used for learning ROS. It is a simple simulation environment that allows you to practice concepts and learn what ROS 2 does at the most basic level. TurtleSim is a good starting point to understand the basics and to give you an idea of what you will do with a real robot. Figure 1 shows a screenshot of the simulator running.
 
 ![turtlesim](https://docs.ros.org/en/jazzy/_images/turtlesim.png)
-##### Figure 1. TurtleSim screenshot - the turtle in the center serve as a robot that can be controlled via mesages published to specific topics. _Source: [ROS Docs](https://docs.ros.org/en/jazzy/)_
+
+##### Figure 1. TurtleSim screenshot - the turtle in the center serve as a robot that can be controlled via mesages published to specific topics. _Source: [ROS Docs](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html)_
 
 ## 2.2 Nodes and Topics
-Node-topic communication is the most common communication paradigm used in ROS projects. It is most commonly used between nodes that publish/subscribe to continuous streams of data as is the case with most sensor data. 
+
+Node-topic communication is the most common communication paradigm used in ROS projects. It is most commonly used between nodes that publish/subscribe to continuous streams of data as is the case with most sensor data.
 
 ### 2.2.1 Nodes
+
 As mentioned before, nodes are modular, executable programs that serve a single purpose, such as controlling a motor or recording data from a sensor. A complete robotics project in ROS consists of multiple nodes running simultaneously.
 
 Nodes can communicate with other nodes in a variety of ways, the most common method being through topics.
 
 ### 2.2.2 Activity: Working with nodes
+
 For this activity, we will be exploring a few ROS 2 commands that allow us to interact with and inspect nodes. This activity can also be found in the [ROS2 wiki](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html).
 
 #### Command 1: ros2 run
+
 The command `ros2 run` launches an executable from a package:
+
 ```bash
 ros2 run <package_name> <executable_name>
 ```
 
 To run TurtleSim, open a new terminal, and enter the following command:
+
 ```bash
 ros2 run turtlesim turtlesim_node
 ```
@@ -42,23 +50,29 @@ ros2 run turtlesim turtlesim_node
 This will launch a node from the _turtlesim_ package and the TurtleSim window will open. Here, the package name is `turtlesim` and the executable name is `turtlesim_node`.
 
 #### Command 2: ros2 node list
+
 We still don’t know the node name, however. You can find node names by running:
+
 ```bash
 ros2 node list
 ```
+
 that will show you the names of all running nodes. This is especially useful when you want to interact with a node, or when you have a system running many nodes and need to keep track of them.
 
 Open a new terminal while turtlesim is still running in the other one, and enter the following command:
+
 ```bash
 ros2 node list
 ```
 
 The terminal will return the node name:
+
 ```bash
 /turtlesim
 ```
 
 Open another new terminal and start the teleop node with the command:
+
 ```bash
 ros2 run turtlesim turtle_teleop_key
 ```
@@ -66,6 +80,7 @@ ros2 run turtlesim turtle_teleop_key
 Here, we are searching the `turtlesim` package again, this time for the executable named `turtle_teleop_key`.
 
 Return to the terminal where you ran `ros2 node list` and run it again. You will now see the names of two active nodes:
+
 ```
 /turtlesim
 /teleop_turtle
@@ -76,17 +91,22 @@ Keep those nodes running for now.
 ---
 
 ### 2.2.3 Topics
+
 Topics are a vital element of the ROS graph that act as a bus for nodes to exchange data in the form of messages. Topics can receive messages from one or more nodes publishing to it, and deliver those messages to one or more nodes that are subscribed to it. A node may publish to a topic or to multiple topics, and simultaneously have subscriptions to one or more topics. Figure 2 illustrates this concept.
 
 ![Multiple node-topic communication](https://docs.ros.org/en/foxy/_images/Topic-MultiplePublisherandMultipleSubscriber.gif)
+
 ##### Figure 2. Nodes exchanging messages via topics. _Source: [ROS 2 Documentation: Jazzy](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html)_
 
 ### 2.2.4 Activity: Working with topics
+
 In this activity, you will get familiar with ROS topics using some `ros2`
 commands and the `turtlesim` package. This activity can also be found in the [ROS 2 wiki](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html).
 
 #### Command 3: ros2 topic list
+
 Run the command `ros2 topic list` in a new terminal. You will get a list of all the topics currently active in the system:
+
 ```bash
     /parameter_events
     /rosout
@@ -104,13 +124,17 @@ The command `ros2 topic list -t` will return the same list of topics, but with t
     /turtle1/color_sensor [turtlesim/msg/Color]
     /turtle1/pose [turtlesim/msg/Pose]
 ```
+
 These attributes, particularly the message type, are how nodes know they’re talking about the same information as it moves over topics.
 
 #### Command 4: ros2 topic echo
+
 To see the data being published on a topic, use the `ros2 topic echo` command:
+
 ```bash
 ros2 topic echo <topic_name>
 ```
+
 Since we know that `/teleop_turtle` publishes data to `/turtlesim` over the `/turtle1/cmd_vel` topic, let's use `echo` to introspect on that topic:
 
 ```bash
@@ -119,7 +143,7 @@ ros2 topic echo /turtle1/cmd_vel
 
 At first, this command won’t return any data. That’s because it’s waiting for `/teleop_turtle` to publish something. Return to the terminal where `turtle_teleop_key` is running and use the arrows to move the turtle around. Watch the terminal where your `echo` is running at the same time, and you’ll see position data being published for every movement you make. It should look something like this:
 
-```
+```bash
     linear:
       x: 2.0
       y: 0.0
@@ -132,32 +156,41 @@ At first, this command won’t return any data. That’s because it’s waiting 
 ```
 
 #### Command 5: ros2 topic info
+
 Topics don’t have to only be point-to-point communication. As shown in Figure 2, they  can be one-to-many, many-to-one, or many-to-many. Another way to look at this is running:
+
 ```bash
 ros2 topic info /turtle1/cmd_vel
 ```
 
 Which will return information about the message type, number of publishers and number of subscribers to that topic:
-```
+
+```bash
     Type: geometry_msgs/msg/Twist
     Publisher count: 1
     Subscription count: 2
 ```
 
 #### Command 6: ros2 interface show
+
 Nodes can publish and/or subscribe to topics to send and/or receive messages. Publishers and subscribers must send and receive the same type of message to communicate via a topic.
 
 The topic types we saw earlier after running `ros2 topic list -t` let us know what message type is used on each topic. Recall that the `cmd_vel` topic has the type `geometry_msgs/msg/Twist`. This means that in the package `geometry_msgs` there is a `msg` called `Twist`. Now we can run `ros2 interface show <msg type>` on this type to learn its details, specifically, what structure of data the message expects:
+
 ```bash
 ros2 interface show geometry_msgs/msg/Twist
 ```
+
 The output is:
-```
+
+```bash
       Vector3  linear
       Vector3  angular
 ```
+
 This tells you that the `Twist` expresses velocity as two vectors of three elements each, `linear` and `angular`. This is exactly the type of data we saw `/teleop_turtle` passing to `/turtlesim` with the `echo` command:
-```
+
+```bash
     linear:
       x: 2.0
       y: 0.0
@@ -167,17 +200,24 @@ This tells you that the `Twist` expresses velocity as two vectors of three eleme
       y: 0.0
       z: 0.0
 ```
----
- 
-### 2.2.5 Activity: Writting Python code for topics
-Although the terminal commands are very useful, we can't create complete projects this way. This activity will focus on creating a couple of talker-listener ROS 2 nodes using Python. One node, the talker, will send a simple string message, and the second node, the listener, will print that message to the terminal.
- 
-#### Background: `rclpy`
-`rclpy` is the Python client library for ROS 2. It is the primary library that we will be using to implement ROS features in Python. Before starting the activity, we are going to briefly go over the general structure for most of the Python scripts we will be creating during this workshop and explain what each section does. 
 
-The Python script below is the one that we ran in Chapter 1: it is a simple node that publishes the message "Marco!" every 0.5 seconds. Take a look at the code.
+---
+
+### 2.2.5 Activity: Writting Python code for topics
+
+Although the terminal commands are very useful, we can't create complete projects this way. This activity will focus on creating a couple of talker-listener ROS 2 nodes using Python. One node, the talker, will send a simple string message, and the second node, the listener, will print that message to the terminal.
+
+#### Background
+
+Before starting the activity, we are going to briefly go over the general structure for most of the Python scripts we will be creating during this workshop and explain what each section does.
+
+The Python script below is similar to the one that we ran in Chapter 1. The structure is the same, but some details are different (like the message published, the topic name, and the frequency of publication). The code below just publishes the message "Marco!" every 0.5 seconds.
+
+Take a look at the code and associated comments. We will go into more details later.
 
 ```python
+#!/usr/bin/env python3
+
 # Import Libraries
 import rclpy
 from rclpy.node import Node
@@ -185,47 +225,56 @@ from std_msgs.msg import String
 
 # Define the talker class based on the Node class from rclpy library
 class talker(Node):
-	# Constructor Method	
-    def __init__(self):
-    	# Create a node with name "talkerNode"
-        super().__init__("talkerNode")
-        # Create a publisher to the "myTopic" topic
-        self.publisher = self.create_publisher(String, "myTopic", 10)
-        
-        # Define a timer_period variable
-        timer_period = 0.5  # seconds
-        # Create a timer to call the function timer_callback every timer_period
-        self.timer = self.create_timer(timer_period, self.timer_callback)
-	
-    # Timer callback method
-    def timer_callback(self):
-    	# Initialize empty message of type String
-        msg = String()
-        # Add data to the message
-        msg.data = "Marco!"
-        
-        # Publish the message
-        self.publisher.publish(msg)
-        print("Publishing...")
+  # Constructor Method
+  def __init__(self):
+    # Create a node with name "talkerNode"
+    super().__init__("talkerNode")
+    # Create a publisher to the "myTopic" topic
+    self.publisher = self.create_publisher(String, "myTopic", 10)
+    
+    # Define a timer_period variable
+    timer_period = 0.5  # seconds
+    # Create a timer to call the function timer_callback every timer_period
+    self.timer = self.create_timer(timer_period, self.timer_callback)
+
+  # Timer callback method
+  def timer_callback(self):
+    # Initialize empty message of type String
+    msg = String()
+    # Add data to the message
+    msg.data = "Marco!"
+    
+    # Publish the message
+    self.publisher.publish(msg)
+    print("Publishing...")
 
 # Main Function
 def main():
-    # Initialize rclpy
-    rclpy.init()
-    # Instantiate the talker class
-    publisherNode = talker()
-    # Spin Node(s)
-    rclpy.spin(publisherNode)
+  # Initialize rclpy
+  rclpy.init()
+  # Instantiate the talker class
+  publisherNode = talker()
+  # Spin Node(s)
+  rclpy.spin(publisherNode)
 
 # Call the main() function
 if __name__ == '__main__':
-    main()
+  main()
 ```
 
 Let's understand what each section of the code is doing.
 
-#### Importing Libraries
-The first section consists of importing the necessary libraries. We need to import the `rclpy` library as well as any message/actions we will use in the code.
+#### Defining the Python interpreter
+
+The first line (`#!/usr/bin/env python3`) is there just to tell Linux which program to use to run the script when you execute it directly. It tells the OS to find the `python3` program in your system's PATH and use it to run the script (assumming it is executable).
+
+Even if you omit this line, running your script with `python3 talkerDemo.py` still works. However, running directly with `./talkerDemo.py` may fail because the operating system might not know which interpreter to use.
+
+In summary, it is good practice to add `#!/usr/bin/env python3` at the start of your Python scripts when working with ROS 2.
+
+#### Importing libraries
+
+The first section of the code consists of importing the necessary libraries. We need to import the class `Node` from `rclpy` library and the class `String` from `std_msgs`.  
 
 ```python
 # Import Libraries
@@ -233,74 +282,97 @@ from rclpy.node import Node
 from std_msgs.msg import String
 ```
 
-#### Defining our class(es)
-ROS 2's coding conventions encourage us to write object-oriented code, meaning we have to organize our code into classes. We define our `talker` class as a subclass of the `Node` class provided by `rcply`. Doing so will allow our class to create a node, add subscribers and publishers, and do everything a ROS 2 node can do.
- 
-``` python
+In ROS 2, `rclpy` and `std_msgs` are two fundamental packages:
+
+- `rclpy` is the ROS 2 Python client library. It is the primary library that you will see it being used in basically all Python scripts for ROS because it provides the Python API for creating ROS 2 nodes, publishers, subscribers, services, actions, and timers. as well as any message/actions we will use in the code.
+
+- `std_msgs` is a package that contains standard message definitions used for communication between ROS 2 nodes. These messages define data types such as strings, integers, floats, and booleans.
+
+A ROS 2 node written with `rclpy` often uses message types from `std_msgs`, so you should familiarize yourself with those.
+
+#### Defining the talker class
+
+ROS 2's coding conventions encourage us to write object-oriented code, meaning we should organize our code into classes. We define our `talker` class as a subclass of the `Node` class provided by `rcply`. Doing so allows our class to create a node, add subscribers and publishers, and do everything a ROS 2 node can do.
+
+```python
 # Define the talker class based on the Node class from rclpy library
 class talker(Node):
 ```
-#### The constructor function
-In this section we define the `__init__` function, also known as the constructor function. This is the function that is called everytime we create an instance (an object) of our class. 
 
-Inside our constructor function, we usually create our publishers and subscriptions to different topics, define any variables we might need in the future, as well as place any other "setup" code we need to run only once.
+#### The constructor method
+
+In this section we define the `__init__` function, also known as the constructor function. This is the function that is called everytime we create an instance (an object) of our class.
+
+Inside our constructor function, we usually create our publishers and subscribers to different topics, define any variables we might need in the future, as well as place any other code we need to run only once.
+
 ```python
-	# Constructor Method	
-    def __init__(self):
-    	# Create a node with name "talkerNode"
-        super().__init__("talkerNode")
-        # Create a publisher to the "myTopic" topic
-        self.publisher = self.create_publisher(String, "myTopic", 10)
-        
-        # Define a timer_period variable
-        timer_period = 0.5  # seconds
-        # Create a timer to call the function timer_callback every timer_period
-        self.timer = self.create_timer(timer_period, self.timer_callback)
+class talker(Node):
+  # Constructor Method
+  def __init__(self):
+    # Create a node with name "talkerNode"
+    super().__init__("talkerNode")
+    # Create a publisher to the "myTopic" topic
+    self.publisher = self.create_publisher(String, "myTopic", 10)
+    
+    # Define a timer_period variable
+    timer_period = 0.5  # seconds
+    # Create a timer to call the function timer_callback every timer_period
+    self.timer = self.create_timer(timer_period, self.timer_callback)
 ```
+
 #### Other functions
-After defining the `__init__` method, we define other methods that we might need in the future. In most cases, this usually means defining callback functions, which are functions that are called automatically when a certain, pre-defined event happens. For example, we usually define subcriber callback functions, which are called every time a message is published to a topic we are subscribed to. In this case, we define a timer callback that is called everytime the timer's period elapses.
+
+After defining the `__init__` method, we define other methods that we might need in the future. In most cases, this usually means defining callback functions, which are functions that are called automatically when a certain, pre-defined event happens. In our case, we define a timer callback that is called everytime the timer's period elapses.
 
 ```python
-    # Timer callback method
-    def timer_callback(self):
-    	# Initialize empty message of type String
-        msg = String()
-        # Add data to the message
-        msg.data = "Marco!"
-        
-        # Publish the message
-        self.publisher.publish(msg)
-        print("Publishing...")
+  # Timer callback method
+  def timer_callback(self):
+    # Initialize empty message of type String
+    msg = String()
+    # Add data to the message
+    msg.data = "Marco!"
+    
+    # Publish the message
+    self.publisher.publish(msg)
+    print("Publishing...")
 ```
+
+If we were to implement a subscriber, we would define subcriber callback functions, which are called every time a message is published to a topic we are subscribed to.
+
 #### Defining the main() function
-In this section, we define our `main()` function, which is where we *instantiate* our classes and where all our "high-level" logic can go. In our case, we just initialize `rclpy`, create an instance of our `talker` class, and call the `rclpy.spin()` function which keeps our code running until it is terminated.
+
+In this section, we define our `main` function, which is where we _instantiate_ our classes and where all our "high-level" logic can go. In our case, we just initialize `rclpy`, create an instance of our `talker` class, and call the `rclpy.spin()` function. Calling `rclpy.spin()` is necessary to keep the code running until it is terminated (you should have noticed that there is no explicit loop function).
 
 ```python
 # Main Function
 def main():
-    # Initialize rclpy
-    rclpy.init()
-    # Instantiate the talker class
-    publisherNode = talker()
-    # Spin Node(s)
-    rclpy.spin(publisherNode)
+  # Initialize rclpy
+  rclpy.init()
+  # Instantiate the talker class
+  publisherNode = talker()
+  # Spin Node(s)
+  rclpy.spin(publisherNode)
 ```
 
-#### Calling the main() function
-Finally, we call our main() function to actually run our code. Before calling our main function however, we need to verify that this script is being ran explicitly. We do that via the `if __name__ == '__main__'` check. Although not required, it is good practice to always add this check.
+#### Calling the main function
+
+Finally, we call our `main` function to actually run our code. Before calling our main function however, we need to verify that this script is being ran explicitly. We do that via the `if __name__ == '__main__'` check. Although not required, it is good practice to always add this check.
 
 ```python
 # Call the main() function
 if __name__ == '__main__':
-    main()
+  main()
 ```
 
-#### Task 1: Creating the subcriber node
-Since we already went over the code for the talker node, we will now create the code for the subscriber node. To save some time, you can use the template shown below and fill out the sections marked with a `#! Write Your Code Here!`.
+#### Task 1: Complete the subcriber node
 
-You can also find the template [here](/Part_2-Create3/create3_ws/src/scripts/listenerDemo.py).
+Since we already went over the code for the talker node, we will now create the code for the subscriber node. To save some time, you can use the template shown below and fill out the sections marked with a `#! Write Your Code Here!`. You can also find the template [here](/Part_2-Create3/create3_ws/src/scripts/listenerDemo.py).
+
+You are expected to investigate and find out how to complete the code yourself.
 
 ```python
+#!/usr/bin/env python3
+
 import rclpy
 from rclpy.node import Node
 
@@ -308,45 +380,33 @@ from rclpy.node import Node
 # Import the String message from the std_msgs package
 
 class listener(Node):
-    def __init__(self):
-        super().__init__("listener")
-        self.subscriber = self.create_subscription(String, "myTopic", self.sub_callback, 10)
+  def __init__(self):
+    super().__init__("listener")
+    self.subscriber = self.create_subscription(String,"myTopic",self.sub_callback,10)
 
-    def sub_callback(self, msg):
-    	#! Write your code here! 
-        # Print the message to the terminal
+  def sub_callback(self,msg):
+    
+    #! Write your code here! 
+    #Print the message to the terminal
         
 
 def main():
-    rclpy.init()
-	
-    #! Write your code here! 
-    #Create an instance of your class
-    #'Spin' the node
+  rclpy.init()
+
+  #! Write your code here! 
+  # Create an instance of your class
+  # Spin the node
 
 if __name__ == '__main__':
-    main()
+  main()
 ```
 
-#### Task 2: Test your code
-It's now time to test our code. To run the code, open a new terminal and navigate to the `scripts` directory of the Cretae3 workspace:
+#### Task 2: Add your scripts to your workspace
 
-```bash
-cd ~/ros2_ws/src/scripts
-```
+To test your code, repeate the process described in the activity of Chapter 1. Since you already have the workspace and package, you only need to follow from ([step 4](/Part_1-ROS/Chapter-1/readme.md#step-4---create-the-python-scripts)) to step 8.
 
-Now run your first python script:
-```bash 
-python3 talkerDemo.py
-```
+If everything is working properly, you should be able to see the "talker" node's message being published on the `myTopic` topic and see the same message being printed to the terminal where your "listener" node is running.
 
-To run your second script, open a new terminal window and repeat the same process, this time running the listener script:
-```bash 
-python3 listenerDemo.py
-```
-
-You should now be able to see the "talker" node's message being published on the `myTopic` topic and see the same message being printed to the terminal where your "listener" node is running.
- 
 Run the commands `ros2 topic list` and `ros2 topic echo` to check that the messages are being published to the correct topic.
 
 ---
