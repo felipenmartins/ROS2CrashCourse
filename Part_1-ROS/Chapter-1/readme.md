@@ -375,6 +375,6 @@ After completing this chapter, you should have a general understanding of ROS an
 
 ## Navigation menu
 
-- Continue to [Chapter 2 - Fundamental Concepts of ROS](/Part_1-ROS/Chapter-2/readme.md)
+- Continue to [Chapter 2 - Diving into Nodes, Topics and Actions](/Part_1-ROS/Chapter-2/readme.md)
 - Go back to [Part 1 - ROS](/Part_1-ROS/readme.md)
 - Go to the [Main page](/readme.md)
