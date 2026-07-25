@@ -1,6 +1,6 @@
-# Chapter 1 - What is ROS?
+# Chapter 1 - Fundamental Concepts of ROS
 
-This chapter introduces ROS and its core concepts, and gives an insight into why it is important to learn ROS. It also guides you to create your first package and run a couple of nodes to test your installation.
+This chapter introduces ROS and its core concepts, and gives an insight into why it is important to learn ROS. It also guides you to create your first workspace, first package, and run a couple of nodes to test your installation.
 
 ## Objectives
 
