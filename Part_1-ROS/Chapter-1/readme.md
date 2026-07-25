@@ -321,7 +321,7 @@ Summary: 1 package finished [1.20s]
 
 Now, if you list the content of the `create3_ws` directory and new sub-directories, you will see that a lot of files were created during the building process.
 
-#### Step 6 - Source your workspace
+#### Step 7 - Source your workspace
 
 Now that we built our workspace, it is time to _source_ it. _Sourcing_ a workspace is a very important step that allows the packages to be usable.
 
@@ -336,7 +336,7 @@ source install/_setup.bash
 
 Alternatively, you can add this line to the end of the `.bashrc` file, which is ran every time a new terminal is opened. However, this is not recommended as it might sometimes create conflicts, especially if you are working with different workspaces.
 
-#### Step 7 - Run the scripts from your workspace
+#### Step 8 - Run the scripts from your workspace
 
 It's finally time to test run the publisher and subscriber scripts! To run ROS 2 code, use the command `ros2 run <package_name> <script_name>`:
 
