@@ -13,9 +13,7 @@ By the end of this chapter you should be able to:
 
 ## 3.1 ROS Packages
 
-Software in ROS is organized into packages. A *ROS package* can contain nodes, ROS-independent libraries, datasets, configuration files, third-party software, or anything else that logically constitutes a useful module. 
-
-A package can be considered a *container for your ROS 2 code*. If you want to be able to install your code or share it with others, then you’ll need it organized in a package. With packages, you can release your ROS 2 work and allow others to build and use it, and you can do the same with software developed by the ROS community.
+We deat with packages in Chapter 1, when we created our own simple package with two nodes (a publisher and a subscriber). But a ROS package can contain much more than nodes, like ROS-independent libraries, datasets, configuration files, third-party software, or anything else that logically constitutes a useful module. If you want to be able to install your code or share it with others, then you’ll need it organized in a package. With packages, you can also use ROS 2 software developed by the ROS community. That's what we are going to do in this Chapter.
 
 ### 3.1.1 Useful Packages
 
@@ -29,23 +27,31 @@ Some commonly used ROS packages that you should at least know about are:
 
 - [**MoveIt**](https://moveit.ai/) is a motion planning framework based on ROS. It is one of the most comprehensive and widely used ROS packages. It provides complete motion and grasp planning support for robotic manipulators of all types. It is widely used in a variety of fields and companies, like NASA, Google, Microsoft, and Samsung.
 
-### 3.2.2 Activity: Adding Packages to the Create3 workspace
+### 3.2.2 Activity: Adding Packages to the your workspace
 
 This activity will focus on adding new packages to the Create3 workspace. We will clone some dependencies from Github, and build it again.
 
 #### Step 1 - Clone packages
 
-Now we will clone a couple of packages that we will need to use: the [Create3 simulation](https://github.com/iRobotEducation/create3_sim) and the [Create3 examples](https://github.com/iRobotEducation/create3_examples) packages. We will download them from their respective Github repositories. 
+Now we will clone a couple of packages from GitHub: the [Create3 simulation](https://github.com/iRobotEducation/create3_sim) and the [Create3 examples](https://github.com/iRobotEducation/create3_examples) packages. We will download them from their respective Github repositories.
 
 Navigate to the `src` directory in your workspace and clone the packages from GitHub:
 
 ```bash
 cd ~/create3_ws/src
-git clone https://github.com/iRobotEducation/create3_sim
-git clone https://github.com/iRobotEducation/create3_examples.git --branch jazzy
 ```
 
-Proceed to the next step after the download has been completed.
+Clone the iRobot® Create® 3 Simulator repository for ROS 2 Jazzy:
+
+```bash
+git clone https://github.com/iRobotEducation/create3_sim.git --branch jazzy
+```
+
+And the Create3 Examples for ROS 2 Jazzy:
+
+```bash
+git clone https://github.com/iRobotEducation/create3_examples.git --branch jazzy
+```
 
 #### Step 2 - Install dependencies
 
@@ -60,28 +66,55 @@ rosdep install --from-path src --ignore-src -yi
 
 This will install all the required dependencies in the workspace. This process may take a while depending on how extensive the packages are and how fast your system and Internet connection are.
 
+You should see many messages to inform you about the installation process while it is being executed. Wait until the installation finishes before moving to step 3. If everything works correctly, the final message should indicate that all required dependencies were installed successfully:
+
+```bash
+.
+.
+.
+Setting up ros-jazzy-controller-manager-msgs (4.45.2-1noble.20260615.105226) ...
+Setting up ros-jazzy-controller-manager (4.45.2-1noble.20260615.164916) ...
+Setting up ros-jazzy-gz-ros2-control (1.2.19-1noble.20260615.171757) ...
+#All required rosdeps installed successfully
+```
+
 #### Step 3 - Build the workspace
 
-Now that we downloaded all the required dependencies, we can finally build our workspace!
-
-To build a workspace, we will use `colcon`, which is the build tool used in ROS 2. Build tools are programs that automate the creation of executable files from source code. For our case, building our workspace is what allows us to use commands such as `ros2 run` as it creates an executable format that ROS can find and execute.
-
-`colcon`has many quality of life improvements that make building and managing ROS workspaces easier. For example, `colcon` generates the `/build`, `/install`, and `/log` directories by default.
-
-Build your workspace using the `colcon build` command:
+Because we made changes to our workspace, we need to build it again. We will use the same build tool that we used in the activity of Chapter 1. Navigate to your main workspace directory and build it using the `colcon build` command:
 
 ```bash
 cd ~/create3_ws
 colcon build --symlink-install
 ```
 
-This process usually takes a while, depending again on the speed of the system. When the build process is complete you should see a message similar to this:
+This process usually takes a while, depending again on the speed of the system (it took more than 3 minutes in my machine). When the build process is complete you should see a message similar to this:
 
 ```bash
-Summary: 12 packages finished [5min 54s]
+Summary: 16 packages finished [3min 28s]
 ```
 
-#### Step 4 - Source your workspace
+#### Step 4 - Update a package to avoid incompatibility issue
+
+If you are running the virtual machine provided by me, the installed ROS packages are not at compatible versions. In particular, `ros-jazzy-controller-manager` is newer than `ros-jazzy-diagnostic-updater`. To fix this, you need to update the package by running:
+
+```bash
+sudo apt update
+sudo apt install ros-jazzy-diagnostic-updater
+```
+
+After that, verify that it is the correct version by running:
+
+```bash
+apt list --installed | grep diagnostic-updater
+```
+
+The expected result is:
+
+```bash
+ros-jazzy-diagnostic-updater 4.2.7
+```
+
+#### Step 5 - Source your workspace
 
 Remember that you need to source your workspace every time you open a new terminal in order to run the packages installed in it:
 
@@ -90,27 +123,61 @@ cd ~/create3_ws
 source install/local_setup.bash
 ```
 
-#### 5 - Test your installation!
+#### 6 - Test your installation
 
 You can now test your installation by running the following command:
 
-	
-	ros2 launch irobot_create_gazebo_bringup create3_gazebo.launch.py
+```bash
+ros2 launch irobot_create_gz_bringup create3_gz.launch.py
+```
 
-This might take a few minutes to start-up, but you should be able to see that two new programs have launched, RVIZ and Gazebo. You should see a similar scene if you open your Gazebo window.
+This might take a few minutes to start-up, but you should be able to see that two new programs have launched, RViz and Gazebo (see Figures 1 and 2).
 
-To close these windows, go back to the terminal where you launched them and press `CTRL + C`. 
+To close these windows, go back to the terminal where you launched them and press `CTRL + C`. **Do not close the windows manually as it might cause issues!**
 
-**Do not close the windows manually as it might cause issues!**
+![RViz](/Part_1-ROS/Chapter-3/rviz_screenshot.jpg)
 
- ## 3.3 Simulation 
- 
- 
- As you can already probably guess, the package we installed was the Create3's simulation package. This package includes a few important files that allow use to simulate the Create3 in Gazebo and RVIZ.
- 
- ### 3.3.1 Gazebo
- 
- Gazebo is an open-source 3D robotics simulator that is very commonly used to simulate robots using ROS. Gazebo uses the ODE physics engine, supports OpenGL rendering and has a vast community that provides plugins for simulating all kinds of sensors and actuators. 
+##### Figure 1. RViz screenshot with the Create3 robot after being moved a little.
+
+![RViz](/Part_1-ROS/Chapter-3/gazebo_screenshot.jpg)
+
+##### Figure 2. Gazebo screenshot showing the simulation environment and command buttons to control the movement of the robot.
+
+#### Possible issues
+
+If you are running ROS on a virtual machine, it is possible that Gazebo will not run properly. Unfortunately, there's not much to do to fix this, except for running Ubuntu on a real machine (not on a VM).
+
+Another possible issue is that Gazebo opens but the simulation does not start. If RViz and Gazebo open, but then Gazebo crashes and the simulation never starts, it might be because it starts paused. You can verify that by running:
+
+```bash
+gz topic -e -t /world/depot/stats
+```
+
+If the output is `paused: true`, then you should unpause it as soon as Gazebo opens. To do that, prepare two terminal windows: one with the command to launch the simulation
+
+```bash
+ros2 launch irobot_create_gz_bringup create3_gz.launch.py
+```
+
+and another with the service call to unpause it:
+
+```bash
+gz service \
+  -s /world/depot/control \
+  --reqtype gz.msgs.WorldControl \
+  --reptype gz.msgs.Boolean \
+  --req 'pause: false'
+```
+
+First, run the ros2 launch command. As soon as Gazebo window opens, go back to the terminal and run the service call to unpause it. This should avoid Gazebo crashing.
+
+## 3.3 Simulation
+
+As you can already probably guess, the package we installed was the Create3's simulation package. This package includes a few important files that allow use to simulate the Create3 in Gazebo and RViz.
+
+### 3.3.1 Gazebo
+
+Gazebo is an open-source 3D robotics simulator that is very commonly used to simulate robots using ROS. Gazebo uses the ODE physics engine, supports OpenGL rendering and has a vast community that provides plugins for simulating all kinds of sensors and actuators. 
  
  #### Why use it?
  Using Gazebo, you can create a fully virtual version of you robot, as well as all its sensors and actuators and test it in any virtual environment you need. For most commercially available robots, you will find that the company that created the robot usually provides all the files required to create that simulation, such as a 3D model of the robot, the robot's URDF model, and Gazebo plugins that can simulate all its sensors and actuators. 
