@@ -682,6 +682,6 @@ In the next chapter you will learn more about other tools that are part of the R
 
 ## Navigation menu
 
-- Continue to [Chapter 3 - The ROS Ecosystem](/Part_1-ROS/Chapter-3/readme.md)
+- Continue to [Chapter 3 - TFs, RViz, Bags and Gazebo](/Part_1-ROS/Chapter-3/readme.md)
 - Go back to [Part 1 - ROS](/Part_1-ROS/readme.md)
 - Go to the [Main page](/readme.md)

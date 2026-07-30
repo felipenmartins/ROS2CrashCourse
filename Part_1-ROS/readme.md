@@ -15,13 +15,14 @@ This part covers fundamental concepts of ROS 2 to equip you with the knowledge t
   - ROS Actions
   - Writting a node in Python
 
-- [**Chapter 3: The ROS Ecosystem**](/Part_1-ROS/Chapter-3/readme.md)
-  - ROS Packages
-  - Workspaces
-  - Simulation
-  - RViz and TFs
+- [**Chapter 3 - TFs, RViz, Bags and Gazebo**](/Part_1-ROS/Chapter-3/readme.md)
+  - Transforms (TFs) and coordinate frames
   - Launch files
-  - Bags
+  - RViz - ROS Visualization tool
+  - ROS Bags
+  - Gazebo
+  - Adding packages to a workspace
+
 
 ## Software Requirements
 
