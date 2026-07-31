@@ -298,7 +298,7 @@ Open another terminal and run the teleop node:
 ros2 run turtlesim turtle_teleop_key
 ```
 
-#### Step 2 - 
+#### Step 2 - Run RViz
 
 In Activity 3.1.1 we visualized a static picture of the TF tree (Figure 2). RViz can also show the TFs, but in a dynaic way. For that, we will start RViz with a configuration file using the -d option. Open another terminal window and run:
 
