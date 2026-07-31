@@ -1,352 +1,89 @@
-# Activity 1 - IR sensors and LED pannel
-This activity will focus on creating a node that activates the LEDs on the Create3 robot depending on the readings from the front-facing proximity sensors.
+# Activity 1 - Introduction to the iRobot Create3
 
-### Task 1.0: Connecting to the robot
-To connect to the robot, you must be connected to the same wifi network as the robot. Make sure you are connected to the `linksys` network first.
- 
-Then, place your robot on the charging dock with the front sensor facing the dock's sensor, you should see the robot's lightring turn on when you do this. Wait for around 2-3 minutes while the robot boots up and connects to the wifi network. You should hear two "happy" sounds from your robot, one when your robot boots up and another one when it successfully connects to wifi .
- 
-You can test to see if your robot is successfully connected to the same network as you by  opening a new terminal window listing the current topics using `ros2 topic list` command as before
- 
-You should now see an output similar to this 
+The Create3® is an educational robot made by iRobot, who you may know as the company that created the Roomba® vacuum cleaner. We will use the Create3 robot to practice with some of the concepts studied in Part 1, so it is a good idea to get familiar with the robot first.
 
-```bash
- 	/battery_state
-    /cmd_audio
-    /cmd_lightring
-    /cmd_vel
-    /dock
-    /hazard_detection
-    /imu
-    /interface_buttons
-    /ir_intensity
-    /ir_opcode
-    /kidnap_status
-    /mouse
-    /odom
-    /parameter_events
-    /robot_state/transition_event
-    /rosout
-    /slip_status
-    /static_transform/transition_event
-    /stop_status
-    /system_monitor/transition_event
-    /tf
-    /tf_static
-    /wheel_status
-    /wheel_ticks
-    /wheel_vels
-```
-    
-Since there are multiple robots here, you will find that every node or topic your robot is running will be prepended by the robots name (i.e: `/robot_1/battery_state`). You can find your robot identifier on the top faceplate of the robot. For most of the commands in the workshop, you will need to prepend the commands with the correct robot name.
+## Overview
 
-If you still do not see the topics being published by your robot after a few minutes have passed ,or if your lightring turns into a color other than white, please ask for assistance.
- 
-### Task 1.1: Inspecting the `ir_intensity` topic
-The Create3 publishes the raw readings from the ir sensors on the `ir_intensity` topic. 
- 
-Let's start by seeing the data from this topic. As we learned before, we can echo the data from the topic by using the `ros2 topic echo <topic_name>` command.
+The Create 3 is based on the Roomba vacuum cleaner robot. Its sensors, actuators, and compact design allow it to autonomously navigate a the whole floor of a home or office space.
 
-Open a new terminal window and enter the following command,replacing robot-1 with your robot's number:
+Figure 1 illustrates the Create3 with its charging base and some of its sensors. The front of the robot features a bumper and seven infrared (IR) proximity sensors, both of which can be used to detect obstacles. The top of the robot contains three programmable buttons: the biggest one in the center can also be used to power the robot down; buttons 1 and 2 (the small ones) are programmable by the user - button 1 is also used to set robot in Standby mode. 
 
-```bash
-ros2 topic echo /robot_1/ir_intensity
-```
-    
-You should now be able to see a similar output to the one below in your terminal window.
+The Home Base Charging Dock is used to both power on the robot (when it is placed on it) and to charge its battery. The robot has an IR Docking Sensor to locate the home base.
 
-```   
-      header:
-        stamp:
-          sec: 1662590667
-          nanosec: 512966282
-        frame_id: base_link
-      readings:
-      - header:
-          stamp:
-            sec: 1662590667
-            nanosec: 512966282
-          frame_id: ir_intensity_side_left
-        value: 0
-      - header:
-          stamp:
-            sec: 1662590667
-            nanosec: 512966282
-          frame_id: ir_intensity_left
-        value: 2
-      - header:
-          stamp:
-            sec: 1662590667
-            nanosec: 512966282
-          frame_id: ir_intensity_front_left
-        value: 4
-      - header:
-          stamp:
-            sec: 1662590667
-            nanosec: 512966282
-          frame_id: ir_intensity_front_center_left
-        value: 7
-      - header:
-          stamp:
-            sec: 1662590667
-            nanosec: 512966282
-          frame_id: ir_intensity_front_center_right
-        value: 9
-      - header:
-          stamp:
-            sec: 1662590667
-            nanosec: 512966282
-          frame_id: ir_intensity_front_right
-        value: 10
-      - header:
-          stamp:
-            sec: 1662590667
-            nanosec: 512966282
-          frame_id: ir_intensity_right
-        value: 0
-      ---
-```
+![Create3-top](https://iroboteducation.github.io/create3_docs/hw/data/front_iso.jpg)
 
-As you can see, the message published contains the readings for each of the 7 proximity sensors in the front bumper.
- 
-Try moving your hand in front of the bumper and see how the readings behave, this will be needed when you write your code later on.
- 
-### Task 1.2: Publishing to the `cmd_lightring` topic
- 
-The Create3 provides a topic where commands can be sent to control the robot's lightring. We are now going to send a test command to test that and explore the message's format
- 
-Try sending following command in your terminal:
+##### Figure 1. Create3 robot (left) and its charging base (right). Seven infrared proximity sensors and a front bumper can be used to detect obstacles during navigation. The top buttons can be used to send commands to the ROS 2 application that controls the robot.
 
-```bash
-ros2 topic pub /robot_1/cmd_lightring irobot_create_msgs/msg/LightringLeds "{override_system: true, leds: [{red: 255, green: 0, blue: 0}, {red: 0, green: 255, blue: 0}, {red: 0, green: 0, blue: 255}, {red: 255, green: 255, blue: 0}, {red: 255, green: 0, blue: 255}, {red: 0, green: 255, blue: 255}]}"
-```
+The Light Ring glows different colors and patterns to communicate robot status and/or errors, like battery level, WiFi connection, firmware updating etc... Users can also program the light. Check out [this guide](https://iroboteducation.github.io/create3_docs/hw/face/) to see how the light ring indicate the different operating status.
 
-This should turn your robot's lightring into a colorful ring of colors.
- 
-As you can see, the message published on this topic is of type `irobot_create_msgs/msg/LightringLeds` and is relatively intuitive to use. 
- 
-Try playing around with the values and see them change yourselves.
- 
-To return the lightring to the default color, just send an empty message on the topic like so:
- 
-```bash
-ros2 topic pub /robot_1/cmd_lightring irobot_create_msgs/msg/LightringLeds "{}"
-```  
-### Task 1.3: Understanding message structure
+Figure 2 shows the bottom side of the Create3, which contains four infrared sensors pointing to the ground (cliff sensors), a front caster wheel, charging contacts, two driving wheels (differential-drive structure), and the openning for the cargo bay.
 
-Before we can write our code to use these topics, we must understand the structure of each message since we will need to create them ourselves later in our code. This is a task you will have to do whenever you interact with a new topic or action, so try and understand this process well.
+![Create3-bottom](https://iroboteducation.github.io/create3_docs/hw/data/bottom.jpg)
 
-#### Inspecting the `ir_intensity` topic
-Using the `ros2 interface show <interface-name>` command we can see the exact structure of our messages. For example, let's look at the message for the `ir_intensity` topic. 
+##### Figure 2. Bottom of the Create3 with indication of cliff sensors, optical odometry sensor, and wheels.
 
-First, we can find out the message type using the `ros2 topic info <topic-name>` command:
+Besides the sensors shown in Figures 1 and 2, the Create3 also has wheel encoders and an IMU. Together with the optical odometry sensor, an internal sensor fusion algorithm generates an estimation for the robot pose (position and orientation).
 
-```bash
-ros2 topic info /robot_1/ir_intensity
-```
+This section is an excerpt from the [create3 docs](https://iroboteducation.github.io/create3_docs/hw/overview/), head over there if you want to find out more about the robot.
 
-You should see a message similar to this:
-``` 
- 	Type: irobot_create_msgs/msg/IrIntensityVector
-    Publisher count: 1
-    Subscription count: 0
-```
-   
-As you can see above, the message type is `irobot_create_msgs/msg/IrIntensityVector`. Using this information, we can see the exact message structure like so:
+## Powering the robot ON
 
-```bash
-ros2 interface show irobot_create_msgs/msg/IrIntensityVector
-```
+To power on the robot, place it on the charging dock. The green LED on the dock will glow for a few seconds to indicate successful connection, and the robot’s Light Ring should glow a bright spinning light. The Light Ring will continue to spin as the robot boots up. When the process is complete, the robot will chime a “happy sound.” The Ring Light will then transition to a slower spinning white light if still on the charging dock, or a solid white light when removed.
 
-Now you should be able to see the message structure. Note the fields it contains and their hierarchy.
+## Powering the robot OFF
 
-```
-    std_msgs/Header header
-        builtin_interfaces/Time stamp
-            int32 sec
-            uint32 nanosec
-        string frame_id
-    irobot_create_msgs/IrIntensity[] readings
-        std_msgs/Header header
-            builtin_interfaces/Time stamp
-                int32 sec
-                uint32 nanosec
-            string frame_id
-        int16 value
-```
-    
-As you can see, the message consists of two top-level fields, a `header` field with type `std_msgs/Header` and a `readings` field with a type of `irobot_create_msgs/IrIntensity[]`. Note a few things here:
+There are two ways to power down the robot: Standby Mode and Storage Mode:
 
-- The `readings` field is an array
-- The hierarchy of the fields is described by their indentation (e.g: The `value` field is a part of the `readings` field )
-    
-Now, let's see what this will look like in Python. Copy the simple subscriber code below in a new file and run it, making sure to change the topic name according to your namespace.
+**Standby Mode** (or Low Power Mode) can be used to extend your robot’s battery without completely powering it off. In this state, your robot will keep its payload power alive (Raspberry Pi or LiDAR, for example) and will be able to charge, but will not respond to WiFi, USB or Bluetooth. Keep in mind that Standby Mode is **not intended for long-term storage!**
 
-```python
-from irobot_create_msgs.msg import IrIntensityVector
+> To enter Standby Mode, press and hold Button 1 for ten seconds. After ten seconds, the Light Ring should turn off to indicate standby mode. To exit Standby Mode, press and hold the center button for one (1) second.
 
-import rclpy
-from rclpy.node import Node
-from std_msgs.msg import String
-from irobot_create_msgs.msg import IrIntensityVector
-from rclpy.qos import ReliabilityPolicy, QoSProfile
+In **Storage Mode** your robot’s battery will power off completely. To turn the robot back on (from Storage Mode) you must place it on the charging dock.
 
-class ir_subscriber(Node):
+> To enter Storage Mode, press and hold the center button for seven seconds while NOT at the charging dock. The Light Ring will pulse bright white three times and then play the “power down” sound. After ten seconds, the Light Ring should turn off.
 
-    def __init__(self):
-        super().__init__("ir_subscriber")
-        
-        #Subscribe to the ir_intensity topic, which has a message with type IrIntensityVector
-        self.irSubscriber = self.create_subscription(IrIntensityVector,"/robot_1/ir_intensity",self.ir_callback,QoSProfile(depth=10, reliability=ReliabilityPolicy.BEST_EFFORT))
-        
+## Programming the robot with Python Web Playground
 
-    def ir_callback(self,msg):
-        print('Message type is:',type(msg))
-        print('\n Header data is:', msg.header)
-        print('\n The readings data is:',msg.readings)
-        #! Write your code here!
-        #Print the value of the first element in the readings array
-   
-def main():
-    rclpy.init()
+The Create3 robot can be programmed in Python via a web interface that does not require interacting with ROS. The only requirements are that your computer has Bluetooth® and in that you use Python Web Playground in a Bluetooth®-supported web browser, such as Google Chrome.
 
-    subcriberNode = ir_subscriber()
+Follow the steps below to practice with the Create3 robot using the Python Web Playground.
 
-    rclpy.spin_once(subcriberNode)
+> _Important_: Make sure that your robot is switched to Bluetooth mode. If you are working with more than one robot, Bluetooth connection must be completed for one robot at a time to avoid errors.
 
-if __name__ == '__main__':
-    main()
-```
-  
-You should see it output a message similar to this:
+> **_Very important:_ Keep the robot on the ground when it is ON to avoid accidents!** The cliff sensors are not perfect.
 
-``` 
-     Message type is: <class 'irobot_create_msgs.msg._ir_intensity_vector.IrIntensityVector'>
+1. Access [https://python.irobot.com/](https://python.irobot.com/) using Chrome or another a Bluetooth®-supported web browser. The screen is divided in three areas and a menu on the top. The areas below the menu are where you are going to write your Python code (left) and select example files to open (right). At the bottom there is a console where you will see messages printed by the running code.
 
-     Header data is: std_msgs.msg.Header(stamp=builtin_interfaces.msg.Time(sec=1664227973, nanosec=512763090), frame_id='base_link')
+2. In the menu, click the "Connect" button and look for your robot name to appear on the list. Then, select it and connect.
 
-     The readings data is: [irobot_create_msgs.msg.IrIntensity(header=std_msgs.msg.Header(stamp=builtin_interfaces.msg.Time(sec=1664227973, nanosec=512763090), frame_id='ir_intensity_side_left'), value=15), irobot_create_msgs.msg.IrIntensity(header=std_msgs.msg.Header(stamp=builtin_interfaces.msg.Time(sec=1664227973, nanosec=512763090), frame_id='ir_intensity_left'), value=415), irobot_create_msgs.msg.IrIntensity(header=std_msgs.msg.Header(stamp=builtin_interfaces.msg.Time(sec=1664227973, nanosec=512763090), frame_id='ir_intensity_front_left'), value=502), irobot_create_msgs.msg.IrIntensity(header=std_msgs.msg.Header(stamp=builtin_interfaces.msg.Time(sec=1664227973, nanosec=512763090), frame_id='ir_intensity_front_center_left'), value=32), irobot_create_msgs.msg.IrIntensity(header=std_msgs.msg.Header(stamp=builtin_interfaces.msg.Time(sec=1664227973, nanosec=512763090), frame_id='ir_intensity_front_center_right'), value=26), irobot_create_msgs.msg.IrIntensity(header=std_msgs.msg.Header(stamp=builtin_interfaces.msg.Time(sec=1664227973, nanosec=512763090), frame_id='ir_intensity_front_right'), value=366), irobot_create_msgs.msg.IrIntensity(header=std_msgs.msg.Header(stamp=builtin_interfaces.msg.Time(sec=1664227973, nanosec=512763090), frame_id='ir_intensity_right'), value=2897)]
-```
+3. In the area to the right, go to the folder `create3_robot` and click on the `ir_proximity_obstacles.py` to open it.
 
-As you can see, this reflects what we saw in the terminal earlier. In our case, the `msg` variable contains the message type, which we can see is of the same type we saw in the terminal before. We can also access the `header` and `readings` variables simply by `msg.header`and `msg.readings`, much like the way we can access a normal Python dictionary. 
- 
-Using that same logic, try accessing the value of the first element of the `readings` array.
- 
-### Task 1.4: Creating a Node
-Now, let's do the same for the `cmd_lightring` topic. Try creating a node that turns the lightring completely blue. To save some time, you can use the template below:
+4. Run the code by clicking the "play" button on the top left of the screen. Hover your hand in front of the proximity sensors and check how the light ring changes.
 
-```python
-import rclpy
-from rclpy.node import Node
-from std_msgs.msg import String
-from irobot_create_msgs.msg import IrIntensityVector, LightringLeds, LedColor
-from rclpy.qos import ReliabilityPolicy, QoSProfile
+5. Now, run the `ir_proximity_print.py` script to answer the following questions:
 
-class lightController(Node):
+    a. What is the maximum range of the IR obstacle sensors?
 
-    def __init__(self):
-        super().__init__("lightController")
-        
-        #Publish to the cmd_lightring topic, which uses messages with type LightringLeds
-        self.lightringPublisher  = self.create_publisher(LightringLeds,"cmd_lightring",10)
-        
-        timer_period = 0.5  # seconds
-        self.timer = self.create_timer(timer_period, self.timer_callback)
-        
+    b. Where are each of the IR obstacle sensors located?
 
-    def timer_callback(self):
-        #Initilaize message to correct message type
-        msg = LightringLeds()
-        msg.override_system = True #To override the default lightring settings
-        
-        #!Write your own code here!
-        #Set all 6 LEDs to blue
+    c. Are the sensors linear? How can you relate their measurements to distance?
 
-        self.lightringPublisher.publish(msg)
+6. Code is written in Python, with special functions to control the robot. Functions can receive a “decorator” that indicates how they must behave. For example, the decorator `@event(robot.when_play)` indicates that the function will be executed when the `robot.play()` function is called in your code. Note that many functions can have the same decorator, and they will all be executed simultaneously when the corresponding event occurs. See the [Python Cheat Sheets](https://iroboteducation.github.io/create3_docs/lessons/pwp/cheat-sheets/) page for more information.
 
-        print("Publishing...")
-      
+7. Explore other examples available in the folder `create3_robot` to examine the code and see how the robot behaves.
 
-def main():
-    rclpy.init()
+8. Modify some of the programs to change the behavior of the robot. Try to make the robot follow a wall, for example.
 
-    controller = lightController()
+9. When you are done, Power Off the robot (Storage Mode) and put the it back into the box together with its charging dock and power cable.
 
-    rclpy.spin(controller)
+## Conclusion
 
-if __name__ == '__main__':
-    main()
-```
- 	
- 
-#### Writing the code
-Using the same concepts we used in the talker-listener nodes we created before and what we learned about the message type, we can create a simple node that subscribes to `ir_intensity` topic and publishes to the `cmd_lightring` topic like so:
+After completing this activity, you should be familiar with the iRobot Create3, its sensors, and some of its limitations. You should also know how to use iRobot's Python Web Playground to program the robot.
 
-```python
-from rclpy.node import Node
-from std_msgs.msg import String
-from irobot_create_msgs.msg import IrIntensityVector, LightringLeds, LedColor
-from rclpy.qos import ReliabilityPolicy, QoSProfile
+In the next activities, we will use ROS instead of the Python Web Playground to program the Create3 robot.
 
-class lightController(Node):
+## Navigation menu
 
-    def __init__(self):
-        super().__init__("lightController")
-        
-        #Subscribe to the ir_intensity topic, which has a message with type IrIntensityVector
-        self.irSubscriber = self.create_subscription(IrIntensityVector,"ir_intensity",self.ir_callback,QoSProfile(depth=10, reliability=ReliabilityPolicy.BEST_EFFORT))
-        #Publish to the cmd_lightring topic, which uses messages with type LightringLeds
-        self.lightringPublisher  = self.create_publisher(LightringLeds,"cmd_lightring",10)
-        
-        timer_period = 0.5  # seconds
-        self.timer = self.create_timer(timer_period, self.timer_callback)
-        
-        #Define the ir_readings variable to store readings
-        self.ir_readings = []
-
-
-    def timer_callback(self):
-        #Initilaize message to correct message type
-        msg = LightringLeds()
-        msg.override_system = True #To override the default lightring settings
-
-        #Defining some LED colors to use later using the LedColor message type
-        blueLed = LedColor(red=0,green=0,blue=255)
-        redLed = LedColor(red=255,green=0,blue=0)
-        greenLed = LedColor(red=0,green=255,blue=0)
-        offLed = LedColor()
-
-        #Main Logic
-        if self.ir_readings: #Check if a valid reading exists
-			#! Write your code here!
-            #You can delete the example below and replace it with your logic.
-            
-            #! Example
-            #If the left proximity sensor detects an object    
-            if self.ir_readings[0].value >100: 
-            	#Make all 6 LEDs blue
-                msg.leds = [blueLed,blueLed,blueLed,blueLed,blueLed,blueLed]
-            
-            
-        self.lightringPublisher.publish(msg)
-
-        print("Publishing...")
-    
-    def ir_callback(self,msg):
-        self.ir_readings = msg.readings
-
-def main():
-    rclpy.init()
-
-    controller = lightController()
-
-    rclpy.spin(controller)
-
-if __name__ == '__main__':
-    main()
-```
-    
-Explore how you can now use the data from `ir_intensity` topic to change the lightring's colors accordingly. You can do whatever you want, like change it to red if the robot is close to any obstacle and green otherwise or maybe assign a color to each sensor's readings. 
-
-> **Note that you will need to change the topic names to reflect your robot's name (e.g: `ir_intensity` => `robot-1/ir_intensity`)**
-
+- Continue to [Activity 2 - IR sensors and LED pannel](/Part_2-Create3/Activity_2/readme.md)
+- Go to [Part 2 - Create3](/Part_2-Create3/readme.md)
+- Go to the [Main page](/readme.md)

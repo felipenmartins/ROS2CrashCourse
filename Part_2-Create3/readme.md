@@ -1,10 +1,10 @@
 # Part 2 - Create3
 
-This part contains a quick overview of the [iRobot Create3](https://iroboteducation.github.io/create3_docs/) educational robot, followed by activities to practice ROS concepts with it.
+This part contains a quick introduction to the [iRobot Create3](https://iroboteducation.github.io/create3_docs/) educational robot, where you will familiarize yourself with it using the Python Web Playground. In the subsequent activities you will practice ROS concepts with the robot.
 
-- [Overview of the Create3](/Part_2-Create3/Create3-overview/readme.md)
-- [Activity 1 - IR sensors and LED pannel](/Part_2-Create3/Activity_1/readme.md)
-- [Activity 2 - Actions with the physical buttons](/Part_2-Create3/Activity_2/readme.md)
+- [Activity 1 - Introduction to the iRobot Create3](/Part_2-Create3/Activity_1/readme.md)
+- [Activity 2 - IR sensors and LED pannel](/Part_2-Create3/Activity_2/readme.md)
+- [Activity 3 - Actions with the physical buttons](/Part_2-Create3/Activity_3/readme.md)
 
 ## Setup Requirements
 
@@ -16,6 +16,6 @@ If you do not have access to a Create3 robot, very similar activities can be exe
 
 ## Navigation menu
 
-- Start with an [Overview of the Create3](/Part_2-Create3/Create3-overview/readme.md)
+- Start with [Activity 1 - Introduction to the iRobot Create3](/Part_2-Create3/Activity_1/readme.md)
 - Go to [Part 1 - ROS](/Part_1-ROS/readme.md)
 - Go to the [Main page](/readme.md)
