@@ -1,5 +1,5 @@
+# Activity 3 - Actions with the physical buttons
 
-# Activity 2 - Actions with the physical buttons
 In this activity we will first try sending goals to the Create3 from the terminal, then we will create a node that sends an action when one of the interface buttons on the Create3 is pressed.
 
 The Create3 has a few actions already created. You can check out all the actions [here](https://iroboteducation.github.io/create3_docs/api/ros2/) or by using the `ros2 action list` command when connected to the robot.
@@ -296,3 +296,13 @@ python3 create3ButtonLight.py
 ```
 
 Now try pressing the buttons on your robot and see your code in action!
+
+
+## Conclusion
+
+After completing this activity, you should be familiar with ...
+
+## Navigation menu
+
+- Go to [Part 2 - Create3](/Part_2-Create3/readme.md)
+- Go to the [Main page](/readme.md)
