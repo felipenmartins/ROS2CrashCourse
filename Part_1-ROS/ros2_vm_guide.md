@@ -2,8 +2,6 @@
 
 This guide provides instructions to create a virtual machine with Ubuntu 24.04, ROS 2 Jazzy, Terminator, and VSCode. This virtual machine will enable you to follow the ROS 2 Crash Course on Windows or Apple machines.
 
----
-
 ## 1. Install VMware Workstation
 
 VMware Workstation Pro is free for personal, educational, and commercial use. However, it requires creating an account before you download the software. An alternative to VMWare is VirtualBox, which is also free and available at [https://www.virtualbox.org/](https://www.virtualbox.org/).
@@ -32,20 +30,19 @@ If you already have a virtual machine file, you can follow the instructions belo
 1. Open VMware and click **File** → **Open** → select the `.ova` file.
 2. Follow the import wizard (accept defaults).
 3. Before starting the VM: go to **Settings** and configure it with the following parameters:
-  * RAM: 4 GB minimum, 8 GB recommended
-  * CPUs: 2-4 cores
-  * Network: Bridged Adapter (not NAT)
-  * USB: Enable USB 3.0 controller → Network Adapter → set to Bridged
+    * RAM: 4 GB minimum, 8 GB recommended
+    * CPUs: 2-4 cores
+    * Network: Bridged Adapter (not NAT)
+    * USB: Enable USB 3.0 controller → Network Adapter → set to Bridged
 4. Start the VM and log in (the VM provided by Hanze has username `ros2`, password `ros2`).
 
 If you are using **VirtualBox**, the procedure is similar:
+
 1. **File** → **Import Appliance** → select the `.ova` file.
 2. Configure the VM with the same settings listed above.
 3. Start and log in.
 
 The next steps need to be followed only if you want to create your own virtual machine (`.ova` file). If your VM is already running, you can go back to the [Main page](/readme.md).
-
----
 
 ## 2. Download Ubuntu 24.04 ISO
 
@@ -55,8 +52,6 @@ Each version of ROS 2 is designed for a specific version of Ubuntu (24.04 in cas
 2. Download **Ubuntu 24.04.x LTS** (the `.iso` file, ~5.8 GB).
 3. Save it somewhere you'll remember, e.g. `C:\Users\your_name\Downloads\ubuntu-24.04-desktop-amd64.iso`.
 
----
-
 ## 3. Create a Virtual Machine for ROS 2 Jazzy
 
 This section guides you through creating a Ubuntu 24.04 virtual machine with ROS 2 Jazzy, VSCode, RViz2 (and optionally Webots). It assumes that you have VMWare Workstation, but it should also work with VirtualBox. All instructions were successfully tested on a Windows 11 machine with VMWare Workstation. 
@@ -64,12 +59,13 @@ This section guides you through creating a Ubuntu 24.04 virtual machine with ROS
 Estimated total time: **2–3 hours** (most of it is waiting for downloads and installs).
 
 **What you'll have at the end:**
-- Ubuntu 24.04 LTS VM with VMware Tools
-- ROS 2 Jazzy (desktop-full)
-- VSCode with ROS + Python extensions
-- (optional) Webots R2025a + webots_ros2 package
-- Bridged networking pre-configured for robot connectivity
-- An exportable `.ova` file for distribution
+
+* Ubuntu 24.04 LTS VM with VMware Tools
+* ROS 2 Jazzy (desktop-full)
+* VSCode with ROS + Python extensions
+* (optional) Webots R2025a + webots_ros2 package
+* Bridged networking pre-configured for robot connectivity
+* An exportable `.ova` file for distribution
 
 ### 3.1 New VM Wizard
 
@@ -78,16 +74,16 @@ Estimated total time: **2–3 hours** (most of it is waiting for downloads and i
 3. Choose **Typical (recommended)** → **Next**.
 4. Select **Installer disc image file (iso)**, browse to your Ubuntu ISO → **Next**.
 5. Fill in:
-   - Full name: `Hanze Master SSE` (this is just an example: you can select anything)
-   - Username: `ros2` (keep it simple for this workshop)
-   - Password: `ros2` (keep it simple for this workshop)
+   * Full name: `Hanze Master SSE` (this is just an example: you can select anything)
+   * Username: `ros2` (keep it simple for this workshop)
+   * Password: `ros2` (keep it simple for this workshop)
 6. VM Name: `ROS2-Jazzy-Ubuntu2404`
 7. Location: choose a drive with at least **50 GB free**.
 
 ### 3.2 Disk Size
 
-- Set disk size to **50 GB** (ROS 2 + Webots + packages need ~25–30 GB; leave headroom).
-- Select **Store virtual disk as a single file** (easier to move/copy) and click **Next**.
+* Set disk size to **50 GB** (ROS 2 + Webots + packages need ~25–30 GB; leave headroom).
+* Select **Store virtual disk as a single file** (easier to move/copy) and click **Next**.
 
 ### 3.3 Customize Hardware
 
@@ -110,7 +106,7 @@ By default, VMware uses an "Automatic" bridging setting that guesses your active
 
 1. At the top menu bar of VMware Workstation, click on _Edit_ -> _Virtual Network Editor..._
 
-> **Note:** If you see a button at the bottom right that says **Change Settings** with an administrator shield icon, click it to unlock full configurations.
+    > **Note:** If you see a button at the bottom right that says **Change Settings** with an administrator shield icon, click it to unlock full configurations.
 
 2. In the top list, click on **VMnet0** (this is the default virtual switch used for Bridged mode).
 
@@ -127,8 +123,9 @@ Click **Apply**, then **OK**.
 VMware's Easy Install will automate most of the Ubuntu setup. The VM will boot, install Ubuntu, and log in automatically. This takes **15–25 minutes**.
 
 When the desktop appears:
-- Skip the Ubuntu welcome wizard (or complete it quickly).
-- Open a terminal: press `Ctrl+Alt+T`.
+
+* Skip the Ubuntu welcome wizard (or complete it quickly).
+* Open a terminal: press `Ctrl+Alt+T`.
 
 ### 3.5 Install VMware Tools (Open VM Tools)
 
@@ -139,6 +136,7 @@ systemctl status open-vm-tools
 ```
 
 If not running:
+
 ```bash
 sudo apt update && sudo apt install open-vm-tools open-vm-tools-desktop -y
 sudo reboot
@@ -155,7 +153,7 @@ sudo reboot
 
 ### 3.7 Install Terminator
 
-When running ROS, you often need to work with several terminal windows simultaneously. The regular `Terminal` that comes pre-installed with Ubuntu works fine, so you can skip this step if you prefer to work with it. But there are other termianl tools that help organizing the use of multiple terminals in one screen. The one I prefer is called `Terminator` (obviously). 
+When running ROS, you often need to work with several terminal windows simultaneously. The regular `Terminal` that comes pre-installed with Ubuntu works fine, so you can skip this step if you prefer to work with it. But there are other termianl tools that help organizing the use of multiple terminals in one screen. The one I prefer is called `Terminator` (obviously).
 
 To install `Terminator`, run:
 
@@ -166,13 +164,13 @@ sudo apt install terminator
 Once installed, you can find it on the applications menu. I recommend pinning it to the side bar to make it easier: while it is running, right-click on the Terminator icon on the side bar and select "Pin to Dash".
 
 Some useful keyboard commands are:
+
 * `CTRL + Shift + O` --> splits the window horizontally and opens a new terminal
 * `CTRL + Shift + E` --> splits the window vertically and opens a new terminal
 * `CTRL + Shift + T` --> creates a new tab and opens a new terminal
 * `CTRL + Shift + N` --> shifts focus to the next terminal
 
 A list of all commands is available at [https://github.com/gnome-terminator/terminator](https://github.com/gnome-terminator/terminator).
-
 
 ### 3.8 Install ROS 2 Jazzy
 
@@ -207,44 +205,55 @@ sudo apt install ros-jazzy-desktop-full -y
 ```
 
 To be able to compile code for ROS, you need to install ROS development tools. Install the complete development suite:
+
 ```bash
 sudo apt install ros-dev-tools python3-pip -y
 ```
 
 Then, initialize and download the package dependency database:
+
 ```bash
 sudo rosdep init
 ```
+
 This will show a deprecation warning and might take a while. **Do not interrupt the process.**
 
 When the cursor is available again, run the update command (which will also show a warning message and will take a lot longer to complete). **Do not interrupt the process.**
+
 ```bash
 rosdep update
 ```
 
 ### 3.9 Configure and test ROS 2
+
 For the ROS 2 commands to be found, you must source its environment in every new terminal window that you open. The commands below automate this process by including the source command in the `.bashrc` file (which is a script that runs every time a new session is open):
+
 ```bash
 echo "source /opt/ros/jazzy/setup.bash" >> ~/.bashrc
 ```
 
 Now, let's verify your installation by running a ROS 2 node. Open a new terminal window and run the command below:
+
 ```bash
 ros2 run demo_nodes_cpp talker
 ```
 
 If ROS 2 was installed successfully, you will see the message below being printed every second with an ever increasing number:
+
 ```bash
 `[INFO] ... [talker]: Publishing: 'Hello World: 1'` 
 ```
+
 Press `Ctrl+C` to stop.
 
 You can also run a simple simulation by running TurtleSim. First, run the command below to open the simulator screen:
+
 ```bash
 ros2 run turtlesim turtlesim_node
 ```
 
 The command you just ran is executing the `turtlesim_node`. A _node_ is how programs are referred to in ROS. Leave the TurtleSim node running and open a new terminal (if you are using Terminator, you can do that with `CTRL + Shift + O`). In the new terminal, run:
+
 ```bash
 ros2 run turtlesim turtle_teleop_key
 ```
@@ -254,6 +263,7 @@ The second terminal is running another node called `turtle_teleop_key`. Keep the
 Press `Ctrl+C` on both terminals to stop the execution of both nodes. 
 
 ### 3.10 Install VSCode
+
 Now that you verified that ROS 2 was installed properly, let's install VSCode. You will use it later to program your own nodes.
 
 ```bash
@@ -266,11 +276,11 @@ Once installed, open VSCode from the Applications menu and install these extensi
 - **CMake** (by twxs) - to get syntax highlighting for `CMakeLists.txt` files.
 
 ### 3.11 Optional: Install Webots and webots_ros2
+
 Webots is an open-source robotics simulator. Considering mobile robotics, Webots has similar features [[1]](https://ieeexplore.ieee.org/document/9386154) and is more computationally efficient than Gazebo [[2]](https://arxiv.org/pdf/2008.04627). 
 
 If you are interested in installing Webots on your VM, follow the instructions available at:
 [https://docs.ros.org/en/jazzy/Tutorials/Advanced/Simulators/Webots/Installation-Ubuntu.html](https://docs.ros.org/en/jazzy/Tutorials/Advanced/Simulators/Webots/Installation-Ubuntu.html).
-
 
 ### 3.12 Create a ROS 2 Workspace
 
@@ -284,8 +294,6 @@ echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
 
----
-
 ### 3.13 Configure Networking for Robot Connectivity
 
 This section is relevant for connecting to a physical robot. If that's not your case, you can skip it.
@@ -296,6 +304,7 @@ This section is relevant for connecting to a physical robot. If that's not your 
 4. Power the VM back on.
 
 Verify the VM has its own IP address:
+
 ```bash
 ip addr show
 ```
@@ -311,24 +320,25 @@ ros2 multicast send
 
 You should see `Received from ...`. This confirms that DDS node discovery will work on the network.
 
----
-
 ## 4. Export the VM for Distribution
 
 This is an optional step, in case you want to share this virtual machine.
 
 ### 4.1 Clean up disk space
+
 ```bash
 sudo apt autoremove -y
 sudo apt clean
 ```
 
 ### 4.2 Shut down the VM cleanly
+
 ```bash
 sudo shutdown now
 ```
 
 ### 4.3 Export the VM as an OVA file
+
 An `.ova` is a single portable archive that can be imported by VMware on any platform.
 
 1. In VMware Workstation, make sure the VM is **powered off**.
@@ -338,8 +348,6 @@ An `.ova` is a single portable archive that can be imported by VMware on any pla
 5. Click **Save** and wait — this takes 5–15 minutes.
 
 You can **share the `.ova` file** via USB drive, Google Drive, or a file server.
-
----
 
 ## Troubleshooting Quick Reference
 
@@ -363,6 +371,7 @@ You can **share the `.ova` file** via USB drive, Google Drive, or a file server.
 ---
 
 ## Navigation menu
-- Go to [Part 1 - ROS](/Part_1-ROS/readme.md)
-- Go to [Part 2 - Create3](/Part_2-Create3/readme.md)
-- Go to the [Main page](/readme.md)
+
+* Go to [Part 1 - ROS](/Part_1-ROS/readme.md)
+* Go to [Part 2 - Create3](/Part_2-Create3/readme.md)
+* Go to the [Main page](/readme.md)
