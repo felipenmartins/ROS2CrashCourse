@@ -1,4 +1,5 @@
-# Activity 1 - IR sensors and LED pannel
+# Activity 2 - IR sensors and Light Ring
+
 This activity will focus on creating a node that activates the LEDs on the Create3 robot depending on the readings from the front-facing proximity sensors.
 
 ### Task 1.0: Connecting to the robot
@@ -350,3 +351,14 @@ Explore how you can now use the data from `ir_intensity` topic to change the lig
 
 > **Note that you will need to change the topic names to reflect your robot's name (e.g: `ir_intensity` => `robot-1/ir_intensity`)**
 
+## Conclusion
+
+After completing this activity, you should be familiar with ...
+
+In the next activity, we will study how to program the robot buttons to send ROS Actions goals.
+
+## Navigation menu
+
+- Continue to [Activity 3 - Actions with the physical buttons](/Part_2-Create3/Activity_3/readme.md)
+- Go to [Part 2 - Create3](/Part_2-Create3/readme.md)
+- Go to the [Main page](/readme.md)

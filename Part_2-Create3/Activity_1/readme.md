@@ -6,7 +6,7 @@ The Create3® is an educational robot made by iRobot, who you may know as the co
 
 The Create 3 is based on the Roomba vacuum cleaner robot. Its sensors, actuators, and compact design allow it to autonomously navigate a the whole floor of a home or office space.
 
-Figure 1 illustrates the Create3 with its charging base and some of its sensors. The front of the robot features a bumper and seven infrared (IR) proximity sensors, both of which can be used to detect obstacles. The top of the robot contains three programmable buttons: the biggest one in the center can also be used to power the robot down; buttons 1 and 2 (the small ones) are programmable by the user - button 1 is also used to set robot in Standby mode. 
+Figure 1 illustrates the Create3 with its charging base and some of its sensors. The front of the robot features a bumper and seven infrared (IR) proximity sensors, both of which can be used to detect obstacles. The top of the robot contains three programmable buttons: the biggest one in the center can also be used to power the robot down; buttons 1 and 2 (the small ones) are programmable by the user - button 1 is also used to set robot in Standby mode.
 
 The Home Base Charging Dock is used to both power on the robot (when it is placed on it) and to charge its battery. The robot has an IR Docking Sensor to locate the home base.
 
@@ -84,6 +84,6 @@ In the next activities, we will use ROS instead of the Python Web Playground to 
 
 ## Navigation menu
 
-- Continue to [Activity 2 - IR sensors and LED pannel](/Part_2-Create3/Activity_2/readme.md)
+- Continue to [Activity 2 - IR sensors and Light Ring](/Part_2-Create3/Activity_2/readme.md)
 - Go to [Part 2 - Create3](/Part_2-Create3/readme.md)
 - Go to the [Main page](/readme.md)
