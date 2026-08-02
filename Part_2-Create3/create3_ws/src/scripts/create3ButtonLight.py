@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import rclpy
 from rclpy.node import Node
 from rclpy.action import ActionClient
@@ -45,20 +47,17 @@ class animationController(Node):
        #Send the goal
        return self.action_client.send_goal_async(animationGoal)
    
-
    
    def button_callback(self,msg):
        #! Write your code here!
-       #Hint: To check if a button is pressed, use the is_pressed property 
-       #Hint: To send a goal use the send_goal method created above
-       
-       
+       # Hint: To check if a button is pressed, use the is_pressed property 
+       # Hint: To send a goal use the send_goal method created above
+       pass
+
 
 def main():
    rclpy.init()
-
    controller = animationController()
-
    rclpy.spin(controller)
 
 if __name__ == '__main__':

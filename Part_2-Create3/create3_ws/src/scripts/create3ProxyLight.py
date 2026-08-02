@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
@@ -51,11 +53,10 @@ class lightController(Node):
     def ir_callback(self,msg):
         self.ir_readings = msg.readings
 
+
 def main():
     rclpy.init()
-
     controller = lightController()
-
     rclpy.spin(controller)
 
 if __name__ == '__main__':
