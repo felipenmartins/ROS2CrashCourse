@@ -11,31 +11,31 @@ Turn the robot ON by placing it on the charging dock with the front sensor facin
 You can check if your robot is successfully connected to the same network as you by  opening a new terminal window listing the current topics using `ros2 topic list`. You should now see an output similar to:
 
 ```bash
- 	/battery_state
-    /cmd_audio
-    /cmd_lightring
-    /cmd_vel
-    /dock
-    /hazard_detection
-    /imu
-    /interface_buttons
-    /ir_intensity
-    /ir_opcode
-    /kidnap_status
-    /mouse
-    /odom
-    /parameter_events
-    /robot_state/transition_event
-    /rosout
-    /slip_status
-    /static_transform/transition_event
-    /stop_status
-    /system_monitor/transition_event
-    /tf
-    /tf_static
-    /wheel_status
-    /wheel_ticks
-    /wheel_vels
+/battery_state
+  /cmd_audio
+  /cmd_lightring
+  /cmd_vel
+  /dock
+  /hazard_detection
+  /imu
+  /interface_buttons
+  /ir_intensity
+  /ir_opcode
+  /kidnap_status
+  /mouse
+  /odom
+  /parameter_events
+  /robot_state/transition_event
+  /rosout
+  /slip_status
+  /static_transform/transition_event
+  /stop_status
+  /system_monitor/transition_event
+  /tf
+  /tf_static
+  /wheel_status
+  /wheel_ticks
+  /wheel_vels
 ```
 
 If there are multiple robots in the same network, you will find that every node or topic your robot is running will be prepended by the robots name (i.e: `/robot_1/battery_state`). If you are at Hanze, you can find your robot identifier on the top faceplate of the robot and on its charging dock. For most of the commands in the workshop, you will need to prepend the commands with the correct robot name.
