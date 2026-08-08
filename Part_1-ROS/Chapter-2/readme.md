@@ -366,7 +366,7 @@ if __name__ == '__main__':
 
 #### Task 1: Complete the subcriber node
 
-Since we already went over the code for the talker node, we will now create the code for the subscriber node. To save some time, you can use the template shown below and fill out the sections marked with a `#! Write Your Code Here!`. You can also find the template [here](/Part_2-Create3/create3_ws/src/scripts/listenerDemo.py).
+Since we already went over the code for the talker node, we will now create the code for the subscriber node. To save some time, you can use the template shown below and fill out the sections marked with a `#! Write Your Code Here!`.
 
 You are expected to investigate and find out how to complete the code yourself.
 
