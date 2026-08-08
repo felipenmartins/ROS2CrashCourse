@@ -33,7 +33,7 @@ Nodes can communicate with other nodes in a variety of ways, the most common met
 
 For this activity, we will be exploring a few ROS 2 commands that allow us to interact with and inspect nodes. This activity can also be found in the [ROS2 wiki](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html).
 
-#### Command 1: ros2 run
+#### Step 1 - ros2 run
 
 The command `ros2 run` launches an executable from a package:
 
@@ -49,7 +49,7 @@ ros2 run turtlesim turtlesim_node
 
 This will launch a node from the _turtlesim_ package and the TurtleSim window will open. Here, the package name is `turtlesim` and the executable name is `turtlesim_node`.
 
-#### Command 2: ros2 node list
+#### Step 2 - ros2 node list
 
 We still don’t know the node name, however. You can find node names by running:
 
@@ -103,7 +103,7 @@ Topics are a vital element of the ROS graph that act as a bus for nodes to excha
 In this activity, you will get familiar with ROS topics using some `ros2`
 commands and the `turtlesim` package. This activity can also be found in the [ROS 2 wiki](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html).
 
-#### Command 3: ros2 topic list
+#### Step 1 - ros2 topic list
 
 Run the command `ros2 topic list` in a new terminal. You will get a list of all the topics currently active in the system:
 
@@ -127,7 +127,7 @@ The command `ros2 topic list -t` will return the same list of topics, but with t
 
 These attributes, particularly the message type, are how nodes know they’re talking about the same information as it moves over topics.
 
-#### Command 4: ros2 topic echo
+#### Step 2 - ros2 topic echo
 
 To see the data being published on a topic, use the `ros2 topic echo` command:
 
@@ -155,7 +155,7 @@ angular:
   ---
 ```
 
-#### Command 5: ros2 topic info
+#### Step 3 - ros2 topic info
 
 Topics don’t have to only be point-to-point communication. As shown in Figure 2, they  can be one-to-many, many-to-one, or many-to-many. Another way to look at this is running:
 
@@ -171,7 +171,7 @@ Publisher count: 1
 Subscription count: 2
 ```
 
-#### Command 6: ros2 interface show
+#### Step 4 - ros2 interface show
 
 Nodes can publish and/or subscribe to topics to send and/or receive messages. Publishers and subscribers must send and receive the same type of message to communicate via a topic.
 
@@ -207,7 +207,7 @@ angular:
 
 Although the terminal commands are very useful, we can't create complete projects this way. This activity will focus on creating a couple of talker-listener ROS 2 nodes using Python. One node, the talker, will send a simple string message, and the second node, the listener, will print that message to the terminal.
 
-#### Background
+#### Step 1 - Understand the structure of the Python script
 
 Before starting the activity, we are going to briefly go over the general structure for most of the Python scripts we will be creating during this workshop and explain what each section does.
 
@@ -262,9 +262,11 @@ if __name__ == '__main__':
   main()
 ```
 
-Let's understand what each section of the code is doing.
+Go to your `create3_pkg` directory, create a new file called `talkerDemo.py`, and copy the above code to it. If you need a refresher for how to do this, please review [step 4](https://github.com/felipenmartins/ROSWorkshop/tree/master/Part_1-ROS/Chapter-1#step-4---create-the-python-scripts) of the activity in Chapter 1.
 
-#### Defining the Python interpreter
+For now, let's understand what each section of the code is doing.
+
+##### Defining the Python interpreter
 
 The first line (`#!/usr/bin/env python3`) is there just to tell Linux which program to use to run the script when you execute it directly. It tells the OS to find the `python3` program in your system's PATH and use it to run the script (assumming it is executable).
 
@@ -272,7 +274,7 @@ Even if you omit this line, running your script with `python3 talkerDemo.py` sti
 
 In summary, it is good practice to add `#!/usr/bin/env python3` at the start of your Python scripts when working with ROS 2.
 
-#### Importing libraries
+##### Importing libraries
 
 The first section of the code consists of importing the necessary libraries. We need to import the class `Node` from `rclpy` library and the class `String` from `std_msgs`.  
 
@@ -290,7 +292,7 @@ In ROS 2, `rclpy` and `std_msgs` are two fundamental packages:
 
 A ROS 2 node written with `rclpy` often uses message types from `std_msgs`, so you should familiarize yourself with those.
 
-#### Defining the talker class
+##### Defining the talker class
 
 ROS 2's coding conventions encourage us to write object-oriented code, meaning we should organize our code into classes. We define our `talker` class as a subclass of the `Node` class provided by `rcply`. Doing so allows our class to create a node, add subscribers and publishers, and do everything a ROS 2 node can do.
 
@@ -299,7 +301,7 @@ ROS 2's coding conventions encourage us to write object-oriented code, meaning w
 class talker(Node):
 ```
 
-#### The constructor method
+##### The constructor method
 
 In this section we define the `__init__` function, also known as the constructor function. This is the function that is called everytime we create an instance (an object) of our class.
 
@@ -320,7 +322,7 @@ class talker(Node):
     self.timer = self.create_timer(timer_period, self.timer_callback)
 ```
 
-#### Other functions
+##### Other functions
 
 After defining the `__init__` method, we define other methods that we might need in the future. In most cases, this usually means defining callback functions, which are functions that are called automatically when a certain, pre-defined event happens. In our case, we define a timer callback that is called everytime the timer's period elapses.
 
@@ -339,7 +341,7 @@ After defining the `__init__` method, we define other methods that we might need
 
 If we were to implement a subscriber, we would define subcriber callback functions, which are called every time a message is published to a topic we are subscribed to.
 
-#### Defining the main() function
+##### Defining the main() function
 
 In this section, we define our `main` function, which is where we _instantiate_ our classes and where all our "high-level" logic can go. In our case, we just initialize `rclpy`, create an instance of our `talker` class, and call the `rclpy.spin()` function. Calling `rclpy.spin()` is necessary to keep the code running until it is terminated (you should have noticed that there is no explicit loop function).
 
@@ -354,7 +356,7 @@ def main():
   rclpy.spin(publisherNode)
 ```
 
-#### Calling the main function
+##### Calling the main function
 
 Finally, we call our `main` function to actually run our code. Before calling our main function however, we need to verify that this script is being ran explicitly. We do that via the `if __name__ == '__main__'` check. Although not required, it is good practice to always add this check.
 
@@ -364,9 +366,9 @@ if __name__ == '__main__':
   main()
 ```
 
-#### Task 1: Complete the subcriber node
+#### Step 2 - Complete the subcriber node
 
-Since we already went over the code for the talker node, we will now create the code for the subscriber node. To save some time, you can use the template shown below and fill out the sections marked with a `#! Write Your Code Here!`.
+Since we already went over the code for the talker node, we will now create the code for the subscriber node. Go to your `create3_pkg` directory, create a new file called `talkerDemo.py`, and copy the template code below to it. If you need a refresher for how to do this, please review [step 4](https://github.com/felipenmartins/ROSWorkshop/tree/master/Part_1-ROS/Chapter-1#step-4---create-the-python-scripts) of the activity in Chapter 1. Fill out the sections marked with a `#! Write Your Code Here!` (you are expected to investigato how to complete this).
 
 You are expected to investigate and find out how to complete the code yourself.
 
@@ -401,9 +403,9 @@ if __name__ == '__main__':
   main()
 ```
 
-#### Task 2: Add your scripts to your workspace
+#### Step 3 - Add your scripts to your package and run the nodes
 
-To test your code, repeate the process described in the activity of Chapter 1. Since you already have the workspace and package, you only need to follow from ([step 4](/Part_1-ROS/Chapter-1/readme.md#step-4---create-the-python-scripts)) to step 8.
+Before running your nodes, you need to complete the process described in the activity of Chapter 1. Since you already have the workspace and package, you need to follow [steps 5](https://github.com/felipenmartins/ROSWorkshop/tree/master/Part_1-ROS/Chapter-1#step-5---edit-setuppy) to 8 to include the files in your package, rebuild your workspace, and run the nodes.
 
 If everything is working properly, you should be able to see the "talker" node's message being published on the `myTopic` topic and see the same message being printed to the terminal where your "listener" node is running.
 
@@ -426,7 +428,7 @@ Actions use a client-server model, similar to the publisher-subscriber model of 
 
 In this activity, we will get get familiar with how exactly actions work by sending and examining actions by inspecting them from terminal. We will be using the `turtlesim` package again. This activity can also be found in the [ROS2 docs](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html).
 
-#### Setup
+#### Step 1 - Setup
 
 First, start the turtlesim nodes `/turtlesim` and `/teleop_turtle`. Open a terminal and run:
 
@@ -440,7 +442,7 @@ On another terminal, run:
 ros2 run turtlesim turtle_teleop_key
 ```
 
-#### Using Actions
+#### Step 2 - Using Actions
 
 When you launch the `/teleop_turtle` node, you will see the following message in your terminal:
 
@@ -471,7 +473,7 @@ Not only can the client-side (your input in the teleop) preempt goals, but the s
 
 The server-side aborted the first goal because it was interrupted.
 
-#### Inspecting Actions
+#### Step 3 - Inspecting Actions
 
 If you inspect the `/turtlesim` node you can see all available actions. Open a new terminal and run the command:
 
@@ -608,7 +610,7 @@ float32 remaining
 
 The first section of this message, before the first ``---``, corresponds to the structure of the goal request (data type and name). The subsequent section describes the structure of the result, and the last one shows the structure of the feedback.
 
-#### Sending Action Goals
+#### Step 4 - Sending Action Goals
 
 Now, let’s send an action goal from the command line with the following syntax:
 
