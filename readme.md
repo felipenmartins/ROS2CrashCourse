@@ -57,7 +57,7 @@ This course assumes that you are familiar with the Linux Terminal commands. You 
 - access the command line
 - investigate and navigate the folder structure (list and access files and folders)
 - perform basic file manipulation (create, delete, copy and move files)
-- how to run command as a super user
+- run a command as a super user
 
 If you are new to Linux, I recommend the tutorial [The Linux command line for beginners](https://ubuntu.com/desktop/docs/en/latest/tutorial/the-linux-command-line-for-beginners/), which covers all above topics.
 
@@ -77,8 +77,10 @@ The demonstration platform used in this course is the [iRobot Create3](https://i
 
 ## Acknowledgment
 
-An early version of this course was prepared by Marwan Refaat when on a summer internship at Hanze University of Applied Sciences. This repository was forked from his  [ROSWorkshop](https://github.com/Marwan-Refaat/ROSWorkshop) and was built on top of his  work. Thank you, Marwan!
+An early version of this course was prepared by Marwan Refaat during a summer internship at Hanze University of Applied Sciences. This repository was forked from his [ROSWorkshop](https://github.com/Marwan-Refaat/ROSWorkshop) and was built on top of his  work.
+
+Thank you, Marwan!
 
 ## License
 
-This project is licensed under the terms of the [MIT license](/LICENSE.md).
+Just like Marwan's work, this project is licensed under the terms of the [MIT license](/LICENSE.md).
