@@ -10,7 +10,7 @@ Connect to the robot and get a list of all available actions via the command:
 ros2 action list
 ```
 
-> If you forgot how to turn on and connect to the Create3, please review [Activity 1](../../Part_2-Create3/Activity_1/readme.md)) and [Activity 2](../../Part_2-Create3/Activity_2/readme.md).
+> If you forgot how to turn on and connect to the Create3, please review [Activity 1](../../Part_2-Create3/Activity_1/readme.md) and [Activity 2](../../Part_2-Create3/Activity_2/readme.md).
 
 The Create3 has a few actions available. See more information [here](https://iroboteducation.github.io/create3_docs/api/ros2/).
 
@@ -279,7 +279,7 @@ if __name__ == '__main__':
     main()
 ```
 
-> **Note that you will need to change the topic and action names to reflect your robot's name (e.g: `interface_buttons` => `robot_1/interface_buttons`)**
+> **You will need to change the topic and action names to reflect your robot's name (e.g: `interface_buttons` -> `robot_1/interface_buttons`)**
 
 You can also add whatever logic you want to the code. Try, for example, creating different animations for different button presses, or changing the animation's color on each subsequent button press.
 
