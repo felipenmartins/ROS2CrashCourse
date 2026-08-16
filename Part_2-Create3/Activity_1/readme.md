@@ -10,7 +10,7 @@ Figure 1 illustrates the Create3 with its charging base and some of its sensors.
 
 The Home Base Charging Dock is used to both power on the robot (when it is placed on it) and to charge its battery. The robot has an IR Docking Sensor to locate the home base.
 
-![Create3-top](https://iroboteducation.github.io/create3_docs/hw/data/front_iso.jpg)
+![Create3-top](images/create3_top.jpg)
 
 ##### Figure 1. Create3 robot (left) and its charging base (right). Seven infrared proximity sensors and a front bumper can be used to detect obstacles during navigation. The top buttons can be used to send commands to the ROS 2 application that controls the robot.
 
@@ -18,7 +18,7 @@ The Light Ring glows different colors and patterns to communicate robot status a
 
 Figure 2 shows the bottom side of the Create3, which contains four infrared sensors pointing to the ground (cliff sensors), a front caster wheel, charging contacts, two driving wheels (differential-drive structure), and the openning for the cargo bay.
 
-![Create3-bottom](https://iroboteducation.github.io/create3_docs/hw/data/bottom.jpg)
+![Create3-bottom](images/create3_bottom.jpg)
 
 ##### Figure 2. Bottom of the Create3 with indication of cliff sensors, optical odometry sensor, and wheels.
 
@@ -84,6 +84,6 @@ In the next activities, we will use ROS instead of the Python Web Playground to 
 
 ## Navigation menu
 
-- Continue to [Activity 2 - IR sensors and Light Ring](/Part_2-Create3/Activity_2/readme.md)
-- Go to [Part 2 - Create3](/Part_2-Create3/readme.md)
-- Go to the [Main page](/readme.md)
+- Continue to [Activity 2 - IR sensors and Light Ring](../../Part_2-Create3/Activity_2/readme.md)
+- Go to [Part 2 - Create3](../../Part_2-Create3/readme.md)
+- Go to the [Main page](../../readme.md)

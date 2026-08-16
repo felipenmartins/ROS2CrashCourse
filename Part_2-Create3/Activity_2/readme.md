@@ -343,6 +343,6 @@ After completing this activity, you should be familiar with creating nodes to in
 
 ## Navigation menu
 
-- Continue to [Activity 3 - Actions with the physical buttons](/Part_2-Create3/Activity_3/readme.md)
-- Go to [Part 2 - Create3](/Part_2-Create3/readme.md)
-- Go to the [Main page](/readme.md)
+- Continue to [Activity 3 - Actions with the physical buttons](../../Part_2-Create3/Activity_3/readme.md)
+- Go to [Part 2 - Create3](../../Part_2-Create3/readme.md)
+- Go to the [Main page](../../readme.md)

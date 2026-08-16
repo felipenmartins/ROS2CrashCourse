@@ -27,7 +27,7 @@ There are many possibilities to define reference frames. In ROS, a common repres
 - **base_link**: used as a reference for sensors and other components of the robot.
 - **laser_link**: pose of a laser sensor on the robot - essential for interpreting its data for mapping and obstacle detection.
 
-![Commonly used coordinate frames in ROS](https://wiki.ros.org/hector_slam/Tutorials/SettingUpForYourRobot?action=AttachFile&do=get&target=coordsystems_img.png)
+![Commonly used coordinate frames in ROS](images/common_coordinate_frames.png)
 
 ##### Figure 1. Commonly used coordinate frames for mobile robotics in ROS. _Source: [ROS Wiki](https://wiki.ros.org/hector_slam/Tutorials/SettingUpForYourRobot)_
 
@@ -81,7 +81,7 @@ ros2 run tf2_tools view_frames
 
 Wait a few seconds until the process is completed. Then, open the Ubuntu _Document Viewer_ application and open the PDF file that was saved by `view_frames`. You will see something similar to Figure 2. Notice that `world` is the parent frame of both `turtle1` and `turtle2`.
 
-![TF2 tree](/Part_1-ROS/Chapter-3/tf2_tree.png)
+![TF2 tree](images/tf2_tree.png)
 
 ##### Figure 2. The three coordinate frames that are broadcast by tf2: world (parent), turtle1, and turtle2. Some diagnostic information is also informed, like when the oldest and most recent frame transforms were received and how fast the tf2 frame is published.
 
@@ -153,7 +153,7 @@ ros2 launch turtlesim_teleop_launch.xml
 
 You should now be able to see two windows, one for the teleop node, and one for the turtlesim node. The one for the teleop node is the smaller one on the right of Figure 3, which is the `xterm` terminal.
 
-![TurtleSim and Teleop on xterm](/Part_1-ROS/Chapter-3/screenshot%20turtlesim-teleop%20launch.png)
+![TurtleSim and Teleop on xterm](images/screenshot_turtlesim-teleop_launch.png)
 
 ##### Figure 3. Result of running the `turtlesim_teleop_launch.xml` launch file: the original terminal is in the back. TurtleSim window in in the center, and the small terminal next to it is xterm running the teleoperation node.
 
@@ -270,7 +270,7 @@ rqt
 
 When running it for the first time, the window will be blank. Select `Plugins > Introspection > Node Graph` from the menu bar at the top. A window like the one in Figure 4 will open showing the nodes that are publishing or subscribing to which topics. If the window is blank, click the "reload" button below the "File" menu.
 
-![rqt Node Graph](/Part_1-ROS/Chapter-3/rqt_screenshot_nodes-topics.png)
+![rqt Node Graph](images/rqt_screenshot_nodes-topics.png)
 
 ##### Figure 4. Node graph in rqt: it shows the running nodes and indicates which one is publishing or subscribing to which topic.
 
@@ -308,13 +308,13 @@ ros2 run rviz2 rviz2 -d $(ros2 pkg prefix --share turtle_tf2_py)/rviz/turtle_rvi
 
 Figure 5 shows a screenshot of RViz with the TFs. As you send commands to the turtle using teleop, you should see the TFs moving on the screen.
 
-![RViz TFs screenshot](/Part_1-ROS/Chapter-3/rviz-tfs_screenshot.png)
+![RViz TFs screenshot](images/rviz-tfs_screenshot.png)
 
 ##### Figure 5. RViz screenshot displaying the TFs of turtle1, turtle2 and world. In the left side menu you can select many options for visualization. 
 
 This is just a simple example, but RViz is much more powerful! For example, Figure 6 shows a screenshot of RViz with the Create3 robot. For details on how to use this tool, check out the [RViz User Guide]((https://docs.ros.org/en/jazzy/Tutorials/Intermediate/RViz/RViz-User-Guide/RViz-User-Guide.html)).
 
-![RViz screenshot](/Part_1-ROS/Chapter-3/rviz_screenshot.jpg)
+![RViz screenshot](images/rviz_screenshot.jpg)
 
 ##### Figure 6. RViz screenshot with the Create3 robot. The menu on the left side allows you to control what RViz shows, which can include sensor data, reference frames etc..
 
@@ -326,7 +326,7 @@ With Gazebo, you can create a fully virtual version of you robot, as well as all
 
 From the perspective of a robot programmer, Gazebo can be very useful as it's simulation publishes nearly identical topics to the ones the real robot does, which means we can test all our code in simulation before deploying to the live robot. You can create a world for your robot using Gazebo's world editor, or you can use one of the hundreds of community-created worlds. Figure 7 shows a screenshot of Gazebo running a simulation of the Create3 robot.
 
-![Gazebo screenshot](/Part_1-ROS/Chapter-3/gazebo_screenshot.jpg)
+![Gazebo screenshot](images/gazebo_screenshot.jpg)
 
 ##### Figure 7. Gazebo screenshot showing the simulation environment. You can control the robot by clicking the command buttons on the bottom right. 
 
@@ -535,6 +535,6 @@ First, run the ros2 launch command. As soon as Gazebo window opens, go to the ot
 
 ## Navigation menu
 
-- Continue to [Part 2 - Create3](/Part_2-Create3/readme.md)
-- Go back to [Part 1 - ROS](/Part_1-ROS/readme.md)
-- Go to the [Main page](/readme.md)
+- Continue to [Part 2 - Create3](../../Part_2-Create3/readme.md)
+- Go back to [Part 1 - ROS](../../Part_1-ROS/readme.md)
+- Go to the [Main page](../../readme.md)

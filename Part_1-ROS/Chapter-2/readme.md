@@ -15,7 +15,7 @@ By the end of this chapter you should be able to:
 
 Turtlesim is a lightweight simulator used for learning ROS. It is a simple simulation environment that allows you to practice concepts and learn what ROS 2 does at the most basic level. TurtleSim is a good starting point to understand the basics and to give you an idea of what you will do with a real robot. Figure 1 shows a screenshot of the simulator running.
 
-![turtlesim](https://docs.ros.org/en/jazzy/_images/turtlesim.png?raw=true)
+![turtlesim screenshot](images/turtlesim_screenshot.png)
 
 ##### Figure 1. TurtleSim screenshot - the turtle in the center serve as a robot that can be controlled via mesages published to specific topics. _Source: [ROS Docs](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html)_
 
@@ -94,7 +94,7 @@ Keep those nodes running for now.
 
 Topics are a vital element of the ROS graph that act as a bus for nodes to exchange data in the form of messages. Topics can receive messages from one or more nodes publishing to it, and deliver those messages to one or more nodes that are subscribed to it. A node may publish to a topic or to multiple topics, and simultaneously have subscriptions to one or more topics. Figure 2 illustrates this concept.
 
-![Multiple node-topic communication](https://docs.ros.org/en/foxy/_images/Topic-MultiplePublisherandMultipleSubscriber.gif?raw=true)
+![Multiple node-topic communication](images/topics_animation.gif)
 
 ##### Figure 2. Nodes exchanging messages via topics. _Source: [ROS 2 Documentation: Jazzy](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html)_
 
@@ -421,7 +421,7 @@ Actions are another type of communication in ROS 2, intended for long running ta
 
 Actions use a client-server model, similar to the publisher-subscriber model of node-topic communication. An “action client” node sends a goal to an “action server” node that acknowledges it, executes the associated actions, and returns a stream of feedback and a result. Figure 3 illustrates this concept.
 
-![Actions ROS2](https://docs.ros.org/en/foxy/_images/Action-SingleActionClient.gif?raw=true)
+![Actions ROS2](images/actions_animation.gif)
 ##### Figure 3. An “action client” node (left) sends a goal to an “action server” node (right) that acknowledges it and returns a stream of feedback and a result. _Source: [ROS 2 Documentation: Jazzy](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html)_
 
 ### 2.3.1 Activity: Getting familiar with actions

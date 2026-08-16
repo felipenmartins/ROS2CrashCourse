@@ -14,7 +14,7 @@ By the end of this chappter you should be familiar with:
 
 ## 1.1 ROS Overview
 
-ROS is short for **Robot Operating System**. Just like a computer operating system, ROS manages hardware and software resources, and provides common services for other programs to interact with each other and with the robot hardware (sensors and actuators). 
+ROS is short for **Robot Operating System**. Just like a computer operating system, ROS manages hardware and software resources, and provides common services for other programs to interact with each other and with the robot hardware (sensors and actuators).
 
 However, despite its name, ROS is **_not_** an operating system, but a middleware with a set of communication tools and a collection of plug-and-play libraries that shorten the time-to-market of robotics projects and allows developers to work on the algorithms they are interested in.
 
@@ -46,10 +46,7 @@ ROS 2’s development was and continues to be guided by a ‘Technical Steering 
 
 ROS currently powers robots in various domains, from [Astrobee](https://www.nasa.gov/astrobee), NASA’s free-flying robots that have been active in the ISS for years, to [Open-RMF](https://www.open-rmf.org/), a modular software system that enables sharing and interoperability between multiple fleets of robots and physical infrastructure, like doors, elevators and building management systems. 
 
-[ROSIndustrial](https://rosindustrial.org/) is an extension of the ROS platform specifically made to facilitate the transfer of robotics research into the industrial field. It currently boasts over 80 industrial leaders from all around the world such as ABB, Siemens, Boeing, BMW, Panasonic, Universal Robots and many more. 
-
-![ROS Industrial Consortium](https://images.squarespace-cdn.com/content/v1/51df34b1e4b08840dcfd2841/e4f98f71-31eb-436f-aa1c-4d4f969343ac/Logo-montage_2026-April27-tp-s.jpg?format=1500w)
-##### Figure 1. Institutions that are part of the ROS Industrial Consortium. _Source: [ROS Industrial](https://rosindustrial.org/current-members)_
+[ROSIndustrial](https://rosindustrial.org/) is an extension of the ROS platform specifically made to facilitate the transfer of robotics research into the industrial field. It currently boasts over industrial leaders from all around the world such as ABB, Boeing, BMW, Intel, Lely, Johnson & Johnson, Mitsubishi, Panasonic, Siemens, Universal Robots, Volvo, and many more. See all [current members of the ROS Industrial consortium here](https://rosindustrial.org/current-members).
 
 ## 1.2 Main Concepts
 
@@ -69,12 +66,10 @@ Nodes communicate using messages. A ROS message is just a data structure that co
 
 ### Topics
 
-ROS messages are sent through topics, which follow a simple publish/subscribe protocol. Nodes can publish messages to a topic to share that data across the application, and other nodes can subscribe to that topic to access that data. A single topic can have multiple subscribers and multiple publishers.
+ROS messages are sent through topics, which follow a simple publish/subscribe protocol. Nodes can publish messages to a topic to share that data across the application, and other nodes can subscribe to that topic to access that data. Figure 2 illustrates such the concept: one node publishes messages to a topic that has another node as subscriber. In this configuration, the subscriber node receives all messages as soon as they are published to the topic. A single topic can have multiple subscribers and multiple publishers.
 
-Figure 2 illustrates the concepts of nodes, messages and topics. In the figure, one or two nodes (publishers) publish messages to a topic that has two subscriber nodes. In this configuration, both subscriber nodes receive all messages from both publishers.
-
-![Multiple node-topic communication](https://docs.ros.org/en/jazzy/_images/Topic-MultiplePublisherandMultipleSubscriber.gif)
-##### Figure 2. Nodes exchanging messages via topics. _Source: [ROS 2 Documentation: Jazzy](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html)_
+![node-topic communication](images/node-topics_animation.gif)
+##### Figure 2. Nodes exchanging messages via a topic. _Source: [ROS 2 Documentation: Jazzy](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html)_
 
 For example, a node `/lidar_sensor` might process data from the lidar sensor and publish distance data to a topic called `/distance_data`. The `/localization` node subscribed to the `/distance_data` topic can use that data to help compute the robot’s current location.
 
@@ -115,7 +110,7 @@ The minimum requirement for a ROS workspace is a `/src` directory that contains 
 
 This activity will focus on creating a new workspace that will be used later in this course. You will create a workspace, create a package within such workspace, create executable scripts and run them. The goal is for you to become familiar with the process and to have a source for future refences.
 
-I am assumming that you have ROS 2 Jazzy installed on Ubuntu. If not, you can install it using a virtual machine by following [this guide](../../Part_1-ROS/ros2_vm_guide.md).
+> _Note:_ I am assumming that you have ROS 2 Jazzy installed on Ubuntu. If not, you can install it using a virtual machine by following [this guide](../../Part_1-ROS/ros2_vm_guide.md).
 
 In most activities in this course we will make use of terminal (or command line) commands. Don't worry if you don't know terminal commands by heart: all the necessary commands will be provided you. I recommend that you type the commands yourself (instead of copying them) to increase your chances of learning them.
 

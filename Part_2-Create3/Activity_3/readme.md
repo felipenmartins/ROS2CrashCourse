@@ -297,5 +297,5 @@ After completing this activity, you should be familiar with the Create3 Actions 
 
 ## Navigation menu
 
-- Go to [Part 2 - Create3](/Part_2-Create3/readme.md)
-- Go to the [Main page](/readme.md)
+- Go to [Part 2 - Create3](../../Part_2-Create3/readme.md)
+- Go to the [Main page](../../readme.md)
