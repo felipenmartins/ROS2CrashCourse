@@ -69,9 +69,9 @@ Nodes communicate using messages. A ROS message is just a data structure that co
 
 ### Topics
 
-ROS messages are sent through topics, which follow a simple publish/subscribe protocol. Nodes can publish messages to a topic to share that data across the application, and other nodes can subscribe to that topic to access that data. A single topic can have multiple subscribers and multiple publishers. 
+ROS messages are sent through topics, which follow a simple publish/subscribe protocol. Nodes can publish messages to a topic to share that data across the application, and other nodes can subscribe to that topic to access that data. A single topic can have multiple subscribers and multiple publishers.
 
-Figure 2 illustrates the concepts of nodes, messages and topics. In the figure, one or two nodes (publishers) publish messages to a topic that has two subscriber nodes. In this configuration, both subscriber nodes receive all messages from both publishers. 
+Figure 2 illustrates the concepts of nodes, messages and topics. In the figure, one or two nodes (publishers) publish messages to a topic that has two subscriber nodes. In this configuration, both subscriber nodes receive all messages from both publishers.
 
 ![Multiple node-topic communication](https://docs.ros.org/en/jazzy/_images/Topic-MultiplePublisherandMultipleSubscriber.gif)
 ##### Figure 2. Nodes exchanging messages via topics. _Source: [ROS 2 Documentation: Jazzy](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html)_
@@ -375,6 +375,6 @@ After completing this chapter, you should have a general understanding of ROS an
 
 ## Navigation menu
 
-- Continue to [Chapter 2 - Diving into Nodes, Topics and Actions](/Part_1-ROS/Chapter-2/readme.md)
-- Go back to [Part 1 - ROS](/Part_1-ROS/readme.md)
-- Go to the [Main page](/readme.md)
+- Continue to [Chapter 2 - Diving into Nodes, Topics and Actions](../../Part_1-ROS/Chapter-2/readme.md)
+- Go back to [Part 1 - ROS](../../Part_1-ROS/readme.md)
+- Go to the [Main page](../../readme.md)

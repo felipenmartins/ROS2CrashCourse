@@ -1,8 +1,8 @@
 # Part 1 - ROS
 
-This part covers fundamental concepts of ROS 2 to equip you with the knowledge to run and create your own Python code for robots. It is organized in 3 chapters that cover ROS 2 and its core concepts: 
+This part covers fundamental concepts of ROS 2 to equip you with the knowledge to run and create your own Python code for robots. It is organized in 3 chapters that cover ROS 2 and its core concepts:
 
-- [**Chapter 1 - Fundamental Concepts of ROS**](/Chapter-1/readme.md)
+- [**Chapter 1 - Fundamental Concepts of ROS**](../Part_1-ROS/Chapter-1/readme.md)
   - ROS overview and history
   - Why use ROS?
   - Main concepts (packages, workspaces, nodes, topics etc.)
