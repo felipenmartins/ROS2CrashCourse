@@ -15,7 +15,7 @@ By the end of this chapter you should be able to:
 
 Turtlesim is a lightweight simulator used for learning ROS. It is a simple simulation environment that allows you to practice concepts and learn what ROS 2 does at the most basic level. TurtleSim is a good starting point to understand the basics and to give you an idea of what you will do with a real robot. Figure 1 shows a screenshot of the simulator running.
 
-![turtlesim](https://docs.ros.org/en/jazzy/_images/turtlesim.png)
+![turtlesim](https://docs.ros.org/en/jazzy/_images/turtlesim.png?raw=true)
 
 ##### Figure 1. TurtleSim screenshot - the turtle in the center serve as a robot that can be controlled via mesages published to specific topics. _Source: [ROS Docs](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html)_
 
@@ -94,7 +94,7 @@ Keep those nodes running for now.
 
 Topics are a vital element of the ROS graph that act as a bus for nodes to exchange data in the form of messages. Topics can receive messages from one or more nodes publishing to it, and deliver those messages to one or more nodes that are subscribed to it. A node may publish to a topic or to multiple topics, and simultaneously have subscriptions to one or more topics. Figure 2 illustrates this concept.
 
-![Multiple node-topic communication](https://docs.ros.org/en/foxy/_images/Topic-MultiplePublisherandMultipleSubscriber.gif)
+![Multiple node-topic communication](https://docs.ros.org/en/foxy/_images/Topic-MultiplePublisherandMultipleSubscriber.gif?raw=true)
 
 ##### Figure 2. Nodes exchanging messages via topics. _Source: [ROS 2 Documentation: Jazzy](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html)_
 
@@ -262,7 +262,7 @@ if __name__ == '__main__':
   main()
 ```
 
-Go to your `create3_pkg` directory, create a new file called `talkerDemo.py`, and copy the above code to it. If you need a refresher for how to do this, please review [step 4](https://github.com/felipenmartins/ROSWorkshop/tree/master/Part_1-ROS/Chapter-1#step-4---create-the-python-scripts) of the activity in Chapter 1.
+Go to your `create3_pkg` directory, create a new file called `talkerDemo.py`, and copy the above code to it. If you need a refresher for how to do this, please review [step 4](../../Part_1-ROS/Chapter-1#step-4---create-the-python-scripts) of the activity in Chapter 1.
 
 For now, let's understand what each section of the code is doing.
 
@@ -368,7 +368,7 @@ if __name__ == '__main__':
 
 #### Step 2 - Complete the subcriber node
 
-Since we already went over the code for the talker node, we will now create the code for the subscriber node. Go to your `create3_pkg` directory, create a new file called `talkerDemo.py`, and copy the template code below to it. If you need a refresher for how to do this, please review [step 4](https://github.com/felipenmartins/ROSWorkshop/tree/master/Part_1-ROS/Chapter-1#step-4---create-the-python-scripts) of the activity in Chapter 1. Fill out the sections marked with a `#! Write Your Code Here!` (you are expected to investigato how to complete this).
+Since we already went over the code for the talker node, we will now create the code for the subscriber node. Go to your `create3_pkg` directory, create a new file called `talkerDemo.py`, and copy the template code below to it. If you need a refresher for how to do this, please review [step 4](../../Part_1-ROS/Chapter-1#step-4---create-the-python-scripts) of the activity in Chapter 1. Fill out the sections marked with a `#! Write Your Code Here!` (you are expected to investigato how to complete this).
 
 You are expected to investigate and find out how to complete the code yourself.
 
@@ -405,7 +405,7 @@ if __name__ == '__main__':
 
 #### Step 3 - Add your scripts to your package and run the nodes
 
-Before running your nodes, you need to complete the process described in the activity of Chapter 1. Since you already have the workspace and package, you need to follow [steps 5](https://github.com/felipenmartins/ROSWorkshop/tree/master/Part_1-ROS/Chapter-1#step-5---edit-setuppy) to 8 to include the files in your package, rebuild your workspace, and run the nodes.
+Before running your nodes, you need to complete the process described in the activity of Chapter 1. Since you already have the workspace and package, you need to follow [steps 5](../../Part_1-ROS/Chapter-1#step-5---edit-setuppy) to 8 to include the files in your package, rebuild your workspace, and run the nodes.
 
 If everything is working properly, you should be able to see the "talker" node's message being published on the `myTopic` topic and see the same message being printed to the terminal where your "listener" node is running.
 
@@ -421,7 +421,7 @@ Actions are another type of communication in ROS 2, intended for long running ta
 
 Actions use a client-server model, similar to the publisher-subscriber model of node-topic communication. An “action client” node sends a goal to an “action server” node that acknowledges it, executes the associated actions, and returns a stream of feedback and a result. Figure 3 illustrates this concept.
 
-![Actions ROS2](https://docs.ros.org/en/foxy/_images/Action-SingleActionClient.gif)
+![Actions ROS2](https://docs.ros.org/en/foxy/_images/Action-SingleActionClient.gif?raw=true)
 ##### Figure 3. An “action client” node (left) sends a goal to an “action server” node (right) that acknowledges it and returns a stream of feedback and a result. _Source: [ROS 2 Documentation: Jazzy](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html)_
 
 ### 2.3.1 Activity: Getting familiar with actions
@@ -684,6 +684,6 @@ In the next chapter you will learn more about other tools that are part of the R
 
 ## Navigation menu
 
-- Continue to [Chapter 3 - TFs, RViz, Bags and Gazebo](/Part_1-ROS/Chapter-3/readme.md)
-- Go back to [Part 1 - ROS](/Part_1-ROS/readme.md)
-- Go to the [Main page](/readme.md)
+- Continue to [Chapter 3 - TFs, RViz, Bags and Gazebo](../../Part_1-ROS/Chapter-3/readme.md)
+- Go back to [Part 1 - ROS](../../Part_1-ROS/readme.md)
+- Go to the [Main page](../../readme.md)
