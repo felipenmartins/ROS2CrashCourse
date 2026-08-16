@@ -2,7 +2,7 @@
 
 In this activity we will practice Action goals with the Create3. First, we will send goals via the terminal. Afterwards, we will create a node that sends an action goal when one of the interface buttons on the Create3 is pressed.
 
-## Step 1 - Check available actions
+## Step 1 - Inspect available actions
 
 Connect to the robot and get a list of all available actions via the command:
 
@@ -10,15 +10,11 @@ Connect to the robot and get a list of all available actions via the command:
 ros2 action list
 ```
 
-> If you forgot how to turn on and connect to the Create3, please review [Activity 1](/Part_2-Create3/Activity_1/readme.md)) and [Activity 2](/Part_2-Create3/Activity_2/readme.md).
+> If you forgot how to turn on and connect to the Create3, please review [Activity 1](../../Part_2-Create3/Activity_1/readme.md)) and [Activity 2](../../Part_2-Create3/Activity_2/readme.md).
 
 The Create3 has a few actions available. See more information [here](https://iroboteducation.github.io/create3_docs/api/ros2/).
 
-## Step 2 - LED animation action
-
-One of the actions that the Create3 provides is the `led_animation` action, which allows us to create animations for the robot's lightring.
-
-Using the commands we learned before, we can find out exactly how this command should look like. We can use the following command to find out the type of the `led_animation` action like so:
+One of the actions that the Create3 provides is the `led_animation`, which allows us to create animations for the robot's lightring. Let's find out the type of the `led_animation` action:
 
 ```bash
 ros2 action list -t
@@ -38,9 +34,9 @@ This should return a list of all the currently available actions and their types
 /wall_follow [irobot_create_msgs/action/WallFollow]
 ```
 
-For now let's focus on the`/led_animation` action, which has a type of `irobot_create_msgs/action/LedAnimation`, which is a custom action type provided by the Create3.
+## Step 2 - Call the LED animation action
 
-We can now use the `ros2 interface show <action_type>` command to find the exact structure of the action type:
+For now let's focus on the`/led_animation` action, which has a type of `irobot_create_msgs/action/LedAnimation`. We can now use the `ros2 interface show <action_type>` command to find the exact structure of the action type:
 
 ```bash
 ros2 interface show irobot_create_msgs/action/LedAnimation
@@ -67,9 +63,7 @@ builtin_interfaces/Duration runtime
 # Time the animation has left to run
 ```
 
-As you can see, we need to send the type of animation (blink/spin), a `LightringLeds` message like the one we used when previously controlling the lightring, and the duration for the animation.
-
-The action's result will simply be the duration it was active for, and its feedback will be the time it has left to run
+To call this action, we need to send the type of animation (blink/spin), a `LightringLeds` message like the one we used when previously controlling the lightring, and the duration for the animation. The action's result will simply be the duration it was active for, and its feedback will be the time it has left to run.
 
 We can now test out the action by sending the following command from the terminal (note the `--feedback` at the end which prints the action's feedback to the terminal):
 
@@ -79,13 +73,13 @@ ros2 action send_goal /robot-1/led_animation irobot_create_msgs/action/LedAnimat
 
 Observe the result and action feedback. Change the parameters of the command to get an idea of the pre-programmed LED animations.
 
-## Step 3 - Actions using Python
+## Step 3 - Use Actions in Python
 
 Now, let's see how to do it with Python!
 
 Using the concepts we learned before, let's create a node to send an `LedAnimation` action that makes the lightring blink blue for 5 seconds.
 
-Like before, your task is to investigate what you need to write down to complete the template code below by filling out the part `#!Write your code here!` (if you need a reminder on how to do this, review steps 4-8 of Activity 1.2.1 from [part 1, chapter 1](/Part_1-ROS/Chapter-1/readme.md)):
+Like before, your task is to investigate what you need to write down to complete the template code below by filling out the part `#!Write your code here!` (if you need a reminder on how to do this, review steps 4-8 of Activity 1.2.1 from [part 1, chapter 1](../../Part_1-ROS/Chapter-1#121-activity-creating-your-own-workspace)):
 
 ```python
 #!/usr/bin/env python3
@@ -135,9 +129,9 @@ if __name__ == '__main__':
 
 ```
 
-## Step 4 - Using the buttons
+## Step 4 - Investigate the buttons topic
 
-Before using the buttons in our code, we will first read the data from the `interface_buttons` topic. For that, let's first explore its message type: 
+Suppose you want to select the lightring color by clicking the Create3 buttons. We will change our code to impolemnent that, but first let's investigate the buttons topic to understand how it is organized. For that, let's first explore the message type of the topic `/interface_buttons`:
 
 ```bash
 ros2 topic info /robot_1/interface_buttons
@@ -289,7 +283,7 @@ if __name__ == '__main__':
 
 You can also add whatever logic you want to the code. Try, for example, creating different animations for different button presses, or changing the animation's color on each subsequent button press.
 
-Now run your code, try pressing the buttons on your robot, and the light ring reacting to it! 
+Now run your code, try pressing the buttons on your robot, and the light ring reacting to it!
 
 ## Conclusion
 
