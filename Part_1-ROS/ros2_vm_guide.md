@@ -50,7 +50,8 @@ Each version of ROS 2 is designed for a specific version of Ubuntu (24.04 in cas
 
 1. Go to [https://releases.ubuntu.com/24.04/](https://releases.ubuntu.com/24.04/).
 2. Download **Ubuntu 24.04.x LTS** (the `.iso` file, ~5.8 GB).
-3. Save it somewhere you'll remember, e.g. `C:\Users\your_name\Downloads\ubuntu-24.04-desktop-amd64.iso`.
+  > **Apple silicon users:** go to [https://ubuntu.com/download/alternative-downloads](https://ubuntu.com/download/alternative-downloads) and get the **ARM 64-bit** version. Maybe you will need a torrent client, like qbittorent.
+3. Save the ISO file somewhere you'll remember, e.g. `C:\Users\your_name\Downloads\ubuntu-24.04-desktop-amd64.iso`.
 
 ## 3. Create a Virtual Machine for ROS 2 Jazzy
 
@@ -74,7 +75,7 @@ Estimated total time: **2–3 hours** (most of it is waiting for downloads and i
 3. Choose **Typical (recommended)** → **Next**.
 4. Select **Installer disc image file (iso)**, browse to your Ubuntu ISO → **Next**.
 5. Fill in:
-   * Full name: `Hanze Master SSE` (this is just an example: you can select anything)
+   * Full name: `Hanze Master SSE` (this is just an example: you can select anything - Not required by VirtualBox)
    * Username: `ros2` (keep it simple for this workshop)
    * Password: `ros2` (keep it simple for this workshop)
 6. VM Name: `ROS2-Jazzy-Ubuntu2404`
@@ -127,7 +128,7 @@ When the desktop appears:
 * Skip the Ubuntu welcome wizard (or complete it quickly).
 * Open a terminal: press `Ctrl+Alt+T`.
 
-### 3.5 Install VMware Tools (Open VM Tools)
+### 3.5 Install Open VMware Tools (or Guest Additions, for VirtualBox)
 
 VMware Tools provides display scaling, clipboard sharing, and drag-and-drop. On Ubuntu 24.04 they install automatically via Easy Install, but verify:
 
@@ -143,6 +144,8 @@ sudo reboot
 ```
 
 After reboot, the VM window should resize automatically when you drag the corner.
+
+In VirtualBox, go to **Features** → **Shared Clipboard (Bidirectional, or Host to Guest)** to allow copy-pasting of the commands.
 
 ### 3.6 System Updates
 
@@ -270,12 +273,14 @@ Now that you verified that ROS 2 was installed properly, let's install VSCode. Y
 sudo snap install code --classic
 ```
 
+> **Apple silicon users**: snap command doesn't work for ARM 64 for VSCode. You need to get the package from [https://code.visualstudio.com/download](https://code.visualstudio.com/download) then run: `sudo apt install /path_to_file/vscode.deb`
+
 Once installed, open VSCode from the Applications menu and install these extensions (search in the Extensions panel, `Ctrl+Shift+X`):
 
 - **Robot Developer Extensions (RDE) for Visual Studio Code** (by Ranch Hand Robotics LLC) - will install ROS specific and related extensions to work with ROS (Python, C++, URDF etc.).
 - **CMake** (by twxs) - to get syntax highlighting for `CMakeLists.txt` files.
 
-### 3.11 Optional: Install Webots and webots_ros2
+### 3.11 _Optional_: Install Webots and webots_ros2
 
 Webots is an open-source robotics simulator. Considering mobile robotics, Webots has similar features [[1]](https://ieeexplore.ieee.org/document/9386154) and is more computationally efficient than Gazebo [[2]](https://arxiv.org/pdf/2008.04627). 
 
@@ -372,6 +377,6 @@ You can **share the `.ova` file** via USB drive, Google Drive, or a file server.
 
 ## Navigation menu
 
-* Go to [Part 1 - ROS](/Part_1-ROS/readme.md)
-* Go to [Part 2 - Create3](/Part_2-Create3/readme.md)
-* Go to the [Main page](/readme.md)
+* Go to [Part 1 - ROS](../Part_1-ROS/readme.md)
+* Go to [Part 2 - Create3](../Part_2-Create3/readme.md)
+* Go to the [Main page](../readme.md)
