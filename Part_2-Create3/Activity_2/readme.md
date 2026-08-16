@@ -2,7 +2,7 @@
 
 This activity will focus on creating a node that activates the LEDs of the Light Ring of the Create3 robot depending on the readings from the front-facing proximity sensors. This is similar to what we saw in Activity 1 when running `ir_proximity_obstacles.py`, but now we are going to develop a ROS node for it.
 
-## Step 1 - Connecting to the robot
+## Step 1 - Connect to the robot
 
 To connect to the robot, your computer running ROS must be connected to the same WiFi network as the robot.
 
@@ -40,7 +40,7 @@ You can check if your robot is successfully connected to the same network as you
 
 If there are multiple robots in the same network, you will find that every node or topic your robot is running will be prepended by the robots name (i.e: `/robot_1/battery_state`). If you are at Hanze, you can find your robot identifier on the top faceplate of the robot and on its charging dock. For most of the commands in the workshop, you will need to prepend the commands with the correct robot name.
 
-## Step 2 - Inspecting the topic of the proximity sensors
+## Step 2 - Inspect the proximity sensors topic
 
 The Create3 publishes raw readings from its IR sensors on the topic `ir_intensity`. Let's start by seeing the data from this topic. As we learned before, we can echo the data from the topic by using the `ros2 topic echo <topic_name>` command.
 
@@ -106,7 +106,7 @@ readings:
 
 As you can see, the message published contains the readings for each of the 7 proximity sensors. Try moving your hand in front of the bumper and see how the readings behave, this will be needed when you write your code later on. The result should be comparable to the one in Activity 1.
 
-## Step 3 - Publishing to the Light Ring topic
+## Step 3 - Publish to the Light Ring topic
 
 The Create3 provides a topic where commands can be sent to control the robot's light ring. We are now going to send a test command to explore the message's format. Try sending following command in your terminal:
 
@@ -124,7 +124,7 @@ To return the lightring to the default color, just send an empty message on the 
 ros2 topic pub /robot_1/cmd_lightring irobot_create_msgs/msg/LightringLeds "{}"
 ```
 
-## Step 4 - Understanding message structure
+## Step 4 - Understand the message structure
 
 Before we can write code to use these topics, we must understand the structure of each message. This is a task you will have to do whenever you interact with a new topic or action, so it is important to understand this process well.
 
