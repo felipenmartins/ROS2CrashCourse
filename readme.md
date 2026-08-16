@@ -2,6 +2,8 @@
 
 Welcome to the ROS 2 Crash Course!
 
+This course is available at: [https://felipenmartins.github.io/ROSWorkshop/](https://felipenmartins.github.io/ROSWorkshop/).
+
 This course covers fundamental concepts of ROS 2 to equip you with the knowledge to run and create your own Python code for robots. It is organized in 2 parts: Part 1 covers ROS 2 and its core concepts, whereas Part 2 is dedicated to the application of such concepts on the Create3 robot.
 
 The course structure is:
