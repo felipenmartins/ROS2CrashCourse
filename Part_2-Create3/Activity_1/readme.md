@@ -12,7 +12,7 @@ The Home Base Charging Dock is used to both power on the robot (when it is place
 
 ![Create3-top](images/create3_top.jpg)
 
-##### Figure 1. Create3 robot (left) and its charging base (right). Seven infrared proximity sensors and a front bumper can be used to detect obstacles during navigation. The top buttons can be used to send commands to the ROS 2 application that controls the robot.
+##### Figure 1. Create3 robot (left) and its charging base (right). Seven infrared proximity sensors and a front bumper can be used to detect obstacles during navigation. The top buttons can be used to send commands to the ROS 2 application that controls the robot. _Source: [Create3 Docs](https://iroboteducation.github.io/create3_docs/hw/overview/)_
 
 The Light Ring glows different colors and patterns to communicate robot status and/or errors, like battery level, WiFi connection, firmware updating etc... Users can also program the light. Check out [this guide](https://iroboteducation.github.io/create3_docs/hw/face/) to see how the light ring indicate the different operating status.
 
@@ -20,7 +20,7 @@ Figure 2 shows the bottom side of the Create3, which contains four infrared sens
 
 ![Create3-bottom](images/create3_bottom.jpg)
 
-##### Figure 2. Bottom of the Create3 with indication of cliff sensors, optical odometry sensor, and wheels.
+##### Figure 2. Bottom of the Create3 with indication of cliff sensors, optical odometry sensor, and wheels. _Source: [Create3 Docs](https://iroboteducation.github.io/create3_docs/hw/overview/)_
 
 Besides the sensors shown in Figures 1 and 2, the Create3 also has wheel encoders and an IMU. Together with the optical odometry sensor, an internal sensor fusion algorithm generates an estimation for the robot pose (position and orientation).
 
