@@ -678,7 +678,7 @@ You will continue to receive feedback (the remaining angle) until the goal is ac
 
 In this chapter you studied and practiced core ROS 2 concepts, such as nodes, topics, and actions. You also created custom nodes using Python to subscribe and publish to ROS topics. This should have given you a clear understanding of how to work with ROS 2 and how to create simple nodes for it.
 
-For a quick reference, check out this list of [commonly used ROS 2 commands](/Part_1-ROS/Chapter-1/ros2_commands.md).
+For a quick reference, check out this list of [commonly used ROS 2 commands](../../Part_1-ROS/Chapter-1/ros2_commands.md).
 
 In the next chapter you will learn more about other tools that are part of the ROS ecosystem. We will cover how to download and add ROS packages to our projects, and discuss a few of the most prominent ones.
 
