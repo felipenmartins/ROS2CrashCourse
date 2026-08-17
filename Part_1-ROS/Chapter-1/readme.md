@@ -44,7 +44,7 @@ The most important question to ask when adopting a new technology is why? Why sh
 
 ROS 2’s development was and continues to be guided by a ‘Technical Steering Committee’ composed by several representatives of the robotics community. The wide spread usage of ROS in the robotics field makes it one of the most important tools to master for developers or engineers wanting to enter the field of robotics.
 
-ROS currently powers robots in various domains, from [Astrobee](https://www.nasa.gov/astrobee), NASA’s free-flying robots that have been active in the ISS for years, to [Open-RMF](https://www.open-rmf.org/), a modular software system that enables sharing and interoperability between multiple fleets of robots and physical infrastructure, like doors, elevators and building management systems. 
+ROS currently powers robots in various domains, from [Astrobee](https://www.nasa.gov/astrobee), NASA’s free-flying robots that have been active in the ISS for years, to [Open-RMF](https://www.open-rmf.org/), a modular software system that enables sharing and interoperability between multiple fleets of robots and physical infrastructure, like doors, elevators and building management systems.
 
 [ROSIndustrial](https://rosindustrial.org/) is an extension of the ROS platform specifically made to facilitate the transfer of robotics research into the industrial field. It currently boasts over industrial leaders from all around the world such as ABB, Boeing, BMW, Intel, Lely, Johnson & Johnson, Mitsubishi, Panasonic, Siemens, Universal Robots, Volvo, and many more. See all [current members of the ROS Industrial consortium here](https://rosindustrial.org/current-members).
 
@@ -52,7 +52,7 @@ ROS currently powers robots in various domains, from [Astrobee](https://www.nasa
 
 As mentioned before, ROS is a middleware with a set of communication tools and a collection of plug-and-play libraries. It provides services like hardware abstraction, low-level device control, and message-passing between processes and package management. ROS also has a wide variety of common robotics tools and algorithms, like data visualization, robot navigation and mapping, perception, simulation, etc.
 
-ROS provides a communication infrastructure for different softwrae to control a robot. Figure 1 illustrates an example: individual programs (nodes) are responsible for specific functions, like communicating with hardware (blue and yellow blocks) or processing data (green blocks). ROS provides a communication infrastructure for them to exchange messages.
+ROS provides a communication infrastructure for different software to control a robot. Figure 1 illustrates an example: individual programs (nodes) are responsible for specific functions, like communicating with hardware (blue and yellow blocks) or processing data (green blocks). ROS provides a communication infrastructure for them to exchange messages.
 
 ![ros application example](images/ros_application_example.png)
 ##### Figure 1. Illsutration of a ROS application example: ROS acts as a middleware, coordinating message passing between different software (nodes). 
@@ -69,7 +69,7 @@ Nodes communicate using messages. A ROS message is just a data structure that co
 
 ### Topics
 
-ROS messages are sent through topics, which follow a simple publish/subscribe protocol. Nodes can publish messages to a topic to share that data across the application, and other nodes can subscribe to that topic to access that data. Figure 2 illustrates such the concept: one node publishes messages to a topic that has another node as subscriber. In this configuration, the subscriber node receives all messages as soon as they are published to the topic. A single topic can have multiple subscribers and multiple publishers.
+ROS messages are sent through topics, which follow a simple publish/subscribe protocol. Nodes can publish messages to a topic to share that data across the application, and other nodes can subscribe to that topic to access that data. Figure 2 illustrates such concept: one node publishes messages to a topic that has another node as subscriber. In this configuration, the subscriber node receives all messages as soon as they are published to the topic. A single topic can have multiple subscribers and multiple publishers.
 
 ![node-topic communication](images/node-topics_animation.gif)
 ##### Figure 2. Nodes exchanging messages via a topic. _Source: [ROS 2 Documentation: Jazzy](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html)_
@@ -88,11 +88,11 @@ The ROS Computation Graph is the network of peer-to-peer processes that compute 
 
 Different versions of ROS are called distributions (current distributions are only being released for ROS 2). Each distribution is designed to work with specific versions of operating systems. Once a distribution is released, changes are limited to bug fixes and non-breaking improvements.
 
-This course was designed for a specific distribution (Jazzy Jalisco), which was released in 23 May 2023 and will reach EOL (end-of-life) in May 2029. Jazzy Jalisco supports Ubuntu 24.04 (amd64 and arm64) and Windows 10 (Visual Studio 2019, amd64) as Tier 1 platforms (best support), but it also works in other platforms. Because of its best support, we are focusing on Ubuntu 24.04 in this course.
+This course was designed for the distribution called _Jazzy Jalisco_ (often called only _Jazzy_), which was released on the 23rd of May 2023 and will reach EOL (end-of-life) in May 2029. Jazzy works in other platforms, but best supports Ubuntu 24.04 (amd64 and arm64) and Windows 10 (amd64) as Tier 1 (best support). Because of its best support, we are focusing on Ubuntu 24.04 in this course.
 
 A list of [ROS 2 distributions](https://docs.ros.org/en/jazzy/Releases.html) and associated documentation is available at the ROS 2 Documentation website.
 
-> _Curiosity:_ Each version of ROS has been named after some sort of turtle and have a turtle as a symbol. New ROS 2 distributions are released yearly on the 23rd of May 23rd (World Turtle Day).
+> _Curiosity:_ Each version of ROS has been named after some sort of turtle and have a turtle as a symbol. New ROS 2 distributions are released yearly on the 23rd of May (World Turtle Day).
 
 ### Packages
 
@@ -115,7 +115,7 @@ The minimum requirement for a ROS workspace is a `/src` directory that contains 
 - `/build` is where intermediate files are stored. For each package, a sub-directory will be created.
 - `/install` is where each package will be installed to. By default, each package will be installed into a separate sub-directory, i.e: `/install/package_name`.
 - `/log` contains logs about each build invocation.
-- `/src` contains all the source code. This is the directpry where you can create new files and clone source code from other sources.
+- `/src` contains all the source code. This is the directory where you can create new files and clone source code from other sources.
 
 ### 1.2.1 Activity: Creating your own workspace
 
@@ -123,7 +123,7 @@ This activity will focus on creating a new workspace that will be used later in 
 
 > _Note:_ I am assumming that you have ROS 2 Jazzy installed on Ubuntu. If not, you can install it using a virtual machine by following [this guide](../../Part_1-ROS/ros2_vm_guide.md).
 
-In most activities in this course (and wit ROS) we will make use of terminal (or command line) commands. If you are new to Linux, I recommend the tutorial [The Linux command line for beginners](https://ubuntu.com/desktop/docs/en/latest/tutorial/the-linux-command-line-for-beginners/). But don't worry if you don't know all terminal commands by heart! In this course, all the necessary commands will be provided you. I recommend that you type the commands yourself (instead of copying them) to increase your chances of getting familiar with the common Linux terminal commands and with common ROS terminal commands.
+In most activities in this course (and with ROS) we will make use of terminal commands (or command line). If you are new to Linux, I recommend the tutorial [The Linux command line for beginners](https://ubuntu.com/desktop/docs/en/latest/tutorial/the-linux-command-line-for-beginners/). Don't worry if you don't know all terminal commands by heart! In this course, the necessary commands will be provided. I recommend that you **type the commands yourself** (instead of copying them) to increase your chances of getting familiar with the common Linux terminal commands and with common ROS terminal commands.
 
 #### Step 1 - Create an empty directory
 
@@ -149,9 +149,9 @@ _Sourcing_ is a very important step that allows ROS 2 commands to be found. You 
 source /opt/ros/jazzy/setup.bash
 ```
 
-You will need to **run the source command every time you open a new terminal**, except if you include the source command on your `.bashrc` file. The `.bashrc` is a script that is executed everytime you open a new terminal, so including the source command there will save you from typing it every time you open a new terminal.
+**Every time a new terminal is opened, it must be sourced.** To avoid typing the above command every time you open a new terminal window, you can include it on your `.bashrc` file. The `.bashrc` is a script that is executed everytime you open a new terminal, so including the source command there will save you from typing it every time you open a new terminal.
 
-If you installed ROS 2 by following the virtual machine instructions linked above, then the command is already included in your `.bashrc`. If not, you can include it with the following command:
+If you installed ROS 2 by following the virtual machine instructions linked above, then the command is already included in your `.bashrc`. If not, you can include it by running the following command (this one I actually recommend you to copy to avoid typo's):
 
 ```bash
 echo "source /opt/ros/jazzy/setup.bash" >> ~/.bashrc
@@ -175,7 +175,7 @@ This command creates sub-folders and configuration files necessary for ROS 2.
 
 #### Step 4 - Create the Python scripts
 
-Now, you will create two Python scripts: `simple_publisher.py` and `simple_subscriber.py`. When running, each script will be a _node_ on your ROS 2 environment. As the name suggests, `simple_publisher` will publish _messages_ on a _topic_, while `simple_subscriber` will subscribe to the same topic to receive such messages. For now, just copy the code as given. In the next chapter we will explain in detail what each part of the sript is doing.
+Now, you will create two Python scripts: `simple_publisher.py` and `simple_subscriber.py`. When running, each script will be a _node_ on your ROS 2 _computation graph_: one will publish _messages_ on a _topic_, while the other will subscribe to the same topic to receive such messages.
 
 To create the Python scripts, first navigate to the directory that hosts scripts inside your package (yes, that folder has the same name as your package):
 
@@ -203,7 +203,7 @@ Open `simple_publisher.py` on your favorite editor (the command below will open 
 code simple_publisher.py
 ```
 
-Copy the code below and paste it on the `simple_publisher.py` file.
+Copy the code below and paste it on the `simple_publisher.py` file. For now, just copy the code as given. In the next chapter we will explain in detail what each part of the script is doing.
 
 ```python
 #!/usr/bin/env python3
@@ -305,18 +305,20 @@ entry_points={
 
 Build tools are programs that automate the creation of executable files from source code. Building our workspace is what allows us to use ROS commands to run the scripts.
 
-The build tool used in ROS 2 is `colcon`, which has many features that help building and managing ROS workspaces. For example, `colcon` generates the `/build`, `/install`, and `/log` directories automatically.
+The build tool used in ROS 2 is `colcon`, which has many features that help building and managing ROS workspaces, and will generate the `/build`, `/install`, and `/log` directories automatically.
 
-First, navigate to your main workspace directpry, then build it using the `colcon build` command:
+First, navigate to your main workspace directory, then build it using the `colcon build` command:
 
 ```bash
 cd ~/create3_ws
 colcon build
 ```
 
+> **Important**: Always make sure you are in the main workspace directory before running the build command!
+
 For now, this process will be fast. But, depending on the size of your workspace and the speed of your system, it can take several minutes.
 
-When the build process is complete, you should see a message similar to this (maybe with some extra warnings):
+When the build process is complete, you should see a message similar to the one below (maybe with some extra warnings):
 
 ```bash
 Starting >>> create3_pkg
@@ -340,11 +342,11 @@ cd ~/create3_ws
 source install/_setup.bash
 ```
 
-Alternatively, you can add this line to the end of the `.bashrc` file, which is ran every time a new terminal is opened. However, this is not recommended as it might sometimes create conflicts, especially if you are working with different workspaces.
+Alternatively, you can add this line to the end of the `.bashrc` file, which is ran every time a new terminal is opened. However, this is _not_ recommended as it might sometimes create conflicts, especially if you are working with different workspaces.
 
 #### Step 8 - Run the scripts from your workspace
 
-It's finally time to test run the publisher and subscriber scripts! To run ROS 2 code, use the command `ros2 run <package_name> <script_name>`:
+It's finally time to test run the publisher and subscriber scripts! To run ROS 2 code, use the command `ros2 run <package_name> <script_name>`. First, let's run the publisher node:
 
 ```bash
 ros2 run create3_pkg simple_publisher 
@@ -356,7 +358,7 @@ You should see a message like the one below every second, with an incrementing c
 [INFO] [1784937163.036289944] [simple_publisher]: Published: "Hello ROS2! Count: 0"
 ```
 
-To run the subscriber node, you must open a new terminal. Remember that you must source your workspace on the new terminal:
+To run the subscriber node, you must open a new terminal. Remember that **you must source your workspace on the new terminal**:
 
 ```bash
 cd ~/create3_ws
@@ -375,9 +377,11 @@ You should see messages like the one below, with the count value that correspond
 [INFO] [1784937202.042355571] [simple_subscriber]: Received: "Hello ROS2! Count: 39"
 ```
 
+You might have observed that the subscriber receives only the messages that are published _after_ it starts running. In other words, messages published to topics are not stored and will be lost if no subscriber is listening to that topic at the time of publication.
+
 ## Conclusion
 
-After completing this chapter, you should have a general understanding of ROS and its importance for the robotics community. You should also have a workspace prepared for the next activities in this course. In Chapter 2 we will dive into some core topics to better understand how to work with ROS and how to write Python code for ROS.
+After completing this chapter, you should have a general understanding of the fundamental concepts of ROS and its importance for the robotics community. You should also have a workspace prepared for the next activities of this course. In Chapter 2 we will dive into some core topics to better understand how to work with ROS and how to write Python code for it.
 
 ## Navigation menu
 
