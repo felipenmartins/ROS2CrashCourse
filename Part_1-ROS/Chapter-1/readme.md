@@ -16,10 +16,10 @@ By the end of this chappter you should be familiar with:
 
 ROS is short for **Robot Operating System**. Just like a computer operating system, ROS manages hardware and software resources, and provides common services for other programs to interact with each other and with the robot hardware (sensors and actuators).
 
-However, despite its name, ROS is **_not_** an operating system, but a middleware with a set of communication tools and a collection of plug-and-play libraries that shorten the time-to-market of robotics projects and allows developers to work on the algorithms they are interested in.
+However, despite its name, ROS is **_not_** an operating system, but **a middleware with a set of communication tools and a collection of plug-and-play libraries** that shorten the time-to-market of robotics projects and allows developers to work on the algorithms they are interested in.
 
 ROS is an open-source robotics framework that allows developers and researchers to build and reuse code between robotics applications. Besides its pre-built tools to handle inter-process communication, ROS has many tool that are relevant to robots, like device drivers, simulation and visualization, data logging etc.. Finally, there is a vast community that provides packages for common robotics applications.
- 
+
 ### The ROS Development Approach
 
 ROS’s design philosophy is unique and is at the heart of why it has become so commonplace in the robotics community.
@@ -50,15 +50,18 @@ ROS currently powers robots in various domains, from [Astrobee](https://www.nasa
 
 ## 1.2 Main Concepts
 
+As mentioned before, ROS is a middleware with a set of communication tools and a collection of plug-and-play libraries. It provides services like hardware abstraction, low-level device control, and message-passing between processes and package management. ROS also has a wide variety of common robotics tools and algorithms, like data visualization, robot navigation and mapping, perception, simulation, etc.
+
+ROS provides a communication infrastructure for different softwrae to control a robot. Figure 1 illustrates an example: individual programs (nodes) are responsible for specific functions, like communicating with hardware (blue and yellow blocks) or processing data (green blocks). ROS provides a communication infrastructure for them to exchange messages.
+
+![ros application example](images/ros_application_example.png)
+##### Figure 1. Illsutration of a ROS application example: ROS acts as a middleware, coordinating message passing between different software (nodes). 
+
 Let's go over a few important ROS concepts. We will dive into those concepts in the next chapter.
-
-### Packages
-
-ROS 2 packages are modular software units that provide specific functionalities for robotics applications. In other words, a package is a folder (directory) that contains everything needed for your robot’s software (or part of it): scripts, config files, dependencies etc.. For example, a sensor package contains the sensor driver and necessary configuration files to use it. ROS 2 software is shared as packages.
 
 ### Nodes
 
-Since ROS is designed to be very modular, a robot control system is broken down into single purpose, independently executable programs, called nodes. Nodes can be written in any ROS-compatible language, like C++ or Python, and are made to complete a single, independent task. For example, one node controls a laser range-finder, another node controls the wheel motors, and yet another node performs localization etc..
+ROS is designed to be very modular, so a robot control system is broken down into single purpose, independently executable programs, called nodes (as illustrated in Figure 1). Nodes can be written in any ROS-compatible language, like C++ or Python, and are made to complete a single, independent task. For example, one node controls a laser range-finder, another node controls the wheel motors, and yet another node performs localization etc..
 
 ### Messages
 
@@ -81,11 +84,19 @@ ROS Bags are a format for saving and playing back ROS message data. Bags are use
 
 The ROS Computation Graph is the network of peer-to-peer processes that compute data and together make up a complete application. The graph consists of the nodes, topics, messages, bags, and services that together constitute a complete ROS project.
 
-### Terminal Commands
+### Distributions
 
-Most of our interaction with ROS will be through the terminal or command line, so it is useful to get familiar with the common Linux terminal commands and with common ROS terminal commands.
+Different versions of ROS are called distributions (current distributions are only being released for ROS 2). Each distribution is designed to work with specific versions of operating systems. Once a distribution is released, changes are limited to bug fixes and non-breaking improvements.
 
-If you are new to Linux, I recommend the tutorial [The Linux command line for beginners](https://ubuntu.com/desktop/docs/en/latest/tutorial/the-linux-command-line-for-beginners/). Don’t worry about memorizing all commands now! they will be referenced again as they are used throughout the activities.
+This course was designed for a specific distribution (Jazzy Jalisco), which was released in 23 May 2023 and will reach EOL (end-of-life) in May 2029. Jazzy Jalisco supports Ubuntu 24.04 (amd64 and arm64) and Windows 10 (Visual Studio 2019, amd64) as Tier 1 platforms (best support), but it also works in other platforms. Because of its best support, we are focusing on Ubuntu 24.04 in this course.
+
+A list of [ROS 2 distributions](https://docs.ros.org/en/jazzy/Releases.html) and associated documentation is available at the ROS 2 Documentation website.
+
+> _Curiosity:_ Each version of ROS has been named after some sort of turtle and have a turtle as a symbol. New ROS 2 distributions are released yearly on the 23rd of May 23rd (World Turtle Day).
+
+### Packages
+
+ROS 2 packages are modular software units that provide specific functionalities for robotics applications. In other words, a package is a folder (directory) that contains everything needed for your robot’s software (or part of it): scripts, config files, dependencies etc.. For example, a sensor package contains the sensor driver and necessary configuration files to use it. ROS 2 software is shared as packages.
 
 ### Workspace
 
@@ -112,7 +123,7 @@ This activity will focus on creating a new workspace that will be used later in 
 
 > _Note:_ I am assumming that you have ROS 2 Jazzy installed on Ubuntu. If not, you can install it using a virtual machine by following [this guide](../../Part_1-ROS/ros2_vm_guide.md).
 
-In most activities in this course we will make use of terminal (or command line) commands. Don't worry if you don't know terminal commands by heart: all the necessary commands will be provided you. I recommend that you type the commands yourself (instead of copying them) to increase your chances of learning them.
+In most activities in this course (and wit ROS) we will make use of terminal (or command line) commands. If you are new to Linux, I recommend the tutorial [The Linux command line for beginners](https://ubuntu.com/desktop/docs/en/latest/tutorial/the-linux-command-line-for-beginners/). But don't worry if you don't know all terminal commands by heart! In this course, all the necessary commands will be provided you. I recommend that you type the commands yourself (instead of copying them) to increase your chances of getting familiar with the common Linux terminal commands and with common ROS terminal commands.
 
 #### Step 1 - Create an empty directory
 
