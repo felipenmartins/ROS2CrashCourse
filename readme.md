@@ -50,6 +50,8 @@ By the end of this course, you should be able to:
 - Write Python code to develop custom ROS 2 packages that include custom nodes, topics and actions
 - Interact with and program ROS-enabled robots
 
+> _Note:_ This is a course about ROS, and not about the fundamentals of robotics. If you are interested in learning more about robotics concepts, check out my [Jupyter Notebooks for learning Mobile Robot Control](https://github.com/felipenmartins/Mobile-Robot-Control) and accompanying [Robotics Simulation Labs](https://felipenmartins.github.io/Robotics-Simulation-Labs/).
+
 ## Requirements
 
 ### Linux command line
@@ -71,7 +73,9 @@ The software requirements for this course are:
 - [ROS 2 Jazzy Jalisco](https://docs.ros.org/en/jazzy/index.html)
 - The [iRobot Create3 Platform interfaces](https://github.com/iRobotEducation/irobot_create_msgs) package is required to work with this robot.
 
-A guide to create a Virtual Machine with Ubuntu and ROS 2 is [available here.](/Part_1-ROS/ros2_vm_guide.md)
+#### Virtual Machine
+
+A guide to create a Virtual Machine with Ubuntu and ROS 2 is [available here](/Part_1-ROS/ros2_vm_guide.md).
 
 ### Hardware (optional)
 
