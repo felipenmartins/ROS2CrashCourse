@@ -31,11 +31,9 @@ As mentioned before, nodes are modular, executable programs that serve a single 
 
 Nodes can communicate with other nodes in a variety of ways, the most common method being through topics.
 
-### 2.2.2 Activity: Working with nodes
+### 2.2.2 Activity: Running and inspecting nodes
 
 For this activity, we will be exploring a few ROS 2 commands that allow us to interact with and inspect nodes. This activity can also be found in the [ROS2 wiki](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html).
-
-#### Step 1 - ros2 run
 
 The command `ros2 run` launches an executable from a package:
 
@@ -43,37 +41,27 @@ The command `ros2 run` launches an executable from a package:
 ros2 run <package_name> <executable_name>
 ```
 
-To run TurtleSim, open a new terminal, and enter the following command:
+The TurtleSim executable is called `turtlesim_node` and belongs to the package `turtlesim`. To run it, open a new terminal and enter the following command:
 
 ```bash
 ros2 run turtlesim turtlesim_node
 ```
 
-This will launch a node from the _turtlesim_ package and the TurtleSim window will open. Here, the package name is `turtlesim` and the executable name is `turtlesim_node`.
-
-#### Step 2 - ros2 node list
-
-We still don’t know the node name, however. You can find node names by running:
+This will launch a node from the _turtlesim_ package and the TurtleSim window will open. To learn the node's name in the ROS compute graph, we can ask ROS to list all running nodes:
 
 ```bash
 ros2 node list
 ```
 
-that will show you the names of all running nodes. This is especially useful when you want to interact with a node, or when you have a system running many nodes and need to keep track of them.
+This will show the names of all running nodes and is useful when you want to interact with a node, or when you have a system running many nodes and need to keep track of them.
 
-Open a new terminal while turtlesim is still running in the other one, and enter the following command:
-
-```bash
-ros2 node list
-```
-
-The terminal will return the node name:
+In our case, there is only one node running, so the terminal will return the node name:
 
 ```bash
 /turtlesim
 ```
 
-Open another new terminal and start the teleop node with the command:
+Now, let's start the Turtle Teleoperation node to control the simulated turtle. Open another new terminal and run the command:
 
 ```bash
 ros2 run turtlesim turtle_teleop_key
@@ -88,13 +76,13 @@ Return to the terminal where you ran `ros2 node list` and run it again. You will
 /teleop_turtle
 ```
 
-Keep those nodes running for now.
+Keep those nodes running for the next activity.
 
 ---
 
 ### 2.2.3 Topics
 
-Topics are a vital element of the ROS graph that act as a bus for nodes to exchange data in the form of messages. Topics can receive messages from one or more nodes publishing to it, and deliver those messages to one or more nodes that are subscribed to it. A node may publish to a topic or to multiple topics, and simultaneously have subscriptions to one or more topics. Figure 2 illustrates this concept.
+Topics are a vital element of the ROS graph that act as a bus for nodes to exchange messages. Topics can receive messages from one or more nodes publishing to it, and deliver those messages to one or more nodes that are subscribed to it. A node may publish to a topic or to multiple topics, and simultaneously have subscriptions to one or more topics. Figure 2 illustrates this concept.
 
 ![Multiple node-topic communication](images/topics_animation.gif)
 
@@ -105,9 +93,7 @@ Topics are a vital element of the ROS graph that act as a bus for nodes to excha
 In this activity, you will get familiar with ROS topics using some `ros2`
 commands and the `turtlesim` package. This activity can also be found in the [ROS 2 wiki](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html).
 
-#### Step 1 - ros2 topic list
-
-Run the command `ros2 topic list` in a new terminal. You will get a list of all the topics currently active in the system:
+First, let us get a list of all running topics. Open a new terminal and run the command `ros2 topic list`. You will get a list of all the topics currently active in the system. If you still have TurtleSim and teleop running, the list will be similar to:
 
 ```bash
 /parameter_events
@@ -117,7 +103,7 @@ Run the command `ros2 topic list` in a new terminal. You will get a list of all 
 /turtle1/pose
 ```
 
-The command `ros2 topic list -t` will return the same list of topics, but with the topic's message type appended in brackets:
+The command `ros2 topic list -t` will return the same list of topics, but with the message type associated to each topic (between square brackets):
 
 ```bash
 /parameter_events [rcl_interfaces/msg/ParameterEvent]
@@ -129,21 +115,19 @@ The command `ros2 topic list -t` will return the same list of topics, but with t
 
 These attributes, particularly the message type, are how nodes know they’re talking about the same information as it moves over topics.
 
-#### Step 2 - ros2 topic echo
-
 To see the data being published on a topic, use the `ros2 topic echo` command:
 
 ```bash
 ros2 topic echo <topic_name>
 ```
 
-Since we know that `/teleop_turtle` publishes data to `/turtlesim` over the `/turtle1/cmd_vel` topic, let's use `echo` to introspect on that topic:
+The node `/teleop_turtle` publishes messages to `/turtle1/cmd_vel` topic. The node `/turtlesim` subscribes to the same topic and moves its simulated turtle according to the received messages. Let's use `echo` to introspect on that topic:
 
 ```bash
 ros2 topic echo /turtle1/cmd_vel
 ```
 
-At first, this command won’t return any data. That’s because it’s waiting for `/teleop_turtle` to publish something. Return to the terminal where `turtle_teleop_key` is running and use the arrows to move the turtle around. Watch the terminal where your `echo` is running at the same time, and you’ll see position data being published for every movement you make. It should look something like this:
+This command won’t return any data if no message is published to the topic. Go to the terminal where `turtle_teleop_key` is running and click the arrows to move the turtle around. Watch the terminal where your `echo` is running at the same time, and you’ll see position data being published for every movement you make. It should look something like this:
 
 ```bash
 linear:
@@ -157,9 +141,7 @@ angular:
   ---
 ```
 
-#### Step 3 - ros2 topic info
-
-Topics don’t have to only be point-to-point communication. As shown in Figure 2, they  can be one-to-many, many-to-one, or many-to-many. Another way to look at this is running:
+In this case, the topic is a point-to-point communication, but this is not a requirement. As shown in Figure 2, communication can be one-to-many, many-to-one, or many-to-many. Another way to look at this is running:
 
 ```bash
 ros2 topic info /turtle1/cmd_vel
@@ -173,11 +155,11 @@ Publisher count: 1
 Subscription count: 2
 ```
 
-#### Step 4 - ros2 interface show
+Yo might have noticed that the subscription count is 2, which means that there are 2 nodes subscribed to the topic `/turtle1/cmd_vel`. One subscriber is the `/turtlesim` node, as expected. The other is the `echo` node, which also subscribes to the topic in order to print its values on screen. If you stop the `echo` node with <CTRL+C> and run `ros2 topic info /turtle1/cmd_vel` again, you will see that the subscription count decrements.
 
-Nodes can publish and/or subscribe to topics to send and/or receive messages. Publishers and subscribers must send and receive the same type of message to communicate via a topic.
+Nodes can publish and/or subscribe to topics to send and/or receive messages. Publishers and subscribers must send and receive the same **type of message** to communicate via a topic. From the topic types we saw earlier after running `ros2 topic list -t`, we see that the `cmd_vel` topic has the type `geometry_msgs/msg/Twist`. This means that in the package `geometry_msgs` there is a `msg` called `Twist`. 
 
-The topic types we saw earlier after running `ros2 topic list -t` let us know what message type is used on each topic. Recall that the `cmd_vel` topic has the type `geometry_msgs/msg/Twist`. This means that in the package `geometry_msgs` there is a `msg` called `Twist`. Now we can run `ros2 interface show <msg type>` on this type to learn its details, specifically, what structure of data the message expects:
+Now, let's run `ros2 interface show <msg type>` to learn its details, specifically, what structure of data the message expects:
 
 ```bash
 ros2 interface show geometry_msgs/msg/Twist
