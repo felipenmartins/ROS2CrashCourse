@@ -11,13 +11,15 @@ By the end of this chapter you should be able to:
 - Create custom nodes using Python3 that can both subscribe and publish to ROS topics
 - Create custom nodes that use ROS actions
 
-## 2.1 Turtlesim
+## 2.1 TurtleSim
 
-Turtlesim is a lightweight simulator used for learning ROS. It is a simple simulation environment that allows you to practice concepts and learn what ROS 2 does at the most basic level. TurtleSim is a good starting point to understand the basics and to give you an idea of what you will do with a real robot. Figure 1 shows a screenshot of the simulator running.
+As mentioned in Chapter 1, each ROS distribution is named after a turtle, gets a turtle as a symbol, and is released yearly on the World Turtle Day (23rd of May). But the connection between ROS and turtles goes further. The story goes way back to the 1940’s, when William Grey Walter created some of the first autonomous mobile robots and named them [turtles](http://www.theoldrobots.com/ElmerElsie.html). Years later (in the 1960’s), Dr. Seymour Papert, a professor at MIT, began to use _turtle robots_ for education. One of the characteristics of Papert's robots was their ability to draw on paper. Dr. Papert is also known as the creator of the educational programming language LOGO, which uses “turtle graphics”, a system that allows users to draw by sending simple commands to a simulated robotic turtle. TurtleSim mimics such characteristics.
+
+TurtleSim is a lightweight simulator used for learning ROS. It is a simple simulation environment that allows you to practice concepts and learn what ROS 2 does at the most basic level. TurtleSim is a good starting point for understanding the basics and to get an idea of what we will do when handeling a real robot. Figure 1 shows a screenshot of TurtleSim with the turtle in the center.
 
 ![turtlesim screenshot](images/turtlesim_screenshot.png)
 
-##### Figure 1. TurtleSim screenshot - the turtle in the center serve as a robot that can be controlled via mesages published to specific topics. _Source: [ROS Docs](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html)_
+##### Figure 1. TurtleSim screenshot - the turtle in the center simulates a robot that can be controlled via mesages published to specific topics. _Source: [ROS Docs](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html)_
 
 ## 2.2 Nodes and Topics
 
