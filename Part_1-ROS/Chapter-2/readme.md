@@ -189,15 +189,15 @@ angular:
 
 ### 2.2.5 Activity: Writting Python code for topics
 
-Although the terminal commands are very useful, we can't create complete projects this way. This activity will focus on creating a couple of talker-listener ROS 2 nodes using Python. One node, the talker, will send a simple string message, and the second node, the listener, will print that message to the terminal.
+Although the terminal commands are very useful, we can't create complete projects this way. This activity will focus on creating a couple of talker-listener ROS 2 nodes using Python. One node - the talker - will send a simple string message, and the second node - the listener - will print the received message to the terminal.
 
-#### Step 1 - Understand the structure of the Python script
+#### Step 1 - Study the structure of the Python script
 
-Before starting the activity, we are going to briefly go over the general structure for most of the Python scripts we will be creating during this workshop and explain what each section does.
+Before starting the activity, we are going to go over the general structure of the Python scripts we will handle during this workshop and explain what each section does.
 
-The Python script below is similar to the one that we ran in Chapter 1. The structure is the same, but some details are different (like the message published, the topic name, and the frequency of publication). The code below just publishes the message "Marco!" every 0.5 seconds.
+The code below just publishes the message "Marco!" every 0.5 seconds. Its structure is similar to the one that we ran in Chapter 1, but some details are different (like the message published, the topic name, and the frequency of publication). A comparison between the script below and the one from Chapter 1 is left as an exercise.
 
-Take a look at the code and associated comments. We will go into more details later.
+For now, read the code and associated comments. We explain each section later.
 
 ```python
 #!/usr/bin/env python3
@@ -246,9 +246,7 @@ if __name__ == '__main__':
   main()
 ```
 
-Go to your `create3_pkg` directory, create a new file called `talkerDemo.py`, and copy the above code to it. If you need a refresher for how to do this, please review [step 4](../../Part_1-ROS/Chapter-1#step-4---create-the-python-scripts) of the activity in Chapter 1.
-
-For now, let's understand what each section of the code is doing.
+Let's understand what each section of the code is doing.
 
 ##### Defining the Python interpreter
 
@@ -350,11 +348,17 @@ if __name__ == '__main__':
   main()
 ```
 
-#### Step 2 - Complete the subcriber node
+#### Step 2 - Create the talkerDemo.py
 
-Since we already went over the code for the talker node, we will now create the code for the subscriber node. Go to your `create3_pkg` directory, create a new file called `talkerDemo.py`, and copy the template code below to it. If you need a refresher for how to do this, please review [step 4](../../Part_1-ROS/Chapter-1#step-4---create-the-python-scripts) of the activity in Chapter 1. Fill out the sections marked with a `#! Write Your Code Here!` (you are expected to investigato how to complete this).
+Now that you have a better understanding about the code, let's include it in your package. 
 
-You are expected to investigate and find out how to complete the code yourself.
+Go to your `create3_pkg` directory, create a new file called `talkerDemo.py`, and copy the above code to it. 
+
+If you need a refresher of how to do this, please review [step 4](../../Part_1-ROS/Chapter-1#step-4---create-the-python-scripts) of the activity in Chapter 1.
+
+#### Step 3 - Complete the subcriber node
+
+We will now create the code for the subscriber node. Go to your `create3_pkg` directory, create a new file called `talkerDemo.py`, and copy the template code below to it.
 
 ```python
 #!/usr/bin/env python3
@@ -387,11 +391,15 @@ if __name__ == '__main__':
   main()
 ```
 
-#### Step 3 - Add your scripts to your package and run the nodes
+Fill out the sections marked with a `#! Write Your Code Here!` and save the file. 
 
-Before running your nodes, you need to complete the process described in the activity of Chapter 1. Since you already have the workspace and package, you need to follow [steps 5](../../Part_1-ROS/Chapter-1#step-5---edit-setuppy) to 8 to include the files in your package, rebuild your workspace, and run the nodes.
+> This is a good exercise to solidify your knowledge (we do not provide a solution for this - you are expected to investigate and find out how to complete the code yourself).
 
-If everything is working properly, you should be able to see the "talker" node's message being published on the `myTopic` topic and see the same message being printed to the terminal where your "listener" node is running.
+#### Step 4 - Add your scripts to your package and run the nodes
+
+Before running your nodes, you need to complete the process described in the activity of Chapter 1. Since you already have the workspace and package, you need to follow [steps 5](../../Part_1-ROS/Chapter-1#step-5---edit-setuppy) to 8 to include the files in your package `setup.py`, rebuild your workspace, source it, and run the newly created nodes.
+
+With both nodes running, you should be able to see the "talker" node's message being published to `myTopic`, and see the same message being printed to the terminal where your "listener" node is running.
 
 Run the commands `ros2 topic list` and `ros2 topic echo` to check that the messages are being published to the correct topic.
 
