@@ -2,7 +2,7 @@
 
 Welcome to the ROS 2 Crash Course!
 
-This course covers fundamental concepts to equip you with knowledge to run and create Python code for robots using ROS 2. It contains explanations and hands-on exercises to help you learn by doing.
+This course covers fundamental concepts to equip you with knowledge to run and create Python code for robots using ROS 2. It contains explanations and hands-on activities to help you learn by doing.
 
 As the name suggests, this is a _crash course_. It was designed to give you a quick start and help you gain foundational knowledge to allow you to independently learn new ROS concepts as you need them in the future.
 
