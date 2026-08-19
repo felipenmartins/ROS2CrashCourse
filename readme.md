@@ -2,9 +2,13 @@
 
 Welcome to the ROS 2 Crash Course!
 
-This course is available at: [https://felipenmartins.github.io/ROSWorkshop/](https://felipenmartins.github.io/ROSWorkshop/).
+This course covers fundamental concepts to equip you with knowledge to run and create Python code for robots using ROS 2. It contains explanations and hands-on exercises to help you learn by doing.
 
-This course covers fundamental concepts of ROS 2 to equip you with the knowledge to run and create your own Python code for robots. It is organized in 2 parts: Part 1 covers ROS 2 and its core concepts, whereas Part 2 is dedicated to the application of such concepts on the Create3 robot.
+As the name suggests, this is a _crash course_. It was designed to give you a quick start and help you gain foundational knowledge to allow you to independently learn new ROS concepts as you need them in the future.
+
+> This course's page is available at: [https://felipenmartins.github.io/ROSWorkshop/](https://felipenmartins.github.io/ROSWorkshop/).
+
+ROS 2 Crash Course is organized in 2 parts: Part 1 covers core concepts of ROS 2, whereas Part 2 is dedicated to the application of such concepts on the Create3 robot. Part 2 is optional.
 
 The course structure is:
 
@@ -12,34 +16,42 @@ The course structure is:
 
 This part covers fundamental ROS 2 concepts. It can be followed even if you don't have access to a physical robot.
 
-- [**Chapter 1 - Fundamental Concepts of ROS**](/Part_1-ROS/Chapter-1/readme.md)
+- **Chapter 1 - Fundamental Concepts of ROS**
   - ROS overview and history
   - Why use ROS?
   - Main concepts (packages, workspaces, nodes, topics etc.)
-  - Activity: Creating your own workspace and running your first nodes
+    - _Activity: Creating your own workspace and running your first nodes_
 
-- [**Chapter 2 - Diving into Nodes, Topics and Actions**](/Part_1-ROS/Chapter-2/readme.md)
+- **Chapter 2 - Diving into Nodes, Topics and Actions**
   - TurtleSim
-  - The ROS Graph
-  - Nodes, Messages, Topics
-  - ROS Actions
-  - Writting a node in Python
+  - Nodes
+    - _Activity: Running and inspecting nodes_
+  - Topics
+    - _Activity: Working with topics_
+    - _Activity: Writting Python code for topics_
+  - Actions
+    - _Activity: Getting familiar with actions_
 
-- [**Chapter 3 - TFs, RViz, Bags and Gazebo**](/Part_1-ROS/Chapter-3/readme.md)
+- **Chapter 3 - TFs, RViz, Bags and Gazebo**
   - Transforms (TFs) and coordinate frames
+    - _Activity: Visualizing TFs_
   - Launch files
-  - RViz - ROS Visualization tool
+    - _Activity: Creating a Launch File_
   - ROS Bags
+    - _Activity: Recording and playing back data with ROS Bags_
+  - RViz - ROS Visualization tool
+    - _Activity: Visualize tfs with RViz_
   - Gazebo
-  - Adding packages to a workspace
+  - Packages
+    - _Activity: Adding Packages to the your workspace_
 
 ## [Part 2 - Create3](/Part_2-Create3/readme.md)
 
-This part contains a quick introduction to the [iRobot Create3](https://iroboteducation.github.io/create3_docs/) educational robot using iRobot's Python Web Playground followed by activities to practice ROS concepts with the robot.
+This part is optional. It contains a quick introduction to the [iRobot Create3](https://iroboteducation.github.io/create3_docs/) educational robot using iRobot's Python Web Playground, followed by activities to practice ROS concepts with the robot.
 
-- [**Activity 1 - Introduction to the iRobot Create3**](/Part_2-Create3/Activity_1/readme.md)
-- [**Activity 2 - IR sensors and Light Ring**](/Part_2-Create3/Activity_2/readme.md)
-- [**Activity 3 - Actions with the physical buttons**](/Part_2-Create3/Activity_3/readme.md)
+- **Activity 1 - Introduction to the iRobot Create3**
+- **Activity 2 - IR sensors and Light Ring**
+- **Activity 3 - Actions with the physical buttons**
 
 ## Intended Learning Outcomes
 
@@ -50,7 +62,7 @@ By the end of this course, you should be able to:
 - Write Python code to develop custom ROS 2 packages that include custom nodes, topics and actions
 - Interact with and program ROS-enabled robots
 
-> _Note:_ This is a course about ROS, and not about the fundamentals of robotics. If you are interested in learning more about robotics concepts, check out my [Jupyter Notebooks for learning Mobile Robot Control](https://github.com/felipenmartins/Mobile-Robot-Control) and accompanying [Robotics Simulation Labs](https://felipenmartins.github.io/Robotics-Simulation-Labs/).
+> _Note:_ This is a course about ROS, not about the fundamentals of robotics. If you are interested in learning more about robotics concepts, check out my [Robotics Simulation Labs](https://felipenmartins.github.io/Robotics-Simulation-Labs/) and accompanying [Jupyter Notebooks for learning Mobile Robot Control](https://github.com/felipenmartins/Mobile-Robot-Control).
 
 ## Requirements
 
@@ -69,21 +81,21 @@ If you are new to Linux, I recommend the tutorial [The Linux command line for be
 
 The software requirements for this course are:
 
-- [Ubuntu 24.04](https://releases.ubuntu.com/24.04/) 
+- [Ubuntu 24.04](https://releases.ubuntu.com/24.04/)
 - [ROS 2 Jazzy Jalisco](https://docs.ros.org/en/jazzy/index.html)
-- The [iRobot Create3 Platform interfaces](https://github.com/iRobotEducation/irobot_create_msgs) package is required to work with this robot.
+- [iRobot Create3 Platform interfaces](https://github.com/iRobotEducation/irobot_create_msgs) package - required to work with the Create3 robot.
 
 #### Virtual Machine
 
-A guide to create a Virtual Machine with Ubuntu and ROS 2 is [available here](/Part_1-ROS/ros2_vm_guide.md).
+Preferably, you should have a machine running Ubuntu as main operating system or in dual boot. However, for this course a virtual machine also works. A guide to create a Virtual Machine with Ubuntu and ROS 2 is [available here](/Part_1-ROS/ros2_vm_guide.md).
 
 ### Hardware (optional)
 
-The demonstration platform used in this course is the [iRobot Create3](https://iroboteducation.github.io/create3_docs/) educational robot, so a working Create3 robot is required to complete the activities in Part 2.
+The demonstration platform used in this course is the [iRobot Create3](https://iroboteducation.github.io/create3_docs/) educational robot. A working Create3 robot is required to complete the activities in Part 2.
 
 ## Acknowledgment
 
-An early version of this course was prepared by Marwan Refaat during a summer internship at Hanze University of Applied Sciences. This repository was forked from his [ROSWorkshop](https://github.com/Marwan-Refaat/ROSWorkshop) and was built on top of his  work.
+An early version of this course was prepared by Marwan Refaat during a summer internship at Hanze University of Applied Sciences under my supervision. This repository was forked from his original [ROSWorkshop](https://github.com/Marwan-Refaat/ROSWorkshop) and was built on top of his work.
 
 Thank you, Marwan!
 

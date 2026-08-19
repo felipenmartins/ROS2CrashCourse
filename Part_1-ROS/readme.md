@@ -1,28 +1,35 @@
 # Part 1 - ROS
 
-This part covers fundamental concepts of ROS 2 to equip you with the knowledge to run and create your own Python code for robots. It is organized in 3 chapters that cover ROS 2 and its core concepts:
+This part covers fundamental concepts of ROS 2 to equip you with the knowledge to run and create your own Python code for robots. It is organized in 3 chapters and can be followed even if you don't have access to a physical robot.
 
 - [**Chapter 1 - Fundamental Concepts of ROS**](../Part_1-ROS/Chapter-1/readme.md)
   - ROS overview and history
   - Why use ROS?
   - Main concepts (packages, workspaces, nodes, topics etc.)
-  - Activity: Creating your own workspace and running your first nodes
+    - _Activity: Creating your own workspace and running your first nodes_
 
 - [**Chapter 2 - Diving into Nodes, Topics and Actions**](../Part_1-ROS/Chapter-2/readme.md)
   - TurtleSim
-  - The ROS Graph
-  - Nodes, Messages, Topics
-  - ROS Actions
-  - Writting a node in Python
+  - Nodes
+    - _Activity: Running and inspecting nodes_
+  - Topics
+    - _Activity: Working with topics_
+    - _Activity: Writting Python code for topics_
+  - Actions
+    - _Activity: Getting familiar with actions_
 
 - [**Chapter 3 - TFs, RViz, Bags and Gazebo**](../Part_1-ROS/Chapter-3/readme.md)
   - Transforms (TFs) and coordinate frames
+    - _Activity: Visualizing TFs_
   - Launch files
-  - RViz - ROS Visualization tool
+    - _Activity: Creating a Launch File_
   - ROS Bags
+    - _Activity: Recording and playing back data with ROS Bags_
+  - RViz - ROS Visualization tool
+    - _Activity: Visualize tfs with RViz_
   - Gazebo
-  - Adding packages to a workspace
-
+  - Packages
+    - _Activity: Adding Packages to the your workspace_
 
 ## Software Requirements
 
@@ -34,7 +41,7 @@ The software requirements for this course are:
 
 ### Virtual Machine
 
-If you are running Windows or macOS, you can create a virtual machine to run ROS. A guide to create a Virtual Machine with Ubuntu and ROS 2 is [available here.](/ros2_vm_guide.md)
+Preferably, you should have a machine running Ubuntu as main operating system or in dual boot. However, for this course a virtual machine also works. A guide to create a Virtual Machine with Ubuntu and ROS 2 is [available here](/Part_1-ROS/ros2_vm_guide.md).
 
 ## Navigation menu
 
