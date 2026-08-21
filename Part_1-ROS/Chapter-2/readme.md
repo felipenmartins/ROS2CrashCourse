@@ -185,6 +185,8 @@ angular:
   z: 0.0
 ```
 
+You can stop the running nodes (<CTRL+C>) for now.
+
 ---
 
 ### 2.2.5 Activity: Writting Python code for topics
@@ -401,15 +403,15 @@ Before running your nodes, you need to complete the process described in the act
 
 With both nodes running, you should be able to see the "talker" node's message being published to `myTopic`, and see the same message being printed to the terminal where your "listener" node is running.
 
-Run the commands `ros2 topic list` and `ros2 topic echo` to check that the messages are being published to the correct topic.
+Run the commands `ros2 topic list` and `ros2 topic echo` to check that the messages are being published to the correct topic. After you are done, you can stop the execution of the nodes and close the terminal windows.
 
 ---
 
 ## 2.3 Actions
 
-The node-topic communication paradigm is very flexible. However, some applications are not well suited for this method of communication. For example, navigation applications require multiple long running tasks that would be inefficient if done using the node-topic paradigm.
+The node-topic communication paradigm is very flexible. However, applications that take a long action (or sequence of actions) after getting a request are not well suited for this method.
 
-Actions are another type of communication in ROS 2, intended for long running tasks. They consist of three parts: a goal, feedback, and a result. Actions return a steady-stream of feedback and can be canceled at any time during their executions.
+Actions are a type of communication intended for such long running tasks. They consist of three parts: a goal, feedback, and a result. Actions return a steady-stream of feedback between the request and its completion, and can be canceled at any time during their executions. 
 
 Actions use a client-server model, similar to the publisher-subscriber model of node-topic communication. An “action client” node sends a goal to an “action server” node that acknowledges it, executes the associated actions, and returns a stream of feedback and a result. Figure 3 illustrates this concept.
 
@@ -418,7 +420,7 @@ Actions use a client-server model, similar to the publisher-subscriber model of 
 
 ### 2.3.1 Activity: Getting familiar with actions
 
-In this activity, we will get get familiar with how exactly actions work by sending and examining actions by inspecting them from terminal. We will be using the `turtlesim` package again. This activity can also be found in the [ROS2 docs](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html).
+In this activity, we will get get familiar with how actions work by sending an action goal and inspecting actions from the terminal. We will be using the `turtlesim` package again. This activity can also be found in the [ROS2 docs](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html).
 
 #### Step 1 - Setup
 
@@ -443,7 +445,7 @@ Use arrow keys to move the turtle.
 Use G|B|V|C|D|E|R|T keys to rotate to absolute orientations. 'F' to cancel a rotation.
 ```
 
-The arrow keys publish values to the `cmd_vel` topic, which we covered above. Let’s now focus on the second line, which corresponds to actions.
+The arrow keys publish values to the `cmd_vel` topic, which we covered above. Let’s now focus on the second line, which corresponds to **actions**.
 
 Notice that the letter keys `G|B|V|C|D|E|R|T` form a “box” around the `F` key on a US QWERTY keyboard. Each key’s position around `F` corresponds to an absolute desired orientation for the turtle in TurtleSim. For example, `R` indicates that the desired orientation of the turtle is facing the top of the screen, `E` corresponds to 45 degrees to the left, `V` is facing down etc.. Every time you press one of those keys, you are sending a goal to an action server that is part of the `/turtlesim` node with an indication of the desired orientation. In this case, the goal is to orient the turtle accordingly, which will result on a rotation of the turtle around its own axis. A message relaying the result of the goal should display once the turtle completes its rotation:
 
@@ -451,13 +453,13 @@ Notice that the letter keys `G|B|V|C|D|E|R|T` form a “box” around the `F` ke
 [INFO] [turtlesim]: Rotation goal completed successfully
 ```
 
-The `F` key will cancel a goal mid-execution, demonstrating the preemptable feature of actions. Try pressing the `C` key, and then pressing the `F` key before the turtle can complete its rotation. In the terminal where the `/turtlesim` node is running, you will see a message indicating that the action goal has been canceled:
+The `F` key will cancel a goal mid-execution, demonstrating the preemptable feature of actions. Try pressing any of the rotation keys, then press `F` while the turtle is still rotating. In the terminal where the `/turtlesim` node is running, you will see a message indicating that the action goal has been canceled:
 
 ```bash
 [INFO] [turtlesim]: Rotation goal canceled
 ```
 
-Not only can the client-side (your input in the teleop) preempt goals, but the server-side (the `/turtlesim` node) can as well. When the server-side preempts an action, it “aborts” the goal. Try hitting the `D` key, then the `G` key before the first rotation can complete. In the terminal where the `/turtlesim` node is running, you will see the message:
+Not only can the client-side (your input in the teleop) preempt goals, but the server-side (the `/turtlesim` node) can as well. When the server-side preempts an action, it “aborts” the goal. Try hitting the `D` key, then the `G` key before the first rotation is completed. In the terminal where the `/turtlesim` node is running, you will see the message:
 
 ```bash
 [WARN] [turtlesim]: Rotation goal received before a previous goal finished. Aborting previous goal
@@ -579,7 +581,7 @@ Action servers: 1
     /turtlesim
 ```
 
-This tells us that the `/teleop_turtle` node has an action client and the `/turtlesim` node has an action server for the `/turtle1/rotate_absolute` action, which is the same informatio we learned before from `ros2 node info`.
+This tells us that the `/teleop_turtle` node has an action client and the `/turtlesim` node has an action server for the `/turtle1/rotate_absolute` action, which is what we learned before from `ros2 node info`.
 
 One more piece of information you will need before sending or executing an action goal yourself is the structure of the action type. Recall that you identified the type of `/turtle1/rotate_absolute` from the command `ros2 action list -t`. Enter the following command with the action type in your terminal:
 
@@ -600,7 +602,7 @@ float32 delta
 float32 remaining
 ```
 
-The first section of this message, before the first ``---``, corresponds to the structure of the goal request (data type and name). The subsequent section describes the structure of the result, and the last one shows the structure of the feedback.
+The characters `---` divide the message type in three sections: the first section  corresponds to the structure of the goal _request_ (data type `float32` and variable name `theta`); the subsequent section describes the structure of the _result_; the third section shows the structure of the _feedback_. Go back to the animation in Firgure 3 and observe the behavior of the request, feedback and result messages.
 
 #### Step 4 - Sending Action Goals
 
@@ -616,9 +618,9 @@ ros2 action send_goal <action_name> <action_type> <values>
 ros2 action send_goal /turtle1/rotate_absolute turtlesim/action/RotateAbsolute "{theta: 1.57}"
 ```
 
-When hitting <ENTER>, you should see the turtle rotating, as well as the following message in your terminal:
+You should see the turtle rotating, as well as the following message in your terminal:
 
-```bash
+```text
 Waiting for an action server to become available...
 Sending goal:
     theta: 1.57
@@ -632,9 +634,9 @@ Goal finished with status: SUCCEEDED
 ```
 
 All goals have a unique ID, shown in the return message.
-You can also see the result, a field with the name `delta`, which is the displacement to the starting position.
+You can also see the result (the field with the name `delta`), which is the displacement from the starting position.
 
-To see the feedback of this goal, add `--feedback` to the last command you ran (first, make sure you change the value of `theta`):
+To see the feedback of this goal, add `--feedback` to the last command you ran (first, make sure you change the value of `theta`, otherwise your turtle is already in the desired orientation):
 
 ```bash
 ros2 action send_goal /turtle1/rotate_absolute turtlesim/action/RotateAbsolute "{theta: -1.57}" --feedback
@@ -663,6 +665,8 @@ Goal finished with status: SUCCEEDED
 ```
 
 You will continue to receive feedback (the remaining angle) until the goal is achieved.
+
+The ROS 2 Documentation page contains a tutorial that you can now follow to practice with [writing action server and client nodes in Python](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html).
 
 ---
 
