@@ -41,10 +41,12 @@ The software requirements for this course are:
 
 ### Virtual Machine
 
-Preferably, you should have a machine running Ubuntu as main operating system or in dual boot. However, for this course a virtual machine also works. A guide to create a Virtual Machine with Ubuntu and ROS 2 is [available here](/Part_1-ROS/ros2_vm_guide.md).
+Preferably, you should have a machine running Ubuntu as main operating system or in dual boot. However, for this course a virtual machine also works.
+
+> **A guide to create a Virtual Machine with Ubuntu and ROS 2 is [available here](/Part_1-ROS/ros2_vm_guide.md).**
 
 ## Navigation menu
 
-- Start with [Chapter 1 - What is ROS?](../Part_1-ROS/Chapter-1/readme.md)
+- Start with [Chapter 1 - Fundamental Concepts of ROS](../Part_1-ROS/Chapter-1/readme.md)
 - Go to [Part 2 - Create3](../Part_2-Create3/readme.md)
 - Go to the [Main page](../readme.md)
