@@ -85,13 +85,15 @@ The software requirements for this course are:
 - [ROS 2 Jazzy Jalisco](https://docs.ros.org/en/jazzy/index.html)
 - [iRobot Create3 Platform interfaces](https://github.com/iRobotEducation/irobot_create_msgs) package - required to work with the Create3 robot.
 
-#### Virtual Machine
+### Virtual Machine
 
-Preferably, you should have a machine running Ubuntu as main operating system or in dual boot. However, for this course a virtual machine also works. A guide to create a Virtual Machine with Ubuntu and ROS 2 is [available here](/Part_1-ROS/ros2_vm_guide.md).
+Preferably, you should have a machine running Ubuntu as main operating system or in dual boot. However, for this course a virtual machine also works.
 
-### Hardware (optional)
+> **A guide to create a Virtual Machine with Ubuntu and ROS 2 is [available here](/Part_1-ROS/ros2_vm_guide.md).**
 
-The demonstration platform used in this course is the [iRobot Create3](https://iroboteducation.github.io/create3_docs/) educational robot. A working Create3 robot is required to complete the activities in Part 2.
+### Hardware
+
+The demonstration platform used in this course is the [iRobot Create3](https://iroboteducation.github.io/create3_docs/) educational robot. You do not need any robot hardware to complete Part 1, but a working Create3 robot is required to complete the activities in Part 2.
 
 ## Acknowledgment
 
