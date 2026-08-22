@@ -76,17 +76,31 @@ Return to the terminal where you ran `ros2 node list` and run it again. You will
 /teleop_turtle
 ```
 
-Keep those nodes running for the next activity.
+You can also visualize the nodes (and much more) with `rqt`, which is a graphical interface for visualizing ROS-related data. You can call it by simply running:
+
+```bash
+rqt
+```
+
+When running it for the first time, the window will be blank. Select `Plugins > Introspection > Node Graph` from the menu bar at the top. A window like the one in Figure 2 will open showing the nodes that are publishing or subscribing to which topics. If the window is blank, click the "reload" button below the "File" menu.
+
+![rqt Node Graph](images/rqt_screenshot_nodes-topics.png)
+
+##### Figure 2. Node graph in rqt: it shows the running nodes and indicates which one is publishing or subscribing to which topic.
+
+With `rqt` you can also plot graphs, inspect topics, call services etc.. Play around with the options to see the different visualization possibilities.
+
+You can close the `rqt` window, but keep the TurtleSim nodes running for the next activity.
 
 ---
 
 ### 2.2.3 Topics
 
-Topics are a vital element of the ROS graph that act as a bus for nodes to exchange messages. Topics can receive messages from one or more nodes publishing to it, and deliver those messages to one or more nodes that are subscribed to it. A node may publish to a topic or to multiple topics, and simultaneously have subscriptions to one or more topics. Figure 2 illustrates this concept.
+Topics are a vital element of the ROS graph that act as a bus for nodes to exchange messages. Topics can receive messages from one or more nodes publishing to it, and deliver those messages to one or more nodes that are subscribed to it. A node may publish to a topic or to multiple topics, and simultaneously have subscriptions to one or more topics. Figure 3 illustrates this concept.
 
 ![Multiple node-topic communication](images/topics_animation.gif)
 
-##### Figure 2. Nodes exchanging messages via topics. _Source: [ROS 2 Documentation: Jazzy](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html)_
+##### Figure 3. Nodes exchanging messages via topics. _Source: [ROS 2 Documentation: Jazzy](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html)_
 
 ### 2.2.4 Activity: Working with topics
 
@@ -141,7 +155,7 @@ angular:
   ---
 ```
 
-In this case, the topic is a point-to-point communication, but this is not a requirement. As shown in Figure 2, communication can be one-to-many, many-to-one, or many-to-many. Another way to look at this is running:
+In this case, the topic is a point-to-point communication, but this is not a requirement. As shown in Figure 3, communication can be one-to-many, many-to-one, or many-to-many. Another way to look at this is running:
 
 ```bash
 ros2 topic info /turtle1/cmd_vel
@@ -413,10 +427,10 @@ The node-topic communication paradigm is very flexible. However, applications th
 
 Actions are a type of communication intended for such long running tasks. They consist of three parts: a goal, feedback, and a result. Actions return a steady-stream of feedback between the request and its completion, and can be canceled at any time during their executions. 
 
-Actions use a client-server model, similar to the publisher-subscriber model of node-topic communication. An “action client” node sends a goal to an “action server” node that acknowledges it, executes the associated actions, and returns a stream of feedback and a result. Figure 3 illustrates this concept.
+Actions use a client-server model, similar to the publisher-subscriber model of node-topic communication. An “action client” node sends a goal to an “action server” node that acknowledges it, executes the associated actions, and returns a stream of feedback and a result. Figure 4 illustrates this concept.
 
 ![Actions ROS2](images/actions_animation.gif)
-##### Figure 3. An “action client” node (left) sends a goal to an “action server” node (right) that acknowledges it and returns a stream of feedback and a result. _Source: [ROS 2 Documentation: Jazzy](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html)_
+##### Figure 4. An “action client” node (left) sends a goal to an “action server” node (right) that acknowledges it and returns a stream of feedback and a result. _Source: [ROS 2 Documentation: Jazzy](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html)_
 
 ### 2.3.1 Activity: Getting familiar with actions
 
