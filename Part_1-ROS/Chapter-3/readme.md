@@ -1,30 +1,30 @@
 # Chapter 3 - TFs, RViz, Bags and Gazebo
 
-This chapter covers a few important concepts that will allow you to fully harness the power of ROS 2. You will be able to add packages to your existing workspace, learn how to use RViz and Gazebo for visualization and simulation, and understand the role of transforms (TFs), and learn how to record and replay data collected during a (simulated) experiment.
+This chapter covers a few important concepts that will allow you to fully harness the power of ROS 2. You will learn the role of transforms (TFs), create launch files, use ROS Bags, understand the basics of RViz and Gazebo, and add packages to your existing workspace.
 
 ## Objectives
 
 By the end of this chapter you should:
 
 - Understand TFs and be able to visualize them
-- Know how to create launch files to automate running several nodes
+- Know how to create launch files to automate running several nodes from one command
 - Know how to use ROS Bags to record and replay data collected during a (simulated) experiment
-- Be familiar with RViz and how to visuale sensor data
-- Know more about ROS packages and how to add them to your workspace
+- Be familiar with RViz and how to vizualise sensor data
 - Know about simulation with Gazebo
+- Know more about ROS packages and how to add them to your workspace
 
 ## 3.1 TFs (Transforms) and Coordinate Frames
 
-In all robotics applications, keeping track of the location of various objects in relation to one another and to their environment is essential. For example, a camera can locate the objects relative to its own coordinate frame, but this information is not useful to the robot unless it knows the transformation between the camera's base and its own coordinate frames.
+In all robotics applications, keeping track of the location of various objects in relation to one another and to their environment is essential. For example, a camera can locate the objects relative to its own coordinate frame, but this information is only useful for the robot if the transformation between the camera and robot reference frames is also known.
 
 In mobile robotics, the pose of all robot's sensors need to be defined with respect to the robot (by **_pose_** we mean **position _and_ orientation**). By its turn, the pose of the robot needs to be referred to a reference frame (also called coordinate frame) that is usually fixed in the world.
 
 There are many possibilities to define reference frames. In ROS, a common representation is shown in Figure 1, where:
 
-- **map**: global reference frame to define the robot's coordinates on a 2D map.
-- **odom**: robot's pose estimated via odometry - tracks the robot's movement from its starting point.
-- **base_footprint**: 2D representation of the robot's footprint on the ground - typically used for path planning
-- **base_link**: used as a reference for sensors and other components of the robot.
+- **map**: global reference frame to define the robot's coordinates on a 2D map. It is only available when a localization system is running and it is drift-corrected.
+- **odom** (Odometry Frame): world-fixed frame generated from wheel odometry - tracks the robot's movement from its starting point. Because odometry suffers from drift, after driving around for several minutes, the reported pose will likely differ from the true physical location.
+- **base_footprint**: 2D representation of the robot's footprint on the ground - typically used for path planning.
+- **base_link**: rigidly attached to the robot itself and moves together with it. It represents the robot's local coordinate system and is used as a reference for sensors and other components of the robot.
 - **laser_link**: pose of a laser sensor on the robot - essential for interpreting its data for mapping and obstacle detection.
 
 ![Commonly used coordinate frames in ROS](images/common_coordinate_frames.png)
@@ -69,25 +69,62 @@ Now you can control turtle1 using the keyboard keys. Move it around and see how 
 
 How is this implemented?
 
-The tf2 library is being used to create three coordinate frames: a world frame, a turtle1 frame, and a turtle2 frame. A tf2 broadcaster is used to publish the turtle coordinate frames, while a tf2 listener is used to calculate the difference between the two turtle frames. Turtle2 is moved to minimize that difference.
+In this example, the tf2 library is being used to create three coordinate frames: a `world` frame, a `turtle1` frame, and a `turtle2` frame. A tf2 broadcaster is used to publish the turtle coordinate frames, while a tf2 listener is used to calculate the difference between the turtle frames. Turtle2 is moved to minimize that difference.
 
 #### Step 3: Visualize the TF tree
 
-By using `view_frames` we can see a diagram of the three frames being broadcast by tf2. It generates a PDF file with the tree diagram:
+By using `view_frames` we can see a diagram of the three frames being broadcast by tf2. This helps illustrate the relationship between the existing coordinate frames. Run the command below to generate a PDF file with the tree diagram:
 
 ```bash
 ros2 run tf2_tools view_frames
 ```
 
-Wait a few seconds until the process is completed. Then, open the Ubuntu _Document Viewer_ application and open the PDF file that was saved by `view_frames`. You will see something similar to Figure 2. Notice that `world` is the parent frame of both `turtle1` and `turtle2`.
+Wait a few seconds until the process is completed. Then, open the Ubuntu _Document Viewer_ application and open the PDF file that was saved. You will see something similar to Figure 2. Notice that `world` is the parent frame of both `turtle1` and `turtle2` frames.
 
 ![TF2 tree](images/tf2_tree.png)
 
 ##### Figure 2. The three coordinate frames that are broadcast by tf2: world (parent), turtle1, and turtle2. Some diagnostic information is also informed, like when the oldest and most recent frame transforms were received and how fast the tf2 frame is published.
 
+#### Step 4: Understand the representation of the frames
+
+The command above gives you a visual representation of the TF tree, but does not show you the actual pose of each frame with respect to each other. To get such information, you can run the command `ros2 run tf2_ros tf2_echo frame1 frame2`. This will print information about translation and rotation of `frame2` with respect to `frame1`. The translation is the coordinates of the origin of `frame2`, and the rotation represents the orientation of `frame2`, both with respect to `frame1`.
+
+Run the command below to get the pose of `turtle1` with respect to the `world`:
+
+```bash
+ros2 run tf2_ros tf2_echo world turtle1
+```
+
+This will keep printing the transformation until you stop the execution of the command. Move Turtle1 using the keyboard and see how the transformation changes.
+
+```text
+At time 1787392741.395988619
+- Translation: [3.475, 9.576, 0.000]
+- Rotation: in Quaternion (xyzw) [0.000, 0.000, 1.000, -0.005]
+- Rotation: in RPY (radian) [0.000, -0.000, -3.131]
+- Rotation: in RPY (degree) [0.000, -0.000, -179.404]
+- Matrix:
+ -1.000  0.010  0.000  3.475
+ -0.010 -1.000  0.000  9.576
+  0.000  0.000  1.000  0.000
+  0.000  0.000  0.000  1.000
+```
+
+Because the pose of coordinate frames can change at any moment, the transformations are constantly updated. For this reason, the `tf2_echo` command also informs the exact moment in which the transformation was calculated (`At time` field).
+
+As you can see, the pose of `turtle1` is printed in different formats. You can read it as _translation_ and _rotation_ independently, or combined in the form of a homogeneous matrix. Also, the rotation is also representated in quaternion or roll-pitch-yaw (RPY) angles. Those are all different representations of the same mathematical transformation.
+
+Now, investigate the pose of Turtle2 with respect of Turtle1: 
+
+```bash
+ros2 run tf2_ros tf2_echo turtle1 turtle2
+```
+
+Move Turtle1 around and verify how the values change while Turtle2 is moving.
+
 ## 3.2 Launch Files
 
-Launch files allow us to run multiple nodes at once, including defining arguments to pass them on startup. This allows us to launch a complete application with whatever configuration we need using a single command and on a single terminal. 
+Launch files allow us to run multiple nodes at once, including defining arguments to pass them on startup. This allows us to launch a complete application with whatever configuration we need using a single command and on a single terminal.
 
 In the previous activity for visualizing TFs, we made use of a launch file when we ran the command `ros2 launch turtle_tf2_py turtle_tf2_demo.launch.py`. In the next activity, we will create a launch file to load TurtleSim and teleoperation nodes from one command.
 
