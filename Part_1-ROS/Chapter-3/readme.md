@@ -134,9 +134,11 @@ Launch files allow us to run multiple nodes at once, including defining argument
 
 In the previous activity for visualizing TFs, we made use of a launch file when we ran the command `ros2 launch turtle_tf2_py turtle_tf2_demo.launch.py`. In the next activity, we will create a launch file to load TurtleSim and teleoperation nodes from one command.
 
+ROS launch files can be written in Python, YAML, or XML. A launch file written in Python may be more complex to write than one in XML or YAML, but is more dynamic and has access to low-level features that are not available in the other formats. We will practice with XML format, which is the simpler one (in my opinion). Explanation about the launch file formats can be found in the [ROS 2 Documentation](https://docs.ros.org/en/jazzy/How-To-Guides/Launch-file-different-formats.html).
+
 ### 3.2.1 Activity: Creating a Launch File
 
-In this activity, we will create a simple launch file that launches the TurtleSim and the teleoperation nodes at once. This activity can also be found on the ROS2 docs [here](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Launch/Creating-Launch-Files.html).
+In this activity, we will create a simple file that launches the TurtleSim and the teleoperation nodes from one command. This activity can also be found on the [ROS 2 Documentation](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Launch/Creating-Launch-Files.html), where you can also check out the same launch file in YAML and Python.
 
 #### Step 1 - Steup
 
@@ -147,8 +149,6 @@ Most of the time, you will find launch files stored inside a `launch` directory 
  mkdir launch
  cd launch
  ```
-
-ROS launch files can be written in Python, YAML, or XML. We will practice with XML format, which is the simpler one (I think).
 
 Create an empty XML file inside your new `launch` directory:
 
@@ -177,20 +177,23 @@ As you can see, the syntax for launch files is relatively intuitive: to run a no
 
 `turtle_teleop_key` requires keyboard input from the terminal. When launched from a launch file, it may not properly capture keystrokes depending on your terminal. We installed `xterm` because this terminal works well in those situations. Then, we added the option `launch-prefix="xterm -e"` to instruct it to open a new `xterm` window to run teleop on it.
 
-You can find out a lot more of what launch files are capable of by following the [ros2 tutorials](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Launch/Launch-Main.html).
-
 #### Step 3 - Launch
 
-The syntax for using launch files is:
+When a launch file is part of a package, the syntax for using it is:
 
 ```bash
 ros2 launch <package_name> <launch_file_name>
 ```
 
-In our case, since this launch file is not part of a package, we can launch it directly:
+In our case, since this launch file is not part of ou package, we can run it directly. First, go to the directory where your launch file is located:
 
 ```bash
 cd ~/create3_ws/src/launch
+```
+
+Then, run it using `ros2 launch`:
+
+```bash
 ros2 launch turtlesim_teleop_launch.xml
 ```
 
@@ -199,6 +202,10 @@ You should now be able to see two windows, one for the teleop node, and one for 
 ![TurtleSim and Teleop on xterm](images/screenshot_turtlesim-teleop_launch.png)
 
 ##### Figure 3. Result of running the `turtlesim_teleop_launch.xml` launch file: the original terminal is in the back. TurtleSim window in in the center, and the small terminal next to it is xterm running the teleoperation node.
+
+Stop the nodes and close the terminal windows when you are done with this activity.
+
+> You can find out a lot more of what launch files are capable of by following the [ROS 2 tutorials](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Launch/Launch-Main.html).
 
 ## 3.3 ROS Bags
 
