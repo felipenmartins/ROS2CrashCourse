@@ -87,7 +87,7 @@ Wait a few seconds until the process is completed. Then, open the Ubuntu _Docume
 
 #### Step 4: Understand the representation of the frames
 
-The command above gives you a visual representation of the TF tree, but does not show you the actual pose of each frame with respect to each other. To get such information, you can run the command `ros2 run tf2_ros tf2_echo frame1 frame2`. This will print information about translation and rotation of `frame2` with respect to `frame1`. The translation is the coordinates of the origin of `frame2`, and the rotation represents the orientation of `frame2`, both with respect to `frame1`.
+The command above gives you a visual representation of the TF tree, but does not show you the actual pose of each frame with respect to each other. To get such information, you can run the command `ros2 run tf2_ros tf2_echo frame1 frame2`. This will print information about translation (coordinates of the origin of `frame2`) and rotation (the orientation of `frame2`), both with respect to `frame1`.
 
 Run the command below to get the pose of `turtle1` with respect to the `world`:
 
@@ -112,15 +112,21 @@ At time 1787392741.395988619
 
 Because the pose of coordinate frames can change at any moment, the transformations are constantly updated. For this reason, the `tf2_echo` command also informs the exact moment in which the transformation was calculated (`At time` field).
 
-As you can see, the pose of `turtle1` is printed in different formats. You can read it as _translation_ and _rotation_ independently, or combined in the form of a homogeneous matrix. Also, the rotation is also representated in quaternion or roll-pitch-yaw (RPY) angles. Those are all different representations of the same mathematical transformation.
+As you can see, the pose of `turtle1` is printed in different formats. You can read it independently as _translation_ and _rotation_, or combined in the form of a homogeneous matrix. The rotation is also representated in [quaternion](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Tf2/Quaternion-Fundamentals.html) or roll-pitch-yaw (RPY) angles - ROS 2 adopts fixed frame RPY, which means that the three individual rotations are applied to the original XYZ coordinate axes (roll around X, pitch around Y and yaw around Z).
 
-Now, investigate the pose of Turtle2 with respect of Turtle1: 
+> _Note_: There are many ways to represent orientation, like rotation matrix, quaternion, or axis-angle. For more information, refer to [Rotation representation](https://dgbshien.com/assets/blogs/rotation-representation.pdf), by Bang-Shien Chen.
+
+Now, investigate the pose of Turtle2 with respect of Turtle1:
 
 ```bash
 ros2 run tf2_ros tf2_echo turtle1 turtle2
 ```
 
 Move Turtle1 around and verify how the values change while Turtle2 is moving.
+
+Stop the running nodes and close the terminal windows when you are done.
+
+> Explanation on how to write code to create TF broadcaster and listener nodes is available in the [ROS 2 Documentation](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Tf2/Writing-A-Tf2-Static-Broadcaster-Py.html).
 
 ## 3.2 Launch Files
 
@@ -130,7 +136,7 @@ In the previous activity for visualizing TFs, we made use of a launch file when 
 
 ### 3.2.1 Activity: Creating a Launch File
 
-In this activity, we will create a simple launch file that launches the TurtleSim and the teleoperation nodes at once. This activity can also be found on the ROS2 docs [here.](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Launch/Creating-Launch-Files.html)
+In this activity, we will create a simple launch file that launches the TurtleSim and the teleoperation nodes at once. This activity can also be found on the ROS2 docs [here](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Launch/Creating-Launch-Files.html).
 
 #### Step 1 - Steup
 
