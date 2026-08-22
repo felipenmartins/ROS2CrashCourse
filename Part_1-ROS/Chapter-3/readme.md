@@ -209,13 +209,13 @@ Stop the nodes and close the terminal windows when you are done with this activi
 
 ## 3.3 ROS Bags
 
-As you might have noticed, data sent over topics is not inherently persistent. If a message is not captured by any node, there is no way for it to be replayed back or stored. Although this behaviour is useful in many ways, sometimes data persistence is necessary. For example, when optimizing or testing algorithms, it can be very useful to capture data once during a data collection phase, and using that data later for optimizing algorithms or as training data. Fortunately, ROS provides a utility that addresses this issue.
+As you might have noticed, data sent over topics is not inherently persistent. If a published message is not captured by any node, it is lost. Although this behaviour is useful in many ways, sometimes data persistence is necessary. For example, when optimizing or testing algorithms, it can be very useful to capture data once during a data collection phase, and use that data later for optimizing algorithms or as training data. Fortunately, ROS provides a utility that addresses this issue.
 
-The `rosbag` utility allows you to store and replay topic data through the CLI commands. In the next activity we will understand the basic concepts of ROS bags. You can find more details about this package in the [ROS2 tutorials](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html).
+The `rosbag` utility allows you to store and replay topic data through the CLI commands. In the next activity we will understand the basic concepts of ROS bags.
 
 ### 3.3.1 Activity: Recording and playing back data with ROS Bags
 
-In this activity, we will record a few topics in TurtleSim using the `rosbag2` package. Then, we will replay them again. This activity can be found on the [ROS2 wiki](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html).
+In this activity, we will record a few topics in TurtleSim using the `rosbag2` package. Then, we will replay them again. This activity can be found on the [ROS 2 tutorials](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html).
 
 #### Step 1 - Setup
 
@@ -253,7 +253,7 @@ It is good practice to define the name of the file that contains your bag. You c
 ros2 bag record -o <file_name> <topic_name>
 ```
 
-To record the `/turtle1/cmd_vel` topic in the file `turtle_movemen`, open a new terminal window and run:
+To record the `/turtle1/cmd_vel` topic in the file `turtle_movement`, open a new terminal window and run:
 
 ```bash
 cd ~/rosbag_dir
@@ -270,11 +270,11 @@ You will see messages similar to those:
 [INFO] [1664530714.083715109] [rosbag2_recorder]: All requested topics are subscribed. Stopping discovery...
 ```
 
-Now, switch to your teleop terminal and move the turtle in a pattern that you can recognize later. When you are done, press `CTRL+C` to end the recording.
+Now, switch to your teleop terminal and move the turtle in a pattern that you can recognize later. When you are done, click on the ROS Bag terminal and press `CTRL+C` to end the recording.
 
 #### Step 3 - Inspect the rosbag
 
-You can find out information about the exact data stored inside the rosbag by using the command `rosbag info <bag_name>`. To inspect the rosbag we just recorded, run:
+You can find out information about the exact data stored inside the rosbag by using the command `ros2 bag info <bag_name>`. To inspect the rosbag we just recorded, run:
 
 ```bash
 ros2 bag info turtle_movement
@@ -306,25 +306,15 @@ Now we can replay our recorded topic data. Keep the TurtleSim window open and ru
 ros2 bag play turtle_movement
 ```
 
-If you have the turltesim window still open, you should see that your turtle repeat the same movements you gave before! Unless the turtle starts exactly at the same pose (position and orientation), it will not follow the same path, but it will reproduce the same relative movements. This is because the bag is playing messages to the topic `/turtle1/cmd_vel` at the same rate they were recorded.
+If you have the turltesim window still open, you should see that your turtle repeats the same movements you gave before! Unless the turtle starts exactly at the same pose (position and orientation), it will not follow the same path, but it will reproduce the same relative movements. This is because the bag is playing messages of the topic `/turtle1/cmd_vel` at the same rate they were recorded.
 
-These same process can be applied to any ROS topic, including images. Common use cases include collecting sensor data for training models, optimizing controllers, developing sensor fusion, and evaluating the performance of different algorithms.
-
-#### Step 5 - Visualizing with rqt
-
-`rqt` is a graphical interface for visualizing ROS-related data. You can call it by simply running:
+These same process can be applied to any ROS topic, including images. In fact, you can use the `-a` option to record all currently discovered topics:
 
 ```bash
-rqt
+ros2 bag record -a -o turtle_movement
 ```
 
-When running it for the first time, the window will be blank. Select `Plugins > Introspection > Node Graph` from the menu bar at the top. A window like the one in Figure 4 will open showing the nodes that are publishing or subscribing to which topics. If the window is blank, click the "reload" button below the "File" menu.
-
-![rqt Node Graph](images/rqt_screenshot_nodes-topics.png)
-
-##### Figure 4. Node graph in rqt: it shows the running nodes and indicates which one is publishing or subscribing to which topic.
-
-With `rqt` you can also plot graphs, inspect topics, call services etc.. Play around with the options to see the different visualization possibilities.
+Remember to press <CTRL+C> in the recording terminal to stop the recording. You can see a list of all recorded topics with `ros2 bag info turtle_movement`.
 
 ## 3.4 RViz
 
