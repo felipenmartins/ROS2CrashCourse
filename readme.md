@@ -2,17 +2,21 @@
 
 Welcome to the ROS 2 Crash Course!
 
-This course covers fundamental concepts to equip you with knowledge to run and create Python code for robots using ROS 2. It contains explanations and hands-on activities to help you learn by doing.
+This is a hands-on ROS 2 crash course covering ROS fundamentals and robot programming in Python through practical activities with TurtleSim (and optionally with the iRobot Create3).
+
+This course's page is available at: [https://felipenmartins.github.io/ROS2CrashCourse/](https://felipenmartins.github.io/ROS2CrashCourse/).
 
 As the name suggests, this is a _crash course_. It was designed to give you a quick start and help you gain foundational knowledge to allow you to independently learn new ROS concepts as you need them in the future.
 
-> This course's page is available at: [https://felipenmartins.github.io/ROS2CrashCourse/](https://felipenmartins.github.io/ROS2CrashCourse/).
+> **_Note:_** This is a course about ROS 2, not about the fundamentals of robotics. If you are interested in learning more about robotics concepts, check out my [Robotics Simulation Labs](https://felipenmartins.github.io/Robotics-Simulation-Labs/) and accompanying [Jupyter Notebooks for learning Mobile Robot Control](https://github.com/felipenmartins/Mobile-Robot-Control).
+
+## Structure
 
 ROS 2 Crash Course is organized in 2 parts: Part 1 covers core concepts of ROS 2, whereas Part 2 is dedicated to the application of such concepts on the Create3 robot. Part 2 is optional.
 
 The course structure is:
 
-## [Part 1 - ROS](/Part_1-ROS/readme.md)
+### [Part 1 - ROS](/Part_1-ROS/readme.md)
 
 This part covers fundamental ROS 2 concepts. It can be followed even if you don't have access to a physical robot.
 
@@ -45,7 +49,7 @@ This part covers fundamental ROS 2 concepts. It can be followed even if you don'
   - Packages
     - _Activity: Adding Create3 packages to run a simulation_
 
-## [Part 2 - Create3](/Part_2-Create3/readme.md)
+### [Part 2 - Create3](/Part_2-Create3/readme.md)
 
 This part contains a quick introduction to the [iRobot Create3](https://iroboteducation.github.io/create3_docs/) educational robot using iRobot's Python Web Playground, followed by activities to practice ROS 2 concepts with the robot.
 
@@ -61,8 +65,6 @@ By the end of this course, you should be able to:
 - Run ROS 2 commands and nodes from the terminal.
 - Write Python code to develop custom ROS 2 packages that include custom nodes.
 - Interact with and program ROS-enabled robots.
-
-> **_Note:_** This is a course about ROS 2, not about the fundamentals of robotics. If you are interested in learning more about robotics concepts, check out my [Robotics Simulation Labs](https://felipenmartins.github.io/Robotics-Simulation-Labs/) and accompanying [Jupyter Notebooks for learning Mobile Robot Control](https://github.com/felipenmartins/Mobile-Robot-Control).
 
 ## Requirements
 
