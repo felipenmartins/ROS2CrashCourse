@@ -350,13 +350,9 @@ Figure 4 shows a screenshot of RViz with the TFs. As you send commands to the tu
 
 ![RViz TFs screenshot](images/rviz-tfs_screenshot.png)
 
-##### Figure 4. RViz screenshot displaying the TFs of turtle1, turtle2 and world. In the left side menu you can select many options for visualization. 
+##### Figure 4. RViz screenshot displaying the TFs of turtle1, turtle2 and world. In the left side menu you can select many options for visualization.
 
-This is just a simple example, but RViz is much more powerful! For example, Figure 5 shows a screenshot of RViz with the Create3 robot. For details on how to use this tool, check out the [RViz User Guide](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/RViz/RViz-User-Guide/RViz-User-Guide.html).
-
-![RViz screenshot](images/rviz_screenshot.jpg)
-
-##### Figure 5. RViz screenshot with the Create3 robot. The menu on the left side allows you to control what RViz shows, which can include sensor data, reference frames etc..
+This is just a simple example, but RViz is much more powerful! For details on how to use this tool, check out the [RViz User Guide](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/RViz/RViz-User-Guide/RViz-User-Guide.html).
 
 ## 3.5 Gazebo
 
@@ -364,11 +360,11 @@ This is just a simple example, but RViz is much more powerful! For example, Figu
 
 With Gazebo, you can create a fully virtual version of you robot, as well as all its sensors and actuators and test it in any virtual environment you need. For most commercially available robots, you will find that the company that created the robot usually provides all the files required to create that simulation, such as a 3D model of the robot, the robot's [URDF model](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/URDF/URDF-Main.html), and Gazebo plugins that can simulate all its sensors and actuators.
 
-From the perspective of a robot programmer, Gazebo can be very useful as it's simulation publishes nearly identical topics to the ones the real robot does, which means we can test all our code in simulation before deploying to the live robot. You can create a world for your robot using Gazebo's world editor, or you can use one of the hundreds of community-created worlds. Figure 6 shows a screenshot of Gazebo running a simulation of the Create3 robot.
+From the perspective of a robot programmer, Gazebo can be very useful as it's simulation publishes nearly identical topics to the ones the real robot does, which means we can test all our code in simulation before deploying to the live robot. You can create a world for your robot using Gazebo's world editor, or you can use one of the hundreds of community-created worlds. Figure 5 shows a screenshot of Gazebo running a simulation of the Create3 robot.
 
 ![Gazebo screenshot](images/gazebo_screenshot.jpg)
 
-##### Figure 6. Gazebo screenshot showing the simulation environment. You can control the robot by clicking the command buttons on the bottom right. 
+##### Figure 5. Gazebo screenshot showing the simulation environment. You can control the robot by clicking the command buttons on the bottom right. 
 
 More often than not, Gazebo is used to stress test the code before deploying, as it allows us to test any kind of algorithm freely without the risk of damaging the robot or any expensive equipment. It can also save time as the simulation can be sped up to be many times faster than realtime, depending on the machine running the simulation.
 
@@ -498,7 +494,11 @@ The packages we installed include files that allow simulating the Create3 in Gaz
 ros2 launch irobot_create_gz_bringup create3_gz.launch.py
 ```
 
-During the launch process, you will see many log messages in the terminal and two new program windows. It might take a long while for all nodes to be loaded but, when everything is running, you should see a window with with RViz and another with Gazebo. If everything works as expected, RViz and Gazebo should look like the screenshots shown in Figures 5 and 6.
+During the launch process, you will see many log messages in the terminal and two new program windows. It might take a long while for all nodes to be loaded but, when everything is running, you should see a window with Gazebo (Figure 5) and another with RViz (Figure 6).
+
+![RViz screenshot](images/rviz_screenshot.jpg)
+
+##### Figure 6. RViz screenshot with the Create3 robot. The menu on the left side allows you to control what RViz shows, which can include sensor data, reference frames etc..
 
 After waiting for a few minutes for Gazebo to fully launch, open a new terminal window and run the `ros2 topic list` command to see the list of topics published by the Gazebo simulation node:
 
