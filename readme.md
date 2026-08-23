@@ -6,7 +6,7 @@ This course covers fundamental concepts to equip you with knowledge to run and c
 
 As the name suggests, this is a _crash course_. It was designed to give you a quick start and help you gain foundational knowledge to allow you to independently learn new ROS concepts as you need them in the future.
 
-> This course's page is available at: [https://felipenmartins.github.io/ROSWorkshop/](https://felipenmartins.github.io/ROSWorkshop/).
+> This course's page is available at: [https://felipenmartins.github.io/ROS2CrashCourse/](https://felipenmartins.github.io/ROS2CrashCourse/).
 
 ROS 2 Crash Course is organized in 2 parts: Part 1 covers core concepts of ROS 2, whereas Part 2 is dedicated to the application of such concepts on the Create3 robot. Part 2 is optional.
 
