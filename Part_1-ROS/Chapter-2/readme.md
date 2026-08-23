@@ -76,7 +76,7 @@ Return to the terminal where you ran `ros2 node list` and run it again. You will
 /teleop_turtle
 ```
 
-You can also visualize the nodes (and much more) with `rqt`, which is a graphical interface for visualizing ROS-related data. You can call it by simply running:
+You can also visualize the nodes (and much more) with `rqt`, which is a GUI toolkit and dashboard that provides many plugins for inspecting and interacting with a ROS system. You can call it by simply running:
 
 ```bash
 rqt
@@ -88,7 +88,7 @@ When running it for the first time, the window will be blank. Select `Plugins > 
 
 ##### Figure 2. Node graph in rqt: it shows the running nodes and indicates which one is publishing or subscribing to which topic.
 
-With `rqt` you can also plot graphs, inspect topics, call services etc.. Play around with the options to see the different visualization possibilities.
+With `rqt` you can also. plot graphs, inspect topics, call services, change parameters and more. Play around with the options to see the different visualization possibilities.
 
 You can close the `rqt` window, but keep the TurtleSim nodes running for the next activity.
 
