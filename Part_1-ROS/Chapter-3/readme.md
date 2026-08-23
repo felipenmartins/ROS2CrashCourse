@@ -211,7 +211,7 @@ Stop the nodes and close the terminal windows when you are done with this activi
 
 As you might have noticed, data sent over topics is not inherently persistent. If a published message is not captured by any node, it is lost. Although this behaviour is useful in many ways, sometimes data persistence is necessary. For example, when optimizing or testing algorithms, it can be very useful to capture data once during a data collection phase, and use that data later for optimizing algorithms or as training data. Fortunately, ROS provides a utility that addresses this issue.
 
-The `rosbag` utility allows you to store and replay topic data through the CLI commands. In the next activity we will understand the basic concepts of ROS bags.
+The ros2 bag utility allows you to store and replay topic data through the CLI commands. In the next activity we will understand the basic concepts of ROS bags.
 
 ### 3.3.1 Activity: Recording and playing back data with ROS Bags
 
@@ -318,7 +318,7 @@ Remember to press <CTRL+C> in the recording terminal to stop the recording. You 
 
 ## 3.4 RViz
 
-RViz is another visualization tool for ROS, but it is much more advanced than rqt. RViz stands for **ROS Visualization**. It is **not** a simulator, but a 3D visualization tool that can be used to visualize all kinds of robot data (real or simulated), from sensor data to actuators. It can be used together with a simulator (like Gazebo) to display existing data being published in topics.
+In Chapter 2 we saw that _rqt_ is a GUI for inspecting and interacting with a ROS system (graphs, topics, parameters, logs, services, plots...). **RViz** (stands for **ROS Visualization**) is another visualization tool for ROS, but focuses on visualizing robot data (real or simulated) in 2D/3D. It subscribes to ROS topics and displays the data graphically: robot model (URDF), LiDAR scans, maps, TF frames, paths, point clouds, etc.. RViz is **not** a simulator! Instead, it can be used together with a simulator (like Gazebo or Webots) to display existing data being published in topics.
 
 ### 3.4.1 Activity: Visualize tfs with RViz
 
@@ -352,7 +352,7 @@ Figure 5 shows a screenshot of RViz with the TFs. As you send commands to the tu
 
 ##### Figure 5. RViz screenshot displaying the TFs of turtle1, turtle2 and world. In the left side menu you can select many options for visualization. 
 
-This is just a simple example, but RViz is much more powerful! For example, Figure 6 shows a screenshot of RViz with the Create3 robot. For details on how to use this tool, check out the [RViz User Guide]((https://docs.ros.org/en/jazzy/Tutorials/Intermediate/RViz/RViz-User-Guide/RViz-User-Guide.html)).
+This is just a simple example, but RViz is much more powerful! For example, Figure 6 shows a screenshot of RViz with the Create3 robot. For details on how to use this tool, check out the [RViz User Guide](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/RViz/RViz-User-Guide/RViz-User-Guide.html).
 
 ![RViz screenshot](images/rviz_screenshot.jpg)
 
@@ -360,7 +360,7 @@ This is just a simple example, but RViz is much more powerful! For example, Figu
 
 ## 3.5 Gazebo
 
-[Gazebo](https://gazebosim.org/home) is an open-source 3D **robotics simulator** that is very commonly used to simulate robots using ROS. Gazebo uses the ODE physics engine, supports OpenGL rendering and has a vast community that provides plugins for simulating all kinds of sensors and actuators.
+[Gazebo](https://gazebosim.org/home) is an open-source 3D **robotics simulator** that is commonly used to simulate robots using ROS. Gazebo uses the ODE physics engine, supports OpenGL rendering and has a vast community that provides plugins for simulating all kinds of sensors and actuators.
 
 With Gazebo, you can create a fully virtual version of you robot, as well as all its sensors and actuators and test it in any virtual environment you need. For most commercially available robots, you will find that the company that created the robot usually provides all the files required to create that simulation, such as a 3D model of the robot, the robot's [URDF model](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/URDF/URDF-Main.html), and Gazebo plugins that can simulate all its sensors and actuators.
 
@@ -370,7 +370,7 @@ From the perspective of a robot programmer, Gazebo can be very useful as it's si
 
 ##### Figure 7. Gazebo screenshot showing the simulation environment. You can control the robot by clicking the command buttons on the bottom right. 
 
-More often than not, Gazebo is used to stress test the code before deploying, as it allows us to test any kind of algorithm freely without the risk of damaging the robot or any expensive equipment. It can also save incredible amounts of time as the simulation can be sped up to be many times faster than realtime, but the speed of the simulation largely depends on the machine running the simulation as it can often times be very resource intensive.
+More often than not, Gazebo is used to stress test the code before deploying, as it allows us to test any kind of algorithm freely without the risk of damaging the robot or any expensive equipment. It can also save time as the simulation can be sped up to be many times faster than realtime, depending on the machine running the simulation.
 
 For more information about Gazebo, check its [getting started guide](https://gazebosim.org/docs/harmonic/getstarted/) and [Simulation Tutorials](https://gazebosim.org/docs/harmonic/tutorials/).
 
