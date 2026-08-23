@@ -2,13 +2,13 @@
 
 This part covers fundamental concepts of ROS 2 to equip you with the knowledge to run and create your own Python code for robots. It is organized in 3 chapters and can be followed even if you don't have access to a physical robot.
 
-- [**Chapter 1 - Fundamental Concepts of ROS**](../Part_1-ROS/Chapter-1/readme.md)
+- [**Chapter 1 - ROS 2 Foundations and Core Concepts**](../Part_1-ROS/Chapter-1/readme.md)
   - ROS overview and history
   - Why use ROS?
   - Main concepts (packages, workspaces, nodes, topics etc.)
     - _Activity: Creating your own workspace and running your first nodes_
 
-- [**Chapter 2 - Diving into Nodes, Topics and Actions**](../Part_1-ROS/Chapter-2/readme.md)
+- [**Chapter 2 - Building ROS 2 Applications**](../Part_1-ROS/Chapter-2/readme.md)
   - TurtleSim
   - Nodes
     - _Activity: Running and inspecting nodes_
@@ -18,18 +18,18 @@ This part covers fundamental concepts of ROS 2 to equip you with the knowledge t
   - Actions
     - _Activity: Getting familiar with actions_
 
-- [**Chapter 3 - TFs, RViz, Bags and Gazebo**](../Part_1-ROS/Chapter-3/readme.md)
-  - Transforms (TFs) and coordinate frames
-    - _Activity: Visualizing TFs_
+- [**Chapter 3 - Integrating, Visualizing, and Simulating Robots in ROS 2**](../Part_1-ROS/Chapter-3/readme.md)
   - Launch files
     - _Activity: Creating a Launch File_
   - ROS Bags
     - _Activity: Recording and playing back data with ROS Bags_
+  - Transforms (TFs) and coordinate frames
+    - _Activity: Understanding TFs_
   - RViz - ROS Visualization tool
-    - _Activity: Visualize tfs with RViz_
+    - _Activity: Visualizing TFs with RViz_
   - Gazebo
   - Packages
-    - _Activity: Adding Packages to the your workspace_
+    - _Activity: Adding Create3 packages to run a simulation_
 
 ## Software Requirements
 
@@ -47,6 +47,6 @@ Preferably, you should have a machine running Ubuntu as main operating system or
 
 ## Navigation menu
 
-- Start with [Chapter 1 - Fundamental Concepts of ROS](../Part_1-ROS/Chapter-1/readme.md)
+- Start with [Chapter 1 - ROS 2 Foundations and Core Concepts](../Part_1-ROS/Chapter-1/readme.md)
 - Go to [Part 2 - Create3](../Part_2-Create3/readme.md)
 - Go to the [Main page](../readme.md)

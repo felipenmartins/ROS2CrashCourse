@@ -16,13 +16,13 @@ The course structure is:
 
 This part covers fundamental ROS 2 concepts. It can be followed even if you don't have access to a physical robot.
 
-- **Chapter 1 - Fundamental Concepts of ROS**
+- **Chapter 1 - ROS 2 Foundations and Core Concepts**
   - ROS overview and history
   - Why use ROS?
   - Main concepts (packages, workspaces, nodes, topics etc.)
     - _Activity: Creating your own workspace and running your first nodes_
 
-- **Chapter 2 - Diving into Nodes, Topics and Actions**
+- **Chapter 2 - Building ROS 2 Applications**
   - TurtleSim
   - Nodes
     - _Activity: Running and inspecting nodes_
@@ -32,22 +32,22 @@ This part covers fundamental ROS 2 concepts. It can be followed even if you don'
   - Actions
     - _Activity: Getting familiar with actions_
 
-- **Chapter 3 - TFs, RViz, Bags and Gazebo**
-  - Transforms (TFs) and coordinate frames
-    - _Activity: Visualizing TFs_
+- **Chapter 3 - Integrating, Visualizing, and Simulating Robots in ROS 2**
   - Launch files
     - _Activity: Creating a Launch File_
   - ROS Bags
     - _Activity: Recording and playing back data with ROS Bags_
+  - Transforms (TFs) and coordinate frames
+    - _Activity: Understanding TFs_
   - RViz - ROS Visualization tool
-    - _Activity: Visualize tfs with RViz_
+    - _Activity: Visualizing TFs with RViz_
   - Gazebo
   - Packages
-    - _Activity: Adding Packages to the your workspace_
+    - _Activity: Adding Create3 packages to run a simulation_
 
 ## [Part 2 - Create3](/Part_2-Create3/readme.md)
 
-This part is optional. It contains a quick introduction to the [iRobot Create3](https://iroboteducation.github.io/create3_docs/) educational robot using iRobot's Python Web Playground, followed by activities to practice ROS concepts with the robot.
+This part contains a quick introduction to the [iRobot Create3](https://iroboteducation.github.io/create3_docs/) educational robot using iRobot's Python Web Playground, followed by activities to practice ROS 2 concepts with the robot.
 
 - **Activity 1 - Introduction to the iRobot Create3**
 - **Activity 2 - IR sensors and Light Ring**
@@ -57,12 +57,12 @@ This part is optional. It contains a quick introduction to the [iRobot Create3](
 
 By the end of this course, you should be able to:
 
-- Understand fundamental concepts of ROS 2
-- Run ROS 2 commands and nodes from the terminal
-- Write Python code to develop custom ROS 2 packages that include custom nodes, topics and actions
-- Interact with and program ROS-enabled robots
+- Understand fundamental concepts of ROS 2.
+- Run ROS 2 commands and nodes from the terminal.
+- Write Python code to develop custom ROS 2 packages that include custom nodes.
+- Interact with and program ROS-enabled robots.
 
-> _Note:_ This is a course about ROS, not about the fundamentals of robotics. If you are interested in learning more about robotics concepts, check out my [Robotics Simulation Labs](https://felipenmartins.github.io/Robotics-Simulation-Labs/) and accompanying [Jupyter Notebooks for learning Mobile Robot Control](https://github.com/felipenmartins/Mobile-Robot-Control).
+> **_Note:_** This is a course about ROS 2, not about the fundamentals of robotics. If you are interested in learning more about robotics concepts, check out my [Robotics Simulation Labs](https://felipenmartins.github.io/Robotics-Simulation-Labs/) and accompanying [Jupyter Notebooks for learning Mobile Robot Control](https://github.com/felipenmartins/Mobile-Robot-Control).
 
 ## Requirements
 

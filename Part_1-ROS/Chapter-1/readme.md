@@ -1,16 +1,15 @@
-# Chapter 1 - Fundamental Concepts of ROS
+# Chapter 1 - ROS 2 Foundations and Core Concepts
 
-This chapter introduces ROS and its core concepts, and gives an insight into why it is important to learn ROS. It also guides you to create your first workspace, first package, and run a couple of nodes to test your installation.
+This chapter introduces ROS and its core concepts, and gives an insight into why it is important to learn it. It also guides you to create your first workspace, first package, and run a couple of nodes to test your installation.
 
 ## Objectives
 
 By the end of this chappter you should be familiar with:
 
-- The abstracted overview of ROS
-- Design philosophy of ROS
-- The uses of ROS in the industry
-- The core concepts of ROS
-- How to create and build a ROS workspace to run your code
+- What ROS is, a bit of its history and its design philosophy.
+- The uses of ROS in the industry.
+- The core concepts of ROS (nodes, messages, topics, workspaces, packages...).
+- How to create and build a ROS workspace to run your code.
 
 ## 1.1 ROS Overview
 
@@ -36,13 +35,13 @@ ROS is :
 
 ROS was first developed by two Stanford researchers to accelerate the initial phase of development of most robotics projects, which mostly consisted of what  they described as "reinventing the wheel". ROS was later picked up by robotics incubator [Willow Garage](https://en.wikipedia.org/wiki/Willow_Garage), which continued its development until it was dissolved and the project was picked up again by [Open Robotics](https://www.openrobotics.org/), which is the current entity behind ROS.
 
-As ROS began initially as a platform for researchers, it had become apparent by 2015 that its current capabilities were not adequate for widespread commercial use. The second generation of ROS, ROS 2,was created as a direct result of such realization. ROS 2 was built from the ground-up to solve the identified issues and to be able to handle industrial and commercial applications.
+As ROS began initially as a platform for researchers, it had become apparent by 2015 that its current capabilities were not adequate for widespread commercial use. The second generation of ROS - **ROS 2** - was created as a direct result of such realization. ROS 2 was built from the ground-up to solve the identified issues and to be able to handle industrial and commercial applications. This course focuses on ROS 2.
 
 ### Why ROS?
 
 The most important question to ask when adopting a new technology is why? Why should I spend the time and effort to learn and  become familiar with this new technology, after all, new technologies come and go very quickly in the software world.
 
-ROS 2’s development was and continues to be guided by a ‘Technical Steering Committee’ composed by several representatives of the robotics community. The wide spread usage of ROS in the robotics field makes it one of the most important tools to master for developers or engineers wanting to enter the field of robotics.
+The development of ROS 2 was and continues to be guided by a ‘Technical Steering Committee’ composed by several representatives of the robotics community. The wide spread usage of ROS in the robotics field makes it one of the most important tools to master for developers or engineers wanting to enter the field of robotics.
 
 ROS currently powers robots in various domains, from [Astrobee](https://www.nasa.gov/astrobee), NASA’s free-flying robots that have been active in the ISS for years, to [Open-RMF](https://www.open-rmf.org/), a modular software system that enables sharing and interoperability between multiple fleets of robots and physical infrastructure, like doors, elevators and building management systems.
 
@@ -381,10 +380,10 @@ You might have observed that the subscriber receives only the messages that are 
 
 ## Conclusion
 
-After completing this chapter, you should have a general understanding of the fundamental concepts of ROS and its importance for the robotics community. You should also have a workspace prepared for the next activities of this course. In Chapter 2 we will dive into some core topics to better understand how to work with ROS and how to write Python code for it.
+After completing this chapter, you should have a general understanding of the fundamental concepts of ROS and its importance for the robotics community. You should also have a workspace prepared for the next activities of this course. In Chapter 2 we will dive into some core topics to better understand how to work with ROS 2 and how to write Python code for it.
 
 ## Navigation menu
 
-- Continue to [Chapter 2 - Diving into Nodes, Topics and Actions](../../Part_1-ROS/Chapter-2/readme.md)
+- Continue to [Chapter 2 - Building ROS 2 Applications](../../Part_1-ROS/Chapter-2/readme.md)
 - Go back to [Part 1 - ROS](../../Part_1-ROS/readme.md)
 - Go to the [Main page](../../readme.md)

@@ -1,15 +1,15 @@
-# Chapter 2 - Diving into Nodes, Topics and Actions
+# Chapter 2 - Building ROS 2 Applications
 
-This chapter dives into two essential communication paradigms in ROS: Node-Topic communication and ROS Actions.
+This chapter dives into two essential communication paradigms in ROS: Node-Topic communication and ROS Actions. It also shows how to create Python code to implement ROS 2 nodes that communicate with each other.
 
 ## Objectives
 
 By the end of this chapter you should be able to:
 
-- Interact with and inspect ROS nodes, topics, and actions from the terminal  
-- Read sensor data from various topics
-- Create custom nodes using Python3 that can both subscribe and publish to ROS topics
-- Create custom nodes that use ROS actions
+- Interact with and inspect ROS nodes, topics, and actions from the terminal.  
+- Read sensor data from various topics.
+- Create custom nodes using Python3 that can both subscribe and publish to ROS topics.
+- Understand how ROS actions work.
 
 ## 2.1 TurtleSim
 
@@ -690,10 +690,10 @@ In this chapter you studied and practiced core ROS 2 concepts, such as nodes, to
 
 For a quick reference, check out this list of [commonly used ROS 2 commands](../../Part_1-ROS/Chapter-1/ros2_commands.md).
 
-In the next chapter you will learn more about other tools that are part of the ROS ecosystem. We will cover how to download and add ROS packages to our projects, and discuss a few of the most prominent ones.
+In the next chapter you will learn more about other tools that are part of the ROS 2 ecosystem. We will cover how to download and add ROS packages to our projects, and discuss a few of the most prominent ones.
 
 ## Navigation menu
 
-- Continue to [Chapter 3 - TFs, RViz, Bags and Gazebo](../../Part_1-ROS/Chapter-3/readme.md)
+- Continue to [Chapter 3 - Integrating, Visualizing, and Simulating Robots in ROS 2](../../Part_1-ROS/Chapter-3/readme.md)
 - Go back to [Part 1 - ROS](../../Part_1-ROS/readme.md)
 - Go to the [Main page](../../readme.md)
