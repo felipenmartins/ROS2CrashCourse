@@ -1,6 +1,6 @@
 # Chapter 2 - Building ROS 2 Applications
 
-This chapter dives into two essential communication paradigms in ROS: Node-Topic communication and ROS Actions. It also shows how to create Python code to implement ROS 2 nodes that communicate with each other.
+This chapter dives into two essential communication paradigms in ROS (Node-Topic and ROS Actions), and shows how to create Python code to implement ROS 2 nodes that communicate with each other.
 
 ## Objectives
 
@@ -596,6 +596,8 @@ Action servers: 1
 ```
 
 This tells us that the `/teleop_turtle` node has an action client and the `/turtlesim` node has an action server for the `/turtle1/rotate_absolute` action, which is what we learned before from `ros2 node info`.
+
+> You can also visualize information about action servers in the Node-Graph shown by `rqt` (see Figure 2).
 
 One more piece of information you will need before sending or executing an action goal yourself is the structure of the action type. Recall that you identified the type of `/turtle1/rotate_absolute` from the command `ros2 action list -t`. Enter the following command with the action type in your terminal:
 
