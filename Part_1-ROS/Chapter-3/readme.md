@@ -203,11 +203,17 @@ Remember to press `CTRL+C` in the recording terminal to stop the recording. You 
 
 ## 3.3 TFs (Transforms) and Coordinate Frames
 
-In all robotics applications, keeping track of the location of various objects in relation to one another and to their environment is essential. For example, a camera can locate the objects relative to its own coordinate frame, but this information is only useful for the robot if the transformation between the camera and robot reference frames is also known.
+In robotics, keeping track of the location of various objects in relation to one another and to their environment is crucial for navigation, localization, mapping, sensor fusion, manipulation, and any other task. For example, an image from a camera can indicate the location of objects relative to the camera itself, but this information is only useful for the robot if the _transformation_ between the camera and robot reference frames is known.
 
-In mobile robotics, the pose of all robot's sensors need to be defined with respect to the robot (by **_pose_** we mean **position _and_ orientation**). By its turn, the pose of the robot needs to be referred to a reference frame (also called coordinate frame) that is usually fixed in the world.
+A _transformation_ describes the spatial relationship between different coordinate frames. Figure 2 illustrates such concept: the reference frame _w_ is fixed in the world, while the frame _r_ is attached to the robot. The transformation $T^{w}_{r}$ describes the the translation and rotation between the two.
 
-There are many possibilities to define reference frames. In ROS, a common representation is shown in Figure 2, where:
+> _Note:_ For a mathematical description of transformations, please refer to [Rotation representation](https://dgbshien.com/assets/blogs/rotation-representation.pdf), by Bang-Shien Chen.
+
+![Transformation between reference frames](images/transformation_w_r.png)
+
+##### Figure 2. The transformation that describes the the translation and rotation between the reference frames _w_ and _r_. _Source: [Rotation representation](https://dgbshien.com/assets/blogs/rotation-representation.pdf)_
+
+In mobile robotics, the poses of all sensors need to be defined with respect to the robot frame (by **_pose_** we mean **position _and_ orientation**). By its turn, the pose of the robot needs to be referred to a reference frame (also called coordinate frame) that is usually fixed in the world. There are many possibilities to define reference frames. In ROS, a common representation is shown in Figure 3, where:
 
 - **map**: global reference frame to define the robot's coordinates on a 2D map. It is only available when a localization system is running and it is drift-corrected.
 - **odom** (Odometry Frame): world-fixed frame generated from wheel odometry - tracks the robot's movement from its starting point. Because odometry suffers from drift, after driving around for several minutes, the reported pose will likely differ from the true physical location.
@@ -217,13 +223,11 @@ There are many possibilities to define reference frames. In ROS, a common repres
 
 ![Commonly used coordinate frames in ROS](images/common_coordinate_frames.png)
 
-##### Figure 2. Commonly used coordinate frames for mobile robotics in ROS. _Source: [ROS Wiki](https://wiki.ros.org/hector_slam/Tutorials/SettingUpForYourRobot)_
+##### Figure 3. Commonly used coordinate frames for mobile robotics in ROS. _Source: [ROS Wiki](https://wiki.ros.org/hector_slam/Tutorials/SettingUpForYourRobot)_
 
 Often times, there will be at more than 5 different coordinate frames and maintaining the unique transformations to and from each one of these can be challenging, especially when they might change. ROS provides a package that optimizes this process:
 
-**tf2** is a library to keep track of multiple coordinate frames over time. It publishes the relationship between coordinate frames (transforms) using a tree structure, allowing knowledge of the transformation between coordinate frames at any point in time. In other words, transforms (TFs) are used to describe the spatial relationships between different coordinate frames by providing the transformations (translations and rotations) between them. This is crucial for navigation, localization, mapping, sensor fusion, manipulation, and any other task executed by robots.
-
-The relationship between these coordinate frames is determined with tf-tree. It essentially tells with a tree-like structure what is the child-frame's position in relation to the parent frame.
+**tf2** is a library to keep track of multiple coordinate frames over time. It publishes the relationship between coordinate frames (transforms) using a tree structure, allowing knowledge of the transformation between coordinate frames at any point in time. The relationship between these coordinate frames is determined with the so-called _tf-tree_. It essentially tells with a tree-like structure what is the child-frame's position in relation to the parent frame.
 
 ### 3.3.1 Activity: Understanding TFs
 
@@ -267,11 +271,11 @@ By using `view_frames` we can see a diagram of the three frames being broadcast 
 ros2 run tf2_tools view_frames
 ```
 
-Wait a few seconds until the process is completed. Then, open the Ubuntu _Document Viewer_ application and open the PDF file that was saved. You will see something similar to Figure 3. Notice that `world` is the parent frame of both `turtle1` and `turtle2` frames.
+Wait a few seconds until the process is completed. Then, open the Ubuntu _Document Viewer_ application and open the PDF file that was saved. You will see something similar to Figure 4. Notice that `world` is the parent frame of both `turtle1` and `turtle2` frames.
 
 ![TF2 tree](images/tf2_tree.png)
 
-##### Figure 3. The three coordinate frames that are broadcast by tf2: world (parent), turtle1, and turtle2. Some diagnostic information is also informed, like when the oldest and most recent frame transforms were received and how fast the tf2 frame is published.
+##### Figure 4. The three coordinate frames that are broadcast by tf2: world (parent), turtle1, and turtle2. Some diagnostic information is also informed, like when the oldest and most recent frame transforms were received and how fast the tf2 frame is published.
 
 #### Step 4: Understand the representation of the frames
 
@@ -300,9 +304,15 @@ At time 1787392741.395988619
 
 Because the pose of coordinate frames can change at any moment, the transformations are constantly updated. For this reason, the `tf2_echo` command also informs the exact moment in which the transformation was calculated (`At time` field).
 
-As you can see, the pose of `turtle1` is printed in different formats. You can read it independently as _translation_ and _rotation_, or combined in the form of a homogeneous matrix. The rotation is also representated in [quaternion](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Tf2/Quaternion-Fundamentals.html) or roll-pitch-yaw (RPY) angles - ROS 2 adopts fixed frame RPY, which means that the three individual rotations are applied to the original XYZ coordinate axes (roll around X, pitch around Y and yaw around Z).
+As you can see, the pose of `turtle1` is printed in different formats. You can read it independently as _translation_ and _rotation_, or combined in the form of a homogeneous matrix. The rotation is also representated in [quaternion](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Tf2/Quaternion-Fundamentals.html) or roll-pitch-yaw (RPY) angles.
 
-> _Note_: There are many ways to represent orientation, like rotation matrix, quaternion, or axis-angle. For more information, refer to [Rotation representation](https://dgbshien.com/assets/blogs/rotation-representation.pdf), by Bang-Shien Chen.
+ROS 2 adopts fixed frame RPY, which means that three individual rotations are applied to the original XYZ coordinate axes: roll around X, pitch around Y and yaw around Z. Such concept is illustrated in Figure 5.
+
+![Illustration of roll, pitch, yaw](images/roll_pitch_yaw_illustration.png)
+
+##### Figure 5. Illustration of the three independent rotations: roll around X, pitch around Y and yaw around Z. _Source: [Rotation representation](https://dgbshien.com/assets/blogs/rotation-representation.pdf)_
+
+> _Note_: There are many ways to represent orientation, like rotation matrix, quaternion, or axis-angle. For a mathematical description, we refer you again to [Rotation representation](https://dgbshien.com/assets/blogs/rotation-representation.pdf), by Bang-Shien Chen.
 
 Now, investigate the pose of Turtle2 with respect of Turtle1:
 
@@ -314,7 +324,7 @@ Move Turtle1 around and verify how the values change while Turtle2 is moving.
 
 Stop the running nodes and close the terminal windows when you are done.
 
-> Explanation on how to write code to create TF broadcaster and listener nodes is available in the [ROS 2 Documentation](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Tf2/Writing-A-Tf2-Static-Broadcaster-Py.html).
+Explanation on how to write code to create TF broadcaster and listener nodes is available in the [ROS 2 Documentation](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Tf2/Writing-A-Tf2-Static-Broadcaster-Py.html).
 
 ## 3.4 RViz
 
@@ -346,11 +356,11 @@ Previously, we visualized a static picture of the TF tree. RViz can also show th
 ros2 run rviz2 rviz2 -d $(ros2 pkg prefix --share turtle_tf2_py)/rviz/turtle_rviz.rviz
 ```
 
-Figure 4 shows a screenshot of RViz with the TFs. As you send commands to the turtle using teleop, you should see the TFs moving on the screen.
+Figure 6 shows a screenshot of RViz with the TFs. As you send commands to the turtle using teleop, you should see the TFs moving on the screen.
 
 ![RViz TFs screenshot](images/rviz-tfs_screenshot.png)
 
-##### Figure 4. RViz screenshot displaying the TFs of turtle1, turtle2 and world. In the left side menu you can select many options for visualization.
+##### Figure 6. RViz screenshot displaying the TFs of turtle1, turtle2 and world. In the left side menu you can select many options for visualization.
 
 This is just a simple example, but RViz is much more powerful! For details on how to use this tool, check out the [RViz User Guide](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/RViz/RViz-User-Guide/RViz-User-Guide.html).
 
@@ -360,17 +370,17 @@ This is just a simple example, but RViz is much more powerful! For details on ho
 
 With Gazebo, you can create a fully virtual version of you robot, as well as all its sensors and actuators and test it in any virtual environment you need. For most commercially available robots, you will find that the company that created the robot usually provides all the files required to create that simulation, such as a 3D model of the robot, the robot's [URDF model](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/URDF/URDF-Main.html), and Gazebo plugins that can simulate all its sensors and actuators.
 
-From the perspective of a robot programmer, Gazebo can be very useful as it's simulation publishes nearly identical topics to the ones the real robot does, which means we can test all our code in simulation before deploying to the live robot. You can create a world for your robot using Gazebo's world editor, or you can use one of the hundreds of community-created worlds. Figure 5 shows a screenshot of Gazebo running a simulation of the Create3 robot.
+From the perspective of a robot programmer, Gazebo can be very useful as it's simulation publishes nearly identical topics to the ones the real robot does, which means we can test all our code in simulation before deploying to the live robot. You can create a world for your robot using Gazebo's world editor, or you can use one of the hundreds of community-created worlds. Figure 7 shows a screenshot of Gazebo running a simulation of the Create3 robot.
 
 ![Gazebo screenshot](images/gazebo_screenshot.jpg)
 
-##### Figure 5. Gazebo screenshot showing the simulation environment. You can control the robot by clicking the command buttons on the bottom right. 
+##### Figure 7. Gazebo screenshot showing the simulation environment. You can control the robot by clicking the command buttons on the bottom right. 
 
 More often than not, Gazebo is used to stress test the code before deploying, as it allows us to test any kind of algorithm freely without the risk of damaging the robot or any expensive equipment. It can also save time as the simulation can be sped up to be many times faster than realtime, depending on the machine running the simulation.
 
 For more information about Gazebo, check its [getting started guide](https://gazebosim.org/docs/harmonic/getstarted/) and [Simulation Tutorials](https://gazebosim.org/docs/harmonic/tutorials/).
 
-> Unfortunately, Gazebo is quite resource demanding and usually does not run well in virtual machines.
+> _Note:_ Gazebo is quite resource demanding and usually does not run well in virtual machines.
 
 ## 3.6 Packages
 
@@ -494,11 +504,11 @@ The packages we installed include files that allow simulating the Create3 in Gaz
 ros2 launch irobot_create_gz_bringup create3_gz.launch.py
 ```
 
-During the launch process, you will see many log messages in the terminal and two new program windows. It might take a long while for all nodes to be loaded but, when everything is running, you should see a window with Gazebo (Figure 5) and another with RViz (Figure 6).
+During the launch process, you will see many log messages in the terminal and two new program windows. It might take a long while for all nodes to be loaded but, when everything is running, you should see a window with Gazebo (Figure 7) and another with RViz (Figure 8).
 
 ![RViz screenshot](images/rviz_screenshot.jpg)
 
-##### Figure 6. RViz screenshot with the Create3 robot. The menu on the left side allows you to control what RViz shows, which can include sensor data, reference frames etc..
+##### Figure 8. RViz screenshot with the Create3 robot. The menu on the left side allows you to control what RViz shows, which can include sensor data, reference frames etc..
 
 After waiting for a few minutes for Gazebo to fully launch, open a new terminal window and run the `ros2 topic list` command to see the list of topics published by the Gazebo simulation node:
 
