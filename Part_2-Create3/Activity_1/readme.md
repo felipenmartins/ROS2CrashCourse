@@ -48,33 +48,53 @@ The Create3 robot can be programmed in Python via a web interface that does not 
 
 Follow the steps below to practice with the Create3 robot using the Python Web Playground.
 
-> _Important_: Make sure that your robot is switched to Bluetooth mode. If you are working with more than one robot, Bluetooth connection must be completed for one robot at a time to avoid errors.
+### Step 1 - Power the robot ON
 
-> **_Very important:_ Keep the robot on the ground when it is ON to avoid accidents!** The cliff sensors are not perfect.
+Place it on its charging dock to power it ON. **Keep the robot on the ground when it is ON to avoid accidents!** The cliff sensors are not perfect.
 
-1. Access [https://python.irobot.com/](https://python.irobot.com/) using Chrome or another a Bluetooth®-supported web browser. The screen is divided in three areas and a menu on the top. The areas below the menu are where you are going to write your Python code (left) and select example files to open (right). At the bottom there is a console where you will see messages printed by the running code.
+### Step 2 - Python Web Playground
 
-2. In the menu, click the "Connect" button and look for your robot name to appear on the list. Then, select it and connect.
+Access [https://python.irobot.com/](https://python.irobot.com/) using Chrome or another a Bluetooth®-supported web browser. The screen is divided in three areas and a menu on the top. The areas below the menu are where you are going to write your Python code (left) and select example files to open (right). At the bottom there is a console where you will see messages printed by the running code.
 
-3. In the area to the right, go to the folder `create3_robot` and click on the `ir_proximity_obstacles.py` to open it.
+### Step 3 - Connect to the robot
 
-4. Run the code by clicking the "play" button on the top left of the screen. Hover your hand in front of the proximity sensors and check how the light ring changes.
+In the menu, click the "Connect" button. Look for your robot name on the list, select it, and click connect.
 
-5. Now, run the `ir_proximity_print.py` script to answer the following questions:
+> _Important_: Make sure that your robot is switched to Bluetooth mode. If you are working with more than one robot, Bluetooth connection must be completed for **one robot at a time** to avoid errors.
 
-    a. What is the maximum range of the IR obstacle sensors?
+### Step 4 - Run the example code
 
-    b. Where are each of the IR obstacle sensors located?
+In the area to the right, go to the folder `create3_robot` and click on the `ir_proximity_obstacles.py` to open it (the examples located in the `create3_robot` folder are designed to work on the Create3).
 
-    c. Are the sensors linear? How can you relate their measurements to distance?
+Run the code by clicking the "play" button on the top left of the screen.
 
-6. Code is written in Python, with special functions to control the robot. Functions can receive a “decorator” that indicates how they must behave. For example, the decorator `@event(robot.when_play)` indicates that the function will be executed when the `robot.play()` function is called in your code. Note that many functions can have the same decorator, and they will all be executed simultaneously when the corresponding event occurs. See the [Python Cheat Sheets](https://iroboteducation.github.io/create3_docs/lessons/pwp/cheat-sheets/) page for more information.
+### Step 5 - Test the proximity sensors
 
-7. Explore other examples available in the folder `create3_robot` to examine the code and see how the robot behaves.
+Hover your hand in front of the proximity sensors and check how the light ring changes.
 
-8. Modify some of the programs to change the behavior of the robot. Try to make the robot follow a wall, for example.
+### Step 6 - Investigate the IR sensors
 
-9. When you are done, Power Off the robot (Storage Mode) and put the it back into the box together with its charging dock and power cable.
+Now, run the `ir_proximity_print.py` example to answer the following questions:
+
+* What is the maximum range of the IR proximity sensors?
+* Where are each of the IR proximity sensors located?
+* How do their values relate to distance? Are the sensors linear?
+
+### Step 7 - Study how Python works on the Create3
+
+Code is written in Python, with special functions to control the robot. Functions can receive a “decorator” that indicates how they must behave. For example, the decorator `@event(robot.when_play)` indicates that the function will be executed when the `robot.play()` function is called in your code. Note that many functions can have the same decorator, and they will all be executed simultaneously when the corresponding event occurs.
+
+Go to the [Python Cheat Sheets](https://iroboteducation.github.io/create3_docs/lessons/pwp/cheat-sheets/) and read the section "Python Explanation" to learn more.
+
+### Step 8 - Explore other examples
+
+Explore other examples available in the folder `create3_robot` to examine the code and see how the robot behaves.
+
+Modify some of the programs to change the behavior of the robot. Try to make the robot follow a wall, for example.
+
+### Step 9 - Power the robot OFF
+
+When you are done, Power Off the robot (Storage Mode) and put the it back into the box together with its charging dock and power cable.
 
 ## Conclusion
 
