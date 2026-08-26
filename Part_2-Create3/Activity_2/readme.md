@@ -1,12 +1,28 @@
 # Activity 2 - IR sensors and Light Ring
 
-This activity will focus on creating a node that activates the LEDs of the Light Ring of the Create3 robot depending on the readings from the front-facing proximity sensors. This is similar to what we saw in Activity 1 when running `ir_proximity_obstacles.py`, but now we are going to develop a ROS node for it.
+This activity will focus on creating a node that activates the LEDs of the Light Ring of the Create3 robot depending on the readings from the front-facing proximity sensors. We are going to build a ROS node in Python to implement a behavior similar to what we saw in Activity 1 of Part 2 when running `ir_proximity_obstacles.py`.
 
-## Step 1 - Connect to the robot
+## Connection to the Create3 robot
 
-To connect to the robot, your computer running ROS must be connected to the same WiFi network as the robot.
+The robot and the computer running ROS 2 need to be on the same WiFi network because ROS 2 is designed for peer-to-peer communication using DDS (Data Distribution Service). DDS automatically discovers other ROS 2 nodes on the local network and then exchanges messages directly between devices.
 
-Turn the robot ON by placing it on the charging dock with the front sensor facing the dock's sensor. You should see the robot's light ring turn on when you do this. Wait for around 2-3 minutes while the robot boots up and connects to the wifi network. You should hear two "happy sounds" from your robot: one when it boots up and another one when it successfully connects to WiFi.
+For example, your laptop runs a ROS 2 node that publishes to the topic `/cmd_vel` while the Create3 subscribes to `/cmd_vel`. DDS discovers both nodes automatically and messages flow directly between laptop and robot.
+
+However, this will _not_ work if the robot and your laptop are connected to different networks. Also, many routers block multicast traffic between networks, prevent devices on different subnets from discovering each other, and/or use NAT, which hides devices from each other.
+
+Therefore, **make sure that both the robot and your laptop running ROS are connected to the same network**. You can check connectivity by pinging the robot from your laptop:
+
+```bash
+ping <robot-ip>
+```
+
+If the ping fails, ROS 2 communication will almost certainly fail as well.
+
+Once the robot and the laptop can communicate, follow the steps below to inspect topics from the robot and to build the ROS node.
+
+### Step 1 - Inspect the robot topics
+
+If not done yet, turn the robot ON by placing it on the charging dock with the front sensor facing the dock's sensor. You should see the robot's light ring turn on when you do this. Wait for around 2-3 minutes while the robot boots up and connects to the WiFi network. You should hear two "happy sounds" from your robot: one when it boots up and another one when it successfully connects to WiFi.
 
 You can check if your robot is successfully connected to the same network as you by  opening a new terminal window listing the current topics using `ros2 topic list`. You should now see an output similar to:
 
@@ -40,11 +56,11 @@ You can check if your robot is successfully connected to the same network as you
 
 If there are multiple robots in the same network, you will find that every node or topic your robot is running will be prepended by the robots name (i.e: `/robot_1/battery_state`). If you are at Hanze, you can find your robot identifier on the top faceplate of the robot and on its charging dock. For most of the commands in the workshop, you will need to prepend the commands with the correct robot name.
 
-## Step 2 - Inspect the proximity sensors topic
+### Step 2 - Inspect the proximity sensors topic
 
 The Create3 publishes raw readings from its IR sensors on the topic `ir_intensity`. Let's start by seeing the data from this topic. As we learned before, we can echo the data from the topic by using the `ros2 topic echo <topic_name>` command.
 
-Open a new terminal window and enter the following command, replacing robot-1 with your robot's name:
+Open a new terminal window and enter the following command, replacing `robot_1` by your robot's name:
 
 ```bash
 ros2 topic echo /robot_1/ir_intensity
@@ -106,7 +122,7 @@ readings:
 
 As you can see, the message published contains the readings for each of the 7 proximity sensors. Try moving your hand in front of the bumper and see how the readings behave, this will be needed when you write your code later on. The result should be comparable to the one in Activity 1.
 
-## Step 3 - Publish to the Light Ring topic
+### Step 3 - Publish to the Light Ring topic
 
 The Create3 provides a topic where commands can be sent to control the robot's light ring. We are now going to send a test command to explore the message's format. Try sending following command in your terminal:
 
@@ -124,9 +140,9 @@ To return the lightring to the default color, just send an empty message on the 
 ros2 topic pub /robot_1/cmd_lightring irobot_create_msgs/msg/LightringLeds "{}"
 ```
 
-## Step 4 - Understand the message structure
+### Step 4 - Understand the message structure
 
-Before we can write code to use these topics, we must understand the structure of each message. This is a task you will have to do whenever you interact with a new topic or action, so it is important to understand this process well.
+Before we can write code to use these topics, we must understand the structure of each message. This is something you will have to do whenever you interact with a new topic or action, so it is important to understand this process well.
 
 Using the `ros2 interface show <interface-name>` command we can investigate the structure of messages. Let's look at the message for the `ir_intensity` topic: first, we must find out its message type by getting information about the topic:
 
@@ -170,9 +186,9 @@ By inspecting the above result, you can see that the message consists of two top
 - The hierarchy of the fields is described by their indentation (e.g: The `value` field is a part of the `readings` field )
 - The `readings` field is an array, evidenced by the `[]`
 
-## Step 5 - Create a node to print IR values
+### Step 5 - Create a node to print IR values
 
-Now, let's see what this will look like in Python. Copy the simple subscriber code below in a new file and run it, making sure to change the topic name according to your namespace (if you need a reminder on how to do this, review steps 4-8 of Activity 1.2.1 from [part 1, chapter 1](/Part_1-ROS/Chapter-1/readme.md)).
+Now, let's see how this can be done in Python. Copy the simple subscriber code below in a new file and run it, making sure to change the topic name according to your namespace (if you need a reminder on how to do this, review steps 4-8 of Activity 1.2.1 from [part 1, chapter 1](../../Part_1-ROS/Chapter-1/readme.md#step-4---create-the-python-scripts)).
 
 ```python
 #!/usr/bin/env python3
@@ -219,9 +235,9 @@ The readings data is: [irobot_create_msgs.msg.IrIntensity(header=std_msgs.msg.He
 
 As you can see, this reflects what we saw in the terminal earlier. In our case, `type(msg)` returns the message type, which is of the same type we saw in the terminal before. We can also access the `header` and `readings` variables simply by `msg.header`and `msg.readings`, much like the way we can access a normal Python dictionary.
 
-> **Exercise:** Using that same logic, add instructions to the code to access and print the value of the first element of the `readings` array.
+> **Exercise:** Using that same logic, add instructions to the code to access and print a list with just the values of the elements of the `readings` array.
 
-## Step 6 - Create nodes to control the light ring
+### Step 6 - Create nodes to control the light ring
 
 Now, let's do the same for the `cmd_lightring` topic. Use the template below to create a node that turns the light ring completely blue.
 
@@ -335,7 +351,7 @@ if __name__ == '__main__':
     main()
 ```
 
-> **Note that you will need to change the topic names to reflect your robot's name (e.g: `ir_intensity` => `robot-1/ir_intensity`)**
+> **_Note_**: Remember that you will need to change the topic names to reflect your robot's name (e.g: `ir_intensity` => `robot_1/ir_intensity`).
 
 ## Conclusion
 
