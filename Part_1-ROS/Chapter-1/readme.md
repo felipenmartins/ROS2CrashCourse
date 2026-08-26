@@ -87,11 +87,11 @@ The ROS Computation Graph is the network of peer-to-peer processes that compute 
 
 Different versions of ROS are called distributions (current distributions are only being released for ROS 2). Each distribution is designed to work with specific versions of operating systems. Once a distribution is released, changes are limited to bug fixes and non-breaking improvements.
 
-This course was designed for the distribution called _Jazzy Jalisco_ (often called only _Jazzy_), which was released on the 23rd of May 2023 and will reach EOL (end-of-life) in May 2029. Jazzy works in other platforms, but best supports Ubuntu 24.04 (amd64 and arm64) and Windows 10 (amd64) as Tier 1 (best support). Because of its best support, we are focusing on Ubuntu 24.04 in this course.
+This course was designed for the distribution called _Jazzy Jalisco_ (often called only _Jazzy_), which was released on the 23rd of May 2024 and will reach EOL (end-of-life) in May 2029. Jazzy works in other platforms, but best supports Ubuntu 24.04 (amd64 and arm64) and Windows 10 (amd64) as Tier 1 (best support). Because of its best support, we are focusing on Ubuntu 24.04 in this course.
 
 A list of [ROS 2 distributions](https://docs.ros.org/en/jazzy/Releases.html) and associated documentation is available at the ROS 2 Documentation website.
 
-> _Curiosity:_ Each version of ROS has been named after some sort of turtle and have a turtle as a symbol. New ROS 2 distributions are released yearly on the 23rd of May (World Turtle Day).
+> **_Curiosity:_** Each version of ROS is named after a turtle and has a turtle as a symbol. New ROS 2 distributions are released yearly on the World Turtle Day (23rd of May).
 
 ### Packages
 
