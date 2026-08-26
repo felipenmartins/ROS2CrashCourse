@@ -12,7 +12,7 @@ This part contains a quick introduction to the [iRobot Create3](https://iroboted
 
 The demonstration platform used in this course is the [iRobot Create3](https://iroboteducation.github.io/create3_docs/) educational robot.
 
-If you do not have access to a Create3 robot, very similar activities can be executed using the Gazebo simulation provided in the Create3 Simulation Packages - instructions to install the Create3 simulation package are provided in Part 1, Chapter 3, [Activity 3.6.1](../Part_1-ROS/Chapter-3#361-activity-adding-packages-to-the-your-workspace). However, this does require a powerful enough machine to comfortably run Gazebo and will likely not work well on a virtual machine.
+If you do not have access to a Create3 robot, very similar activities can be executed using the Gazebo simulation provided in the Create3 Simulation Packages - instructions to install the Create3 simulation package are provided in Part 1, Chapter 3, [Activity 3.6.1](../Part_1-ROS/Chapter-3#361-activity-adding-create3-packages-to-run-a-simulation). However, this does require a powerful enough machine to comfortably run Gazebo and will likely not work well on a virtual machine.
 
 ## Navigation menu
 
