@@ -2,7 +2,28 @@
 
 In this activity we will practice Action goals with the Create3. First, we will send goals via the terminal. Afterwards, we will create a node that sends an action goal when one of the interface buttons on the Create3 is pressed.
 
-## Step 1 - Inspect available actions
+## Create3 Actions
+
+The iRobot Create3 exposes many ROS 2 actions through the `irobot_create_msgs` package. Those actions allow you to ask the robot to navigate a specified distance in a straight line, navigate to a specific position, rotate by a specific angle, follow a wall etc.. The existance of such actions means that your code can focus on the high level logic to control the navigation of the robot.
+
+The complete list of Create3 actions is:
+
+* `/drive_arc` - Drive along an arc with a specified radius.
+* `/drive_distance` - Drive a specified distance in a straight line.
+* `/navigate_to_position` - Navigate to a target pose.
+* `/rotate_angle` - Rotate the robot in place by a specified angle.
+* `/wall_follow` - Follow a wall using onboard bump and IR sensors.
+* `/dock` - Autonomously find and dock with the charging station.
+* `/undock`- Leave the charging dock autonomously.
+
+* `/audio_note_sequence` - Play a sequence of notes through the robot speaker.
+* `/led_animation` - Run predefined LED ring animations.
+
+Now, connect to the robot and follow the steps below to investigate some of the available actions and to build a node to interact with them.
+
+> _Note_: If you forgot how to turn on and connect to the Create3, please review [Activity 1](../../Part_2-Create3/Activity_1/readme.md) and [Activity 2](../../Part_2-Create3/Activity_2/readme.md).
+
+### Step 1 - Inspect available actions
 
 Connect to the robot and get a list of all available actions via the command:
 
@@ -10,17 +31,13 @@ Connect to the robot and get a list of all available actions via the command:
 ros2 action list
 ```
 
-> If you forgot how to turn on and connect to the Create3, please review [Activity 1](../../Part_2-Create3/Activity_1/readme.md) and [Activity 2](../../Part_2-Create3/Activity_2/readme.md).
-
-The Create3 has a few actions available. See more information [here](https://iroboteducation.github.io/create3_docs/api/ros2/).
-
-One of the actions that the Create3 provides is the `led_animation`, which allows us to create animations for the robot's lightring. Let's find out the type of the `led_animation` action:
+You should get a response with all actions listed above. One of the actions that the Create3 provides is the `led_animation`, which allows us to create animations for the robot's lightring. Let's find out the type of the `led_animation` action by getting the list of actions with their respective types:
 
 ```bash
 ros2 action list -t
 ```
 
-This should return a list of all the currently available actions and their types:
+This should return:
 
 ```bash
 /audio_note_sequence [irobot_create_msgs/action/AudioNoteSequence]
@@ -34,7 +51,7 @@ This should return a list of all the currently available actions and their types
 /wall_follow [irobot_create_msgs/action/WallFollow]
 ```
 
-## Step 2 - Call the LED animation action
+### Step 2 - Call the LED animation action
 
 For now let's focus on the`/led_animation` action, which has a type of `irobot_create_msgs/action/LedAnimation`. We can now use the `ros2 interface show <action_type>` command to find the exact structure of the action type:
 
@@ -73,13 +90,47 @@ ros2 action send_goal /robot-1/led_animation irobot_create_msgs/action/LedAnimat
 
 Observe the result and action feedback. Change the parameters of the command to get an idea of the pre-programmed LED animations.
 
-## Step 3 - Use Actions in Python
+### Step 3 - Move the robot
 
-Now, let's see how to do it with Python!
+Remember to **keep the robot on the ground** to avoid accidents!
+
+Just like the turtle in TurtleSim, the Create3 robot subscribe to the `/cmd_vel` topic, so it can be controlled by publishing `geometry_msgs/msg/Twist` messages to it. Before calling actions, let us first move the robot by defining its speed:
+
+```bash
+ros2 topic pub -r 20 /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.2, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}"
+```
+
+The command above will move the robot straight forward for some time. There is a timeout period after which the robot will stop if no new messages are received in the `cmd_vel` topic (this is implemented by the iRobot API to avoid that the robot keeps running in case the connection is lost or some other issue). But if you want to stop the robot immediatly, just send the same command with all values equal to "0.0".
+
+Controlling the movement of the robot via messages to `/cmd_vel` requires the implementation of a controller that constantly calculates the required robot velocities, which is not that straightforward. This process is simplified by the different actions available to move the robot, which implement a closed-loop control using the robot's fused odometry. Let's practice with some of them.
+
+Run the command below to move the robot 0.5 meters ahead:
+
+```bash
+ros2 action send_goal /drive_distance irobot_create_msgs/action/DriveDistance "{distance: 0.5,max_translation_speed: 0.15}"
+```
+
+The robot will drive straight until it has traveled the specified distance in odometry frame. It will drive backwards if distance is negative (if lower than the backup limit).
+
+> _Note_: You must take intervene if there is something blocking the robot's path, otherwise it will continue to try to move until it (thinks that it) achieves the goal position.
+
+Instead of moving a certain distance, you can command the robot to drive to a specific pose (yes, the action is called *navigate_to_position*, but it actually implements a pose controller):
+
+```bash
+ros2 action send_goal /navigate_to_position irobot_create_msgs/action/NavigateToPosition "{achieve_goal_heading: true,goal_pose:{pose:{position:{x: 1,y: 0.2,z: 0.0}, orientation:{x: 0.0,y: 0.0, z: 0.0, w: 1.0}}}}"
+```
+
+Because of the way this action was implemented, first the robot will rotate to face the goal position, then it will drive straight to the goal position, then it will rotate again to achieve the goal orientation (if enabled).
+
+Examples on how to call the other actions are available on the Create3 Docs page: [Drive Goals](https://iroboteducation.github.io/create3_docs/api/drive-goals/), [Docking](https://iroboteducation.github.io/create3_docs/api/docking/) and [Wall Follow](https://iroboteducation.github.io/create3_docs/api/wall-follow/).
+
+### Step 4 - Use Actions in Python
+
+Now, let's see how to call actions with Python!
 
 Using the concepts we learned before, let's create a node to send an `LedAnimation` action that makes the lightring blink blue for 5 seconds.
 
-Like before, your task is to investigate what you need to write down to complete the template code below by filling out the part `#!Write your code here!` (if you need a reminder on how to do this, review steps 4-8 of Activity 1.2.1 from [part 1, chapter 1](../../Part_1-ROS/Chapter-1#121-activity-creating-your-own-workspace)):
+Your task is to investigate what you need to write down to complete the template code below by filling out the part `#!Write your code here!`. If you need a reminder on how to create files in your workspace, review steps 4-8 of Activity 1.2.1 from [part 1, chapter 1](../../Part_1-ROS/Chapter-1#121-activity-creating-your-own-workspace)):
 
 ```python
 #!/usr/bin/env python3
@@ -129,15 +180,15 @@ if __name__ == '__main__':
 
 ```
 
-## Step 4 - Investigate the buttons topic
+### Step 5 - Investigate the buttons topic
 
-Suppose you want to select the lightring color by clicking the Create3 buttons. We will change our code to impolemnent that, but first let's investigate the buttons topic to understand how it is organized. For that, let's first explore the message type of the topic `/interface_buttons`:
+Suppose you want to select the lightring color by clicking the Create3 buttons. We will change our code to implement that, but first let's investigate the buttons topic to understand how it is organized. For that, let's first explore the message type of the topic `/interface_buttons`:
 
 ```bash
 ros2 topic info /robot_1/interface_buttons
 ```
 
-Which should return an output that looks like this:
+Which should return an output like this:
 
 ```bash
 Type: irobot_create_msgs/msg/InterfaceButtons
@@ -148,7 +199,7 @@ Subscription count: 1
 Let's echo the data from the topic to see how it looks like:
 
 ```bash
-	ros2 topic echo /robot_1/interface_buttons
+ros2 topic echo /robot_1/interface_buttons
 ```
 
 Click the buttons while the topic is being echoed to see the result. You should see an output that looks something like this:
@@ -208,7 +259,7 @@ For our case, we will simply check the `is_pressed` state to verify that the but
 
 Before moving on to creating the code, try using the `ros2 interface show <interface_type>` to find out the exact structure of the message being sent on this topic.
 
-## Step 5 - Add button check to the code
+### Step 6 - Add button check to the code
 
 Our node should create an LED animation action that's activated when button1 is pressed. Using the same concepts and code snippets we created before, complete the following code to complete this step:
 
@@ -279,11 +330,16 @@ if __name__ == '__main__':
     main()
 ```
 
-> **You will need to change the topic and action names to reflect your robot's name (e.g: `interface_buttons` -> `robot_1/interface_buttons`)**
+Remember that you need to change the topic and action names to reflect your robot's name (e.g: `interface_buttons` -> `robot_1/interface_buttons`).
 
-You can also add whatever logic you want to the code. Try, for example, creating different animations for different button presses, or changing the animation's color on each subsequent button press.
+Now run your code, try pressing the buttons on your robot, and check how the light ring reacts to it.
 
-Now run your code, try pressing the buttons on your robot, and the light ring reacting to it!
+### Step 7 - Improve your node
+
+As a final step, you should try implementing different robot behaviors. For example, creating different animations for different button presses, changing the animation's color on each subsequent button press, adding actions to move the robot when you press the buttons or when an IR proximity sensor gets a value below/above a threshold.
+
+Be creative with the Create3!
+Ba dum tsss...
 
 ## Conclusion
 
