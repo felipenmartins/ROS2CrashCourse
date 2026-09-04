@@ -27,7 +27,7 @@ Then, follow again the instructions of **Phase 2: Update Robot** [on this page](
 * RMW_IMPLEMENTATION: `rmw_cyclonedds_cpp`
 * Enable Fast DDS discovery server? _Leave it unchecked_
 
-> _Note:_ If you are at Hanze, you can find your robot number on the top faceplate of the robot and on its charging dock. Use this number for the robot namespace.
+> _Note:_ You can use any number for your robot, but make sure that each robot has a unique number. If you are at Hanze, you must use the robot number shown on the top faceplate of the robot and on its charging dock.
 
 The above settings assume that you are using [ROS 2 Namespaces](https://github.com/iRobotEducation/create3_docs/blob/main/docs/setup/multi-robot.md#ros-2-namespaces) to have multiple Create3 robots connected to the same Wi-Fi network. For more information and to another option, check out [Using multiple Create® 3 robots](https://iroboteducation.github.io/create3_docs/setup/multi-robot/).
 
