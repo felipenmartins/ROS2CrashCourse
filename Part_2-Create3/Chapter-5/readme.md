@@ -1,6 +1,6 @@
 # Chapter 5 - Create3 Topics
 
-In Activity 1 of Part 2 you got familiar with the robot hardware and ran a few examples using the Python Web Playground. Now, you are going to use ROS 2 to control the robot. This activity will focus on creating a node that activates the LEDs of the Light Ring of the Create3 robot depending on the readings from the front-facing proximity sensors. We are going to build a ROS node in Python to implement a behavior similar to what we saw in Activity 1 when running `ir_proximity_obstacles.py`.
+In Activity 1 of Part 2 you got familiar with the robot hardware and ran a few examples using the Python Web Playground. Now, you are going to use ROS 2 to control the robot. This activity will focus on creating a node that activates the LEDs of the Light Ring of the Create3 robot depending on the readings from the front-facing proximity sensors. We are going to build a ROS node in Python to implement a behavior similar to what we saw in Chapter 4 when the light ring color changed according to the readings of the proximity sensors.
 
 ## 5.1 Activity: Preparing the Create3 for ROS
 
