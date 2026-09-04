@@ -98,9 +98,7 @@ When you are done, Power Off the robot (Storage Mode) and put the it back into t
 
 ## Conclusion
 
-After completing this activity, you should be familiar with the iRobot Create3, its sensors, and some of its limitations. You should also know how to use iRobot's Python Web Playground to program the robot.
-
-In the next activities, we will use ROS instead of the Python Web Playground to program the Create3 robot.
+After completing this Chapter, you should be familiar with the iRobot Create3, its sensors, and some of its limitations. You should also know how to use iRobot's Python Web Playground to program the robot. In the next Chapter, we will use ROS instead of the Python Web Playground to program the Create3 robot.
 
 ## Navigation menu
 

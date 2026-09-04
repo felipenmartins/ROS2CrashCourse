@@ -388,7 +388,7 @@ if __name__ == '__main__':
 
 ## Conclusion
 
-After completing this activity, you should be familiar with creating nodes to interact with the IR sensors and Light Ring of the Create3 robot. In the next activity, we will study how to program the robot buttons to send ROS Actions goals.
+After completing this Chapter, you should be familiar with the Create3 topics and should know how to create nodes to interact with the IR sensors and Light Ring of the Create3 robot. In the next Chapter, we will study how to send ROS Actions goals to control the robot.
 
 ## Navigation menu
 

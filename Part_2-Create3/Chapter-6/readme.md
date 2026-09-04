@@ -338,16 +338,20 @@ Remember that you need to change the topic and action names to reflect your robo
 
 Now run your code, try pressing the buttons on your robot, and check how the light ring reacts to it.
 
-### Step 4 - Improve your node
+### Step 4 - Practice with the Create3
 
-As a final step, you should try implementing different robot behaviors. For example, creating different animations for different button presses, changing the animation's color on each subsequent button press, adding actions to move the robot when you press the buttons or when an IR proximity sensor gets a value below/above a threshold.
+As a final practice, try implementing different robot behaviors. For example, creating different animations for different button presses, changing the animation's color on each subsequent button press, adding actions to move the robot when you press the buttons or when an IR proximity sensor gets a value below/above a threshold.
 
 **Be creative with the Create3!**
 _Ba dum tsss..._
 
 ## Conclusion
 
-After completing this activity, you should be familiar with the Create3 Actions and know how to write Python code to call them. As an exercise, modify your node to include calls to other actions of your choice.
+After completing this Chapter, you should be familiar with the Create3 Actions and know how to write Python code to call them.
+
+In this course you went from learning ROS 2 fundamentals to implementing Python code to control a robot with ROS 2! The knowledge you gained in this course equips you with the foundations necessary to learn new ROS 2 packages and concepts.
+
+**Congratulations on completing the ROS 2 Crash Course!!**
 
 ## Navigation menu
 
