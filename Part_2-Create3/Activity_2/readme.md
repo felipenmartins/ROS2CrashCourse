@@ -2,7 +2,7 @@
 
 In Activity 1 of Part 2 you got familiar with the robot hardware and ran a few examples using the Python Web Playground. Now, you are going to use ROS 2 to control the robot. This activity will focus on creating a node that activates the LEDs of the Light Ring of the Create3 robot depending on the readings from the front-facing proximity sensors. We are going to build a ROS node in Python to implement a behavior similar to what we saw in Activity 1 when running `ir_proximity_obstacles.py`.
 
-## Create3 Setup
+## 2.1 Preparing Create3 for ROS
 
 The robot and the computer running ROS 2 need to be on the same WiFi network because ROS 2 is designed for peer-to-peer communication using DDS (Data Distribution Service). DDS automatically discovers other ROS 2 nodes on the local network and then exchanges messages directly between devices. For example, your laptop runs a ROS 2 node that publishes to the topic `/cmd_vel` while the Create3 subscribes to `/cmd_vel`. DDS discovers both nodes automatically and messages flow directly between laptop and robot.
 
@@ -16,7 +16,7 @@ We will start this Activity by checking/updating the robot firmware. Then, we wi
 
 Your Create3 must have the correct firmware version to be able to work with ROS 2 Jazzy. To check which firmware version your robot is running, follow the instructions of **Phase 2: Update Robot** [on this page](https://iroboteducation.github.io/create3_docs/setup/provision/) until step 4. The firmware version will be displayed on the main page of the web server interface.
 
-The firmware version of your robot must be **I.0.0.CycloneDDS**. If not, you must update it. For that, connect to the internet again and download the **release I.0.0.CycloneDDS** from [iRobot® Create® 3 Release I.0.0](https://iroboteducation.github.io/create3_docs/releases/i_0_0/). 
+The firmware version of your robot must be **I.0.0.CycloneDDS**. If not, you must update it. For that, connect to the internet again and download the **release I.0.0.CycloneDDS** from [iRobot® Create® 3 Release I.0.0](https://iroboteducation.github.io/create3_docs/releases/i_0_0/).
 
 > **Attention!** Make sure to download the correct version of the firmware!
 
@@ -44,6 +44,10 @@ ping <robot-ip>
 If the ping fails, ROS 2 communication will almost certainly fail as well.
 
 Once the robot and the laptop can communicate, follow the steps below to inspect topics from the robot and to build the ROS node.
+
+## 2.2 Programming the Create3 with ROS 2
+
+First, we are going to investigate the topics of the Create3 robot, focusing on the proximity sensors and light ring. Then, we will create nodes to print IR values and to change the colors of the light ring.
 
 ### Step 3 - Inspect the robot topics
 
@@ -155,7 +159,7 @@ The Create3 provides a topic where commands can be sent to control the robot's l
 ros2 topic pub /robot_1/cmd_lightring irobot_create_msgs/msg/LightringLeds "{override_system: true, leds: [{red: 255, green: 0, blue: 0}, {red: 0, green: 255, blue: 0}, {red: 0, green: 0, blue: 255}, {red: 255, green: 255, blue: 0}, {red: 255, green: 0, blue: 255}, {red: 0, green: 255, blue: 255}]}"
 ```
 
-This should make your robot's light ring colorful. 
+This should make your robot's light ring colorful.
 
 As you can see, the message published on this topic is of type `irobot_create_msgs/msg/LightringLeds` and is relatively intuitive to use. Try playing around with the values and see them change yourselves.
 
