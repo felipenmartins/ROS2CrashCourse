@@ -1,8 +1,8 @@
-# Activity 2 - IR sensors and Light Ring
+# Chapter 5 - Create3 Topics
 
 In Activity 1 of Part 2 you got familiar with the robot hardware and ran a few examples using the Python Web Playground. Now, you are going to use ROS 2 to control the robot. This activity will focus on creating a node that activates the LEDs of the Light Ring of the Create3 robot depending on the readings from the front-facing proximity sensors. We are going to build a ROS node in Python to implement a behavior similar to what we saw in Activity 1 when running `ir_proximity_obstacles.py`.
 
-## 2.1 Preparing Create3 for ROS
+## 5.1 Activity: Preparing the Create3 for ROS
 
 The robot and the computer running ROS 2 need to be on the same WiFi network because ROS 2 is designed for peer-to-peer communication using DDS (Data Distribution Service). DDS automatically discovers other ROS 2 nodes on the local network and then exchanges messages directly between devices. For example, your laptop runs a ROS 2 node that publishes to the topic `/cmd_vel` while the Create3 subscribes to `/cmd_vel`. DDS discovers both nodes automatically and messages flow directly between laptop and robot.
 
@@ -45,11 +45,11 @@ If the ping fails, ROS 2 communication will almost certainly fail as well.
 
 Once the robot and the laptop can communicate, follow the steps below to inspect topics from the robot and to build the ROS node.
 
-## 2.2 Programming the Create3 with ROS 2
+## 5.2 Activity: Investigating the Create3 topics
 
 First, we are going to investigate the topics of the Create3 robot, focusing on the proximity sensors and light ring. Then, we will create nodes to print IR values and to change the colors of the light ring.
 
-### Step 3 - Inspect the robot topics
+### Step 1 - Inspect the robot topics
 
 If not done yet, turn the robot ON by placing it on the charging dock with the front sensor facing the dock's sensor. You should see the robot's light ring turn on when you do this. Wait for around 2-3 minutes while the robot boots up and connects to the WiFi network. You should hear two "happy sounds" from your robot: one when it boots up and another one when it successfully connects to WiFi.
 
@@ -85,7 +85,7 @@ You can check if your robot is successfully connected to the same network as you
 
 If there are multiple robots in the same network with the same ROS 2 Domain ID, every topic of all robots in the network will be listed.
 
-### Step 4 - Inspect the proximity sensors topic
+### Step 2 - Inspect the proximity sensors topic
 
 The Create3 publishes raw readings from its IR sensors on the topic `ir_intensity`. Let's start by seeing the data from this topic. As we learned before, we can echo the data from the topic by using the `ros2 topic echo <topic_name>` command.
 
@@ -151,7 +151,7 @@ readings:
 
 As you can see, the message published contains the readings for each of the 7 proximity sensors. Try moving your hand in front of the bumper and see how the readings behave, this will be needed when you write your code later on. The result should be comparable to the one in Activity 1.
 
-### Step 5 - Publish to the Light Ring topic
+### Step 3 - Publish to the Light Ring topic
 
 The Create3 provides a topic where commands can be sent to control the robot's light ring. We are now going to send a test command to explore the message's format. Try sending following command in your terminal:
 
@@ -169,7 +169,7 @@ To return the lightring to the default color, just send an empty message on the 
 ros2 topic pub /robot_1/cmd_lightring irobot_create_msgs/msg/LightringLeds "{}"
 ```
 
-### Step 6 - Understand the message structure
+### Step 4 - Understand the message structure
 
 Before we can write code to use these topics, we must understand the structure of each message. This is something you will have to do whenever you interact with a new topic or action, so it is important to understand this process well.
 
@@ -215,9 +215,13 @@ By inspecting the above result, you can see that the message consists of two top
 - The hierarchy of the fields is described by their indentation (e.g: The `value` field is a part of the `readings` field )
 - The `readings` field is an array, evidenced by the `[]`
 
-### Step 7 - Create a node to print IR values
+## 5.3 Activity: Programming the Create3 with ROS 2
 
-Now, let's see how this can be done in Python. Copy the simple subscriber code below in a new file and run it, making sure to change the topic name according to your namespace (if you need a reminder on how to do this, review steps 4-8 of Activity 1.2.1 from [part 1, chapter 1](../../Part_1-ROS/Chapter-1/readme.md#step-4---create-the-python-scripts)).
+Now, let's see how we can do the same in Python.
+
+### Step 1 - Create a node to print IR values
+
+Copy the simple subscriber code below in a new file and run it, making sure to change the topic name according to your namespace (if you need a reminder on how to do this, review steps 4-8 of Activity 1.2.1 from [Part 1, Chapter 1](../../Part_1-ROS/Chapter-1/readme.md#step-4---create-the-python-scripts)).
 
 ```python
 #!/usr/bin/env python3
@@ -266,7 +270,7 @@ As you can see, this reflects what we saw in the terminal earlier. In our case, 
 
 > **Exercise:** Using that same logic, add instructions to the code to access and print a list with just the values of the elements of the `readings` array.
 
-### Step 8 - Create nodes to control the light ring
+### Step 2 - Create nodes to control the light ring
 
 Now, let's do the same for the `cmd_lightring` topic. Use the template below to create a node that turns the light ring completely blue.
 
@@ -388,6 +392,6 @@ After completing this activity, you should be familiar with creating nodes to in
 
 ## Navigation menu
 
-- Continue to [Activity 3 - Actions with the physical buttons](../../Part_2-Create3/Activity_3/readme.md)
+- Continue to [Chapter 6 - Create3 Actions](../../Part_2-Create3/Chapter-6/readme.md)
 - Go to [Part 2 - Create3](../../Part_2-Create3/readme.md)
 - Go to the [Main page](../../readme.md)

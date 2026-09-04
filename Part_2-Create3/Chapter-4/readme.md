@@ -1,8 +1,8 @@
-# Activity 1 - Introduction to the iRobot Create3
+# Chapter 4 - Introduction to the iRobot Create3
 
 The Create3® is an educational robot made by iRobot, who you may know as the company that created the Roomba® vacuum cleaner. We will use the Create3 robot to practice with some of the concepts studied in Part 1, so it is a good idea to get familiar with the robot first.
 
-## Overview
+## 4.1 Robot Overview
 
 The Create 3 is based on the Roomba vacuum cleaner robot. Its sensors, actuators, and compact design allow it to autonomously navigate a the whole floor of a home or office space.
 
@@ -26,11 +26,11 @@ Besides the sensors shown in Figures 1 and 2, the Create3 also has wheel encoder
 
 This section is an excerpt from the [create3 docs](https://iroboteducation.github.io/create3_docs/hw/overview/), head over there if you want to find out more about the robot.
 
-## Powering the robot ON
+## 4.2 Powering the robot ON
 
 To power on the robot, place it on the charging dock. The green LED on the dock will glow for a few seconds to indicate successful connection, and the robot’s Light Ring should glow a bright spinning light. The Light Ring will continue to spin as the robot boots up. When the process is complete, the robot will chime a “happy sound.” The Ring Light will then transition to a slower spinning white light if still on the charging dock, or a solid white light when removed.
 
-## Powering the robot OFF
+## 4.3 Powering the robot OFF
 
 There are two ways to power down the robot: Standby Mode and Storage Mode:
 
@@ -42,7 +42,7 @@ In **Storage Mode** your robot’s battery will power off completely. To turn th
 
 > To enter Storage Mode, press and hold the center button for seven seconds while NOT at the charging dock. The Light Ring will pulse bright white three times and then play the “power down” sound. After ten seconds, the Light Ring should turn off.
 
-## Programming the robot with Python Web Playground
+## 4.4 Activity: Programming the Create3 with Python Web Playground
 
 The Create3 robot can be programmed in Python via a web interface that does not require interacting with ROS. The only requirements are that your computer has Bluetooth® and in that you use Python Web Playground in a Bluetooth®-supported web browser, such as Google Chrome.
 
@@ -104,6 +104,6 @@ In the next activities, we will use ROS instead of the Python Web Playground to 
 
 ## Navigation menu
 
-- Continue to [Activity 2 - IR sensors and Light Ring](../../Part_2-Create3/Activity_2/readme.md)
+- Continue to [Chapter 5 - Create3 Topics](../../Part_2-Create3/Chapter-5/readme.md)
 - Go to [Part 2 - Create3](../../Part_2-Create3/readme.md)
 - Go to the [Main page](../../readme.md)

@@ -53,9 +53,21 @@ This part covers fundamental ROS 2 concepts. It can be followed even if you don'
 
 This part contains a quick introduction to the [iRobot Create3](https://iroboteducation.github.io/create3_docs/) educational robot using iRobot's Python Web Playground, followed by activities to practice ROS 2 concepts with the robot.
 
-- **Activity 1 - Introduction to the iRobot Create3**
-- **Activity 2 - IR sensors and Light Ring**
-- **Activity 3 - Actions with the physical buttons**
+- **Chapter 4 - Introduction to the iRobot Create3**
+  - Robot Overview
+  - Powering the robot ON
+  - Powering the robot OFF
+  - _Activity: Programming the Create3 with Python Web Playground_
+
+- **Chapter 5 - Create3 Topics**
+  - _Activity: Preparing the Create3 for ROS_
+  - _Activity: Investigating the Create3 topics_
+  - _Activity: Programming the Create3 with ROS 2_
+
+- **Chapter 6 - Create3 Actions**
+  - List of all available actions
+  - _Activity: Call actions to control the robot_
+  - _Activity: Call actions from ROS nodes_
 
 ## Intended Learning Outcomes
 

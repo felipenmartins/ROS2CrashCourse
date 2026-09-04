@@ -1,10 +1,22 @@
 # Part 2 - Create3
 
-This part contains a quick introduction to the [iRobot Create3](https://iroboteducation.github.io/create3_docs/) educational robot, where you will familiarize yourself with it using the Python Web Playground. In the subsequent activities you will practice ROS concepts with the robot.
+This part contains a quick introduction to the [iRobot Create3](https://iroboteducation.github.io/create3_docs/) educational robot, where you will familiarize yourself with it using the Python Web Playground. In the subsequent chapters you will practice ROS concepts with the robot.
 
-- [**Activity 1 - Introduction to the iRobot Create3**](../Part_2-Create3/Activity_1/readme.md)
-- [**Activity 2 - IR sensors and Light Ring**](../Part_2-Create3/Activity_2/readme.md)
-- [**Activity 3 - Actions with the physical buttons**](../Part_2-Create3/Activity_3/readme.md)
+- [**Chapter 4 - Introduction to the iRobot Create3**](../Part_2-Create3/Chapter-4/readme.md)
+  - Robot Overview
+  - Powering the robot ON
+  - Powering the robot OFF
+  - _Activity: Programming the Create3 with Python Web Playground_
+
+- [**Chapter 5 - Create3 Topics**](../Part_2-Create3/Chapter-5/readme.md)
+  - _Activity: Preparing the Create3 for ROS_
+  - _Activity: Investigating the Create3 topics_
+  - _Activity: Programming the Create3 with ROS 2_
+
+- [**Chapter 6 - Create3 Actions**](../Part_2-Create3/Chapter-6/readme.md)
+  - List of all available actions
+  - _Activity: Call actions to control the robot_
+  - _Activity: Call actions from ROS nodes_
 
 ## Setup Requirements
 
@@ -16,6 +28,6 @@ If you do not have access to a Create3 robot, very similar activities can be exe
 
 ## Navigation menu
 
-- Start with [Activity 1 - Introduction to the iRobot Create3](../Part_2-Create3/Activity_1/readme.md)
+- Start with [Chapter 4 - Introduction to the iRobot Create3](../Part_2-Create3/Chapter-4/readme.md)
 - Go to [Part 1 - ROS](../Part_1-ROS/readme.md)
 - Go to the [Main page](../readme.md)

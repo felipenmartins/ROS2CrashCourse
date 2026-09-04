@@ -1,8 +1,8 @@
-# Activity 3 - Actions with the physical buttons
+# Chapter 6 - Create3 Actions
 
 In this activity we will practice Action goals with the Create3. First, we will send goals via the terminal. Afterwards, we will create a node that sends an action goal when one of the interface buttons on the Create3 is pressed.
 
-## Create3 Actions
+## 6.1 List of all available actions
 
 The iRobot Create3 exposes many ROS 2 actions through the `irobot_create_msgs` package. Those actions allow you to ask the robot to navigate a specified distance in a straight line, navigate to a specific position, rotate by a specific angle, follow a wall etc.. The existance of such actions means that your code can focus on the high level logic to control the navigation of the robot.
 
@@ -21,7 +21,9 @@ The complete list of Create3 actions is:
 
 Now, connect to the robot and follow the steps below to investigate some of the available actions and to build a node to interact with them.
 
-> _Note_: If you forgot how to turn on and connect to the Create3, please review [Activity 1](../../Part_2-Create3/Activity_1/readme.md) and [Activity 2](../../Part_2-Create3/Activity_2/readme.md).
+> _Note_: If you forgot how to turn on and connect to the Create3, please review "Powering the robot ON" in [Chapter 4](../../Part_2-Create3/Chapter-4/readme.md) and "Preparing the Create3 for ROS" in [Chapter 5](../../Part_2-Create3/Chapter-5/readme.md).
+
+## 6.2 Activity: Call actions to control the robot
 
 ### Step 1 - Inspect available actions
 
@@ -124,13 +126,15 @@ Because of the way this action was implemented, first the robot will rotate to f
 
 Examples on how to call the other actions are available on the Create3 Docs page: [Drive Goals](https://iroboteducation.github.io/create3_docs/api/drive-goals/), [Docking](https://iroboteducation.github.io/create3_docs/api/docking/) and [Wall Follow](https://iroboteducation.github.io/create3_docs/api/wall-follow/).
 
-### Step 4 - Use Actions in Python
+## 6.3 Activity: Call actions from ROS nodes
 
 Now, let's see how to call actions with Python!
 
 Using the concepts we learned before, let's create a node to send an `LedAnimation` action that makes the lightring blink blue for 5 seconds.
 
-Your task is to investigate what you need to write down to complete the template code below by filling out the part `#!Write your code here!`. If you need a reminder on how to create files in your workspace, review steps 4-8 of Activity 1.2.1 from [part 1, chapter 1](../../Part_1-ROS/Chapter-1#121-activity-creating-your-own-workspace)):
+### Step 1 - Complete the Python code
+
+Your task is to investigate what you need to write down to complete the template code below by filling out the part `#!Write your code here!`. If you need a reminder on how to create files in your workspace, review steps 4-8 of Activity 1.2.1 from [Part 1, Chapter 1](../../Part_1-ROS/Chapter-1#121-activity-creating-your-own-workspace)):
 
 ```python
 #!/usr/bin/env python3
@@ -180,7 +184,7 @@ if __name__ == '__main__':
 
 ```
 
-### Step 5 - Investigate the buttons topic
+### Step 2 - Investigate the buttons topic
 
 Suppose you want to select the lightring color by clicking the Create3 buttons. We will change our code to implement that, but first let's investigate the buttons topic to understand how it is organized. For that, let's first explore the message type of the topic `/interface_buttons`:
 
@@ -259,7 +263,7 @@ For our case, we will simply check the `is_pressed` state to verify that the but
 
 Before moving on to creating the code, try using the `ros2 interface show <interface_type>` to find out the exact structure of the message being sent on this topic.
 
-### Step 6 - Add button check to the code
+### Step 3 - Add button check to the code
 
 Our node should create an LED animation action that's activated when button1 is pressed. Using the same concepts and code snippets we created before, complete the following code to complete this step:
 
@@ -334,12 +338,12 @@ Remember that you need to change the topic and action names to reflect your robo
 
 Now run your code, try pressing the buttons on your robot, and check how the light ring reacts to it.
 
-### Step 7 - Improve your node
+### Step 4 - Improve your node
 
 As a final step, you should try implementing different robot behaviors. For example, creating different animations for different button presses, changing the animation's color on each subsequent button press, adding actions to move the robot when you press the buttons or when an IR proximity sensor gets a value below/above a threshold.
 
-Be creative with the Create3!
-Ba dum tsss...
+**Be creative with the Create3!**
+_Ba dum tsss..._
 
 ## Conclusion
 
