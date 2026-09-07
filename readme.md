@@ -4,7 +4,7 @@ Welcome to the ROS 2 Crash Course!
 
 This is a hands-on ROS 2 crash course covering ROS fundamentals and robot programming in Python through practical activities with TurtleSim (and optionally with the iRobot Create3).
 
-This course's page is available at: [https://felipenmartins.github.io/ROS2CrashCourse/](https://felipenmartins.github.io/ROS2CrashCourse/).
+This course's page is available at: [https://felipenmartins.github.io/ROS2-Crash-Course/](https://felipenmartins.github.io/ROS2-Crash-Course/).
 
 As the name suggests, this is a _crash course_. It was designed to give you a quick start and help you gain foundational knowledge to allow you to independently learn new ROS concepts as you need them in the future.
 
