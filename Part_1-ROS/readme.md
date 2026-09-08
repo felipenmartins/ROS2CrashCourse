@@ -43,7 +43,7 @@ The software requirements for this course are:
 
 Preferably, you should have a machine running Ubuntu as main operating system or in dual boot. However, for this course a virtual machine also works.
 
-> **A guide to create a Virtual Machine with Ubuntu and ROS 2 is [available here](/Part_1-ROS/ros2_vm_guide.md).**
+> **A guide to create a Virtual Machine with Ubuntu and ROS 2 is [available here](../Part_1-ROS/ros2_vm_guide.md).**
 
 ## Navigation menu
 
