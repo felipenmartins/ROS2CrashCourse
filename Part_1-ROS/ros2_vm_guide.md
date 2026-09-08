@@ -1,15 +1,22 @@
 # ROS 2 Virtual Machine Setup Guide
 
-This guide provides instructions to create a virtual machine with Ubuntu 24.04, ROS 2 Jazzy, Terminator, and VSCode. This virtual machine will enable you to follow the ROS 2 Crash Course on Windows or Apple machines.
+This guide provides instructions to create a virtual machine with Ubuntu 24.04, ROS 2 Jazzy, Terminator, and VSCode. This virtual machine will enable you to follow the ROS 2 Crash Course on Windows, Linux or Apple machines.
 
-## 1. Install VMware Workstation
+## 1. Install Virtualization Software
 
-VMware Workstation Pro is free for personal, educational, and commercial use. However, it requires creating an account before you download the software. An alternative to VMWare is VirtualBox, which is also free and available at [https://www.virtualbox.org/](https://www.virtualbox.org/).
+The virtualization software is responsible for running the Ubuntu virtual machine on your computer (the host). The virtualization software will use part of your computer resources (memory, disk, processor etc.) to run Ubuntu as if it was running on an independent computer.
 
-### 1.1 Download
+You can install any virtualization software compatible with the OVA standard. Two free options are:
+
+* **VMware Workstation** - runs on Windows or Linux.
+* **VirtualBox** - runs on Windows, macOS/Intel, macOS Apple silicon, Linux and Solaris.
+
+> **Note:** If you want to run the Virtual Machine on a macOS computer, then you must install VirtualBox, which is and available at [https://www.virtualbox.org/](https://www.virtualbox.org/). The instructions below were prepared for VMWare Workstation Pro, but they can also be used for VirtuaBox - keep in mind that the menu options might be different than the ones indicated below.
+
+### 1.1 Download the virtualization software
 
 1. Go to [support.broadcom.com](https://support.broadcom.com/) and create or log in to a free Broadcom account.
-2. Once logged in, go to **My Dashboard → My Downloads → Free Software Downloads**.
+2. Once logged in, go to the menu **Software → Enterprise Software → My Dashboard → My Downloads → Free Software Downloads**.
 3. Search for **VMware Workstation Pro**, select version **26H1**, choose your operating system.
 4. Accept the Terms and Conditions checkbox, then click the download icon.
 
@@ -23,9 +30,10 @@ VMware Workstation Pro is free for personal, educational, and commercial use. Ho
 > **Hyper-V note:** If you use Docker Desktop, WSL2, or Windows Sandbox, VMware 26H1 is compatible with the Windows Hypervisor Platform. No need to disable Hyper-V.
 
 ### 1.3 Import the VM (in case you have the .ova file)
-If you already have a virtual machine file, you can follow the instructions below to import and run it on your computer. If not, skip to section 2.
 
-> ⚠️ **Important!** Apple Silicon mac (M series) users cannot import a VM built for x86 (Intel-compatible) processors, and vice-versa. If you do not have a file compatible with your hardware, you need to create your own virtual machine by following the VM Creation Instructions below. 
+If you already have a virtual machine OVA file, you can follow the instructions below to import and run it on your computer. If not, skip to Section 2.
+
+> ⚠️ **Important!** OVA files are created for specific target hardware. This means that Apple Silicon mac (M series) users cannot import a VM built for x86 (Intel-compatible) processors, and vice-versa. If you do not have a file compatible with your hardware, you need to create your own virtual machine by following the instructions from Section 2 onwards.
 
 1. Open VMware and click **File** → **Open** → select the `.ova` file.
 2. Follow the import wizard (accept defaults).
