@@ -641,7 +641,7 @@ float32 delta
 float32 remaining
 ```
 
-The characters `---` divide the message type in three sections: the first section  corresponds to the structure of the goal _request_ (data type `float32` and variable name `theta`); the subsequent section describes the structure of the _result_; the third section shows the structure of the _feedback_. Go back to the animation in Firgure 3 and observe the behavior of the request, feedback and result messages.
+The characters `---` divide the message type in three sections: the first section  corresponds to the structure of the goal _request_ (data type `float32` and variable name `theta`); the subsequent section describes the structure of the _result_; the third section shows the structure of the _feedback_. Go back to the animation in Firgure 4 and observe the behavior of the request, feedback and result messages.
 
 #### Step 4 - Sending Action Goals
 
