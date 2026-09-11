@@ -274,7 +274,7 @@ In summary, it is good practice to add `#!/usr/bin/env python3` at the start of 
 
 ##### Importing libraries
 
-The first section of the code consists of importing the necessary libraries. We need to import the class `Node` from `rclpy` library and the class `String` from `std_msgs`.  
+The first section of the code consists of importing the necessary libraries. We need to import the class `Node` from `rclpy.node` and the class `String` from `std_msgs.msg`:  
 
 ```python
 # Import Libraries
@@ -284,11 +284,11 @@ from std_msgs.msg import String
 
 In ROS 2, `rclpy` and `std_msgs` are two fundamental packages:
 
-- `rclpy` is the ROS 2 Python client library. It is the primary library that you will see it being used in basically all Python scripts for ROS because it provides the Python API for creating ROS 2 nodes, publishers, subscribers, services, actions, and timers. as well as any message/actions we will use in the code.
+- `rclpy` is the ROS 2 Python client library. It is the primary library that you will see being used in basically all Python scripts for ROS because it provides the API for creating ROS 2 nodes, publishers, subscribers, services, actions, and timers we will use in Python code.
 
 - `std_msgs` is a package that contains standard message definitions used for communication between ROS 2 nodes. These messages define data types such as strings, integers, floats, and booleans.
 
-A ROS 2 node written with `rclpy` often uses message types from `std_msgs`, so you should familiarize yourself with those.
+A ROS 2 node written with `rclpy` often uses message types from `std_msgs`, so you will often see both libraries being used.
 
 ##### Defining the talker class
 
@@ -301,9 +301,9 @@ class talker(Node):
 
 ##### The constructor method
 
-In this section we define the `__init__` function, also known as the constructor function. This is the function that is called everytime we create an instance (an object) of our class.
+The `__init__` function is the constructor method of our `talker` class. This is the method that is called everytime we create an instance of our class (an object).
 
-Inside our constructor function, we usually create our publishers and subscribers to different topics, define any variables we might need in the future, as well as place any other code we need to run only once.
+Inside our constructor function, we usually create publishers and subscribers to the topics we want, define variables we will use, and place any other code that needs to be executed once when the talker object is created.
 
 ```python
 class talker(Node):
@@ -320,9 +320,9 @@ class talker(Node):
     self.timer = self.create_timer(timer_period, self.timer_callback)
 ```
 
-##### Other functions
+##### Other methods
 
-After defining the `__init__` method, we define other methods that we might need in the future. In most cases, this usually means defining callback functions, which are functions that are called automatically when a certain, pre-defined event happens. In our case, we define a timer callback that is called everytime the timer's period elapses.
+After defining the `__init__` method, we should define other methods for the class. In most cases, this usually means defining _callback_ functions, which are functions that are called automatically when a certain pre-defined event happens. In our case, we define a _timer callback_ that is called everytime the timer's period elapses. Notice that the _timer object_ was created in the constructor method using the `create_timer` function. The method below is what is going to be called every `timer_period` seconds.
 
 ```python
   # Timer callback method
@@ -337,11 +337,11 @@ After defining the `__init__` method, we define other methods that we might need
     print("Publishing...")
 ```
 
-If we were to implement a subscriber, we would define subcriber callback functions, which are called every time a message is published to a topic we are subscribed to.
+We did not do it, but we could also have subscribers to other topics. If we were to create a subscriber, we would also define subcriber callback functions, which are called every time a message is published to that topic.
 
 ##### Defining the main() function
 
-In this section, we define our `main` function, which is where we _instantiate_ our classes and where all our "high-level" logic can go. In our case, we just initialize `rclpy`, create an instance of our `talker` class, and call the `rclpy.spin()` function. Calling `rclpy.spin()` is necessary to keep the code running until it is terminated (you should have noticed that there is no explicit loop function).
+In this section, we define our `main` function, which is where we _instantiate_ our classes and where all our "high-level" logic can go. In our case, we just initialize `rclpy`, create an instance of our `talker` class called `publisherNode`, and call the `rclpy.spin()` function.
 
 ```python
 # Main Function
@@ -353,6 +353,8 @@ def main():
   # Spin Node(s)
   rclpy.spin(publisherNode)
 ```
+
+Calling both `rclpy.init()` and `rclpy.spin()` functions is necessary to initialize and keep the script running until it is terminated (there is no explicit loop function!).
 
 ##### Calling the main function
 
