@@ -300,6 +300,43 @@ entry_points={
 },
 ```
 
+Your `setup.py` file should look like this:
+
+```python
+from setuptools import find_packages, setup
+
+package_name = 'create3_pkg'
+
+setup(
+    name=package_name,
+    version='0.0.0',
+    packages=find_packages(exclude=['test']),
+    data_files=[
+        ('share/ament_index/resource_index/packages',
+            ['resource/' + package_name]),
+        ('share/' + package_name, ['package.xml']),
+    ],
+    install_requires=['setuptools'],
+    zip_safe=True,
+    maintainer='ros2',
+    maintainer_email='ros2@todo.todo',
+    description='TODO: Package description',
+    license='TODO: License declaration',
+    extras_require={
+        'test': [
+            'pytest',
+        ],
+    },
+    entry_points={
+        'console_scripts': [
+            'talkerDemo = create3_pkg.talkerDemo:main',
+            'simple_publisher = create3_pkg.simple_publisher:main',
+            'simple_subscriber = create3_pkg.simple_subscriber:main',
+        ],
+    },
+)
+```
+
 #### Step 6 - Build the workspace
 
 Build tools are programs that automate the creation of executable files from source code. Building our workspace is what allows us to use ROS commands to run the scripts.
