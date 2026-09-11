@@ -368,15 +368,15 @@ if __name__ == '__main__':
 
 #### Step 2 - Create the talkerDemo.py
 
-Now that you have a better understanding about the code, let's include it in your package. 
+Now that you have a better understanding about the code, let's include it in your package.
 
-Go to your `create3_pkg` directory, create a new file called `talkerDemo.py`, and copy the above code to it. 
+Go to your `create3_pkg` directory, create a new file called `talkerDemo.py`, and copy the above code to it.
 
 If you need a refresher of how to do this, please review [step 4](../../Part_1-ROS/Chapter-1#step-4---create-the-python-scripts) of the activity in Chapter 1.
 
-#### Step 3 - Complete the subcriber node
+#### Step 3 - Create the listenerDemo.py
 
-We will now create the code for the subscriber node. Go to your `create3_pkg` directory, create a new file called `talkerDemo.py`, and copy the template code below to it.
+We will now create the code for the subscriber node. Go to your `create3_pkg` directory, create a new file called `listenerDemo.py`, and copy the template code below to it.
 
 ```python
 #!/usr/bin/env python3
@@ -409,13 +409,32 @@ if __name__ == '__main__':
   main()
 ```
 
-Fill out the sections marked with a `#! Write Your Code Here!` and save the file. 
+Fill out the sections marked with a `#! Write Your Code Here!` and save the file.
 
-> This is a good exercise to solidify your knowledge (we do not provide a solution for this - you are expected to investigate and find out how to complete the code yourself).
+> This is a good exercise to solidify your knowledge, so try figuring out the answers by inspecting previous code that we created. If you need help, check the solution below. 
+
+<details>
+<summary>Solution</summary>
+
+```python
+# Import the String message from the std_msgs package
+from std_msgs.msg import String
+
+# Print the message to the terminal
+self.get_logger().info(f"Received message: {msg.data}")
+
+# Create an instance of your class
+listener_node = listener()
+
+# Spin the node
+rclpy.spin(listener_node)
+```
+
+</details>
 
 #### Step 4 - Add your scripts to your package and run the nodes
 
-Before running your nodes, you need to complete the process described in the activity of Chapter 1. Since you already have the workspace and package, you need to follow [steps 5](../../Part_1-ROS/Chapter-1#step-5---edit-setuppy) to 8 to include the files in your package `setup.py`, rebuild your workspace, source it, and run the newly created nodes.
+Before running your nodes, you need to complete the process described in the activity of Chapter 1. Since you already have the workspace and package, you need to follow [steps 5](../../Part_1-ROS/Chapter-1#step-5---edit-setuppy) to 8 to include the files in your package `setup.py`, rebuild your workspace, source it, and run the newly created nodes with the `ros2 run` command.
 
 With both nodes running, you should be able to see the "talker" node's message being published to `myTopic`, and see the same message being printed to the terminal where your "listener" node is running.
 
