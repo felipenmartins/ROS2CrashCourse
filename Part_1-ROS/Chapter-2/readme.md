@@ -416,21 +416,18 @@ Fill out the sections marked with a `#! Write Your Code Here!` and save the file
 <details>
 <summary>Solution</summary>
 
-<pre>
-<code>
-# Import the String message from the std_msgs package:
-from std_msgs.msg import String
+<code># Import the String message from the std_msgs package:</code><br>
+<code>from std_msgs.msg import String</code><br>
+<br>
+<code># Print the message to the terminal</code><br>
+<code>self.get_logger().info(f"Received message: {msg.data}")</code><br>
+<br>
+<code># Create an instance of your class</code><br>
+<code>listener_node = listener()</code><br>
+<br>
+<code># Spin the node</code><br>
+<code>rclpy.spin(listener_node)</code><br>
 
-# Print the message to the terminal
-self.get_logger().info(f"Received message: {msg.data}")
-
-# Create an instance of your class
-listener_node = listener()
-
-# Spin the node
-rclpy.spin(listener_node)
-</pre>
-</code>
 </details>
 
 #### Step 4 - Add your scripts to your package and run the nodes
