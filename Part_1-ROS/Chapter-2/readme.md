@@ -416,8 +416,9 @@ Fill out the sections marked with a `#! Write Your Code Here!` and save the file
 <details>
 <summary>Solution</summary>
 
-```python
-# Import the String message from the std_msgs package
+<pre>
+<code>
+# Import the String message from the std_msgs package:
 from std_msgs.msg import String
 
 # Print the message to the terminal
@@ -428,8 +429,8 @@ listener_node = listener()
 
 # Spin the node
 rclpy.spin(listener_node)
-```
-
+</pre>
+</code>
 </details>
 
 #### Step 4 - Add your scripts to your package and run the nodes
