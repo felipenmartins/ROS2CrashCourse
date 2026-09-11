@@ -141,7 +141,7 @@ The node `/teleop_turtle` publishes messages to `/turtle1/cmd_vel` topic. The no
 ros2 topic echo /turtle1/cmd_vel
 ```
 
-This command won’t return any data if no message is published to the topic. Go to the terminal where `turtle_teleop_key` is running and click the arrows to move the turtle around. Watch the terminal where your `echo` is running at the same time, and you’ll see position data being published for every movement you make. It should look something like this:
+This command won’t return any data if no message is published to the topic. Go to the terminal where `turtle_teleop_key` is running and click the arrows to move the turtle around. Watch the terminal where your `echo` is running at the same time, and you’ll see velocity data being published for every movement you make. It should look something like this:
 
 ```bash
 linear:
@@ -169,9 +169,9 @@ Publisher count: 1
 Subscription count: 2
 ```
 
-Yo might have noticed that the subscription count is 2, which means that there are 2 nodes subscribed to the topic `/turtle1/cmd_vel`. One subscriber is the `/turtlesim` node, as expected. The other is the `echo` node, which also subscribes to the topic in order to print its values on screen. If you stop the `echo` node with <CTRL+C> and run `ros2 topic info /turtle1/cmd_vel` again, you will see that the subscription count decrements.
+Yo might have noticed that the subscription count is 2, which means that there are 2 nodes subscribed to the topic `/turtle1/cmd_vel`. One subscriber is the `/turtlesim` node, as expected. The other is the `echo` node, which also subscribes to the topic in order to print its values on screen. If you stop the `echo` node with <CTRL+C> and run `ros2 topic info /turtle1/cmd_vel` again, you will see that the subscription count decreases to 1.
 
-Nodes can publish and/or subscribe to topics to send and/or receive messages. Publishers and subscribers must send and receive the same **type of message** to communicate via a topic. From the topic types we saw earlier after running `ros2 topic list -t`, we see that the `cmd_vel` topic has the type `geometry_msgs/msg/Twist`. This means that in the package `geometry_msgs` there is a `msg` called `Twist`. 
+Nodes can publish and/or subscribe to topics to send and/or receive messages. Publishers and subscribers must send and receive the same **type of message** to communicate via a topic. From the topic types we saw earlier after running `ros2 topic list -t`, we know that the `cmd_vel` topic has the type `geometry_msgs/msg/Twist`. This means that in the package `geometry_msgs` there is a `msg` called `Twist`. 
 
 Now, let's run `ros2 interface show <msg type>` to learn its details, specifically, what structure of data the message expects:
 
@@ -186,7 +186,7 @@ Vector3  linear
 Vector3  angular
 ```
 
-This tells you that the `Twist` expresses velocity as two vectors of three elements each, `linear` and `angular`. This is exactly the type of data we saw `/teleop_turtle` passing to `/turtlesim` with the `echo` command:
+This tells you that the `Twist` expresses velocity as two vectors of three elements each. Those vectors are called `linear` and `angular`. This is exactly the type of data we saw `/teleop_turtle` passing to `/turtlesim` with the `echo` command:
 
 ```bash
 linear:
@@ -199,7 +199,7 @@ angular:
   z: 0.0
 ```
 
-You can stop the running nodes (<CTRL+C>) for now.
+You can stop the running nodes for now: go the respective terminals and type <CTRL+C>.
 
 ---
 
