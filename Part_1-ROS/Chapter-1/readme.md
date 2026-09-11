@@ -338,7 +338,7 @@ To source our workspace, we will run a bash script created during the building p
 
 ```bash
 cd ~/create3_ws
-source install/_setup.bash
+source install/setup.bash
 ```
 
 Alternatively, you can add this line to the end of the `.bashrc` file, which is ran every time a new terminal is opened. However, this is _not_ recommended as it might sometimes create conflicts, especially if you are working with different workspaces.
@@ -361,7 +361,7 @@ To run the subscriber node, you must open a new terminal. Remember that **you mu
 
 ```bash
 cd ~/create3_ws
-source install/_setup.bash
+source install/setup.bash
 ```
 
 Then, you can run the subscriber node:
