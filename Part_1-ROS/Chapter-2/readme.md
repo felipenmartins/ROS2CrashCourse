@@ -337,7 +337,7 @@ After defining the `__init__` method, we should define other methods for the cla
     print("Publishing...")
 ```
 
-We did not do it, but we could also have subscribers to other topics. If we were to create a subscriber, we would also define subcriber callback functions, which are called every time a message is published to that topic.
+We did not do it, but we could also have created subscribers to other topics. If we were to create a subscriber, we would also have to define subcriber callback functions, which are called every time a message is published to the topic we subscribe to.
 
 ##### Defining the main() function
 
@@ -444,12 +444,16 @@ Run the commands `ros2 topic list` and `ros2 topic echo` to check that the messa
 
 The node-topic communication paradigm is very flexible. However, applications that take a long action (or sequence of actions) after getting a request are not well suited for this method.
 
-Actions are a type of communication intended for such long running tasks. They consist of three parts: a goal, feedback, and a result. Actions return a steady-stream of feedback between the request and its completion, and can be canceled at any time during their executions. 
+Actions are a type of communication intended for such long running tasks. They consist of three parts: **goal**, **feedback**, and **result**. Actions return a steady-stream of feedback between the request and its completion, and can be canceled at any time during their executions.
 
-Actions use a client-server model, similar to the publisher-subscriber model of node-topic communication. An “action client” node sends a goal to an “action server” node that acknowledges it, executes the associated actions, and returns a stream of feedback and a result. Figure 4 illustrates this concept.
+Actions use a client-server model, similar to the publisher-subscriber model of node-topic communication. An “action client” node sends a goal to an “action server” node that acknowledges it, executes the associated actions, and returns a stream of feedback and a result. In summary, we use ROS 2 Actions when we want to start a task, monitor its progress, and get the result later. Figure 4 illustrates this concept.
 
 ![Actions ROS2](images/actions_animation.gif)
 ##### Figure 4. An “action client” node (left) sends a goal to an “action server” node (right) that acknowledges it and returns a stream of feedback and a result. _Source: [ROS 2 Documentation: Jazzy](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html)_
+
+### Actions vs Services
+
+Figure 4 also illustrates the concept of ROS 2 **Services**, which can be thought of as the simpler, synchronous cousin of Actions. With services, a node will make a request and wait for a response. Services are best suited for quick operations that do not require monitoring, like checking the percentage of the robot battery or resetting the odometry. In contrast, you would want to use ROS 2 **Actions** for things like navigating to a goal pose, follow a path, or docking with the charging station.
 
 ### 2.3.1 Activity: Getting familiar with actions
 
