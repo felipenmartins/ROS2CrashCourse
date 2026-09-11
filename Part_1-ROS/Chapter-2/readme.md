@@ -82,15 +82,15 @@ You can also visualize the nodes (and much more) with `rqt`, which is a GUI tool
 rqt
 ```
 
-When running it for the first time, the window will be blank. Select `Plugins > Introspection > Node Graph` from the menu bar at the top. A window like the one in Figure 2 will open showing the nodes that are publishing or subscribing to which topics. If the window is blank, click the "reload" button below the "File" menu.
+When running it for the first time, the window will be blank. Select `Plugins > Introspection > Node Graph` from the menu bar at the top. A window like the one in Figure 2 will open showing the nodes that are publishing or subscribing to which topics (if the window is blank, click the "reload" button next to the drop-down menu showing "Nodes only"). The diagram shows that messages are flowing from the `/teleop_turtle` node to the `turtlesim` node via the topic `/turtle1/cmd_vel`. In other words, `/teleop_turtle` publishes and `/turtlesim` subscribes to the topic `/turtle1/cmd_vel`. Figure 2 also shows that the node `turtlesim` exposes two actions (feedback and status). We are going to discuss actions in Section 2.3.
 
 ![rqt Node Graph](images/rqt_screenshot_nodes-topics.png)
 
 ##### Figure 2. Node graph in rqt: it shows the running nodes and indicates which one is publishing or subscribing to which topic.
 
-With `rqt` you can also. plot graphs, inspect topics, call services, change parameters and more. Play around with the options to see the different visualization possibilities.
+With `rqt` you can also plot graphs, inspect topics, call services, change parameters and more. Play with the options a bit to see some of the different visualization possibilities.
 
-You can close the `rqt` window, but keep the TurtleSim nodes running for the next activity.
+You can close the `rqt` window now, but keep the TurtleSim and Teleop nodes running for the next activity.
 
 ---
 
