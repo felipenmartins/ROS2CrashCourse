@@ -15,7 +15,16 @@ By the end of this chapter you should:
 
 ## 3.1 Launch Files
 
-Launch files allow us to run multiple nodes at once, including defining arguments to pass them on startup. This allows us to launch a complete application with whatever configuration we need using a single command and on a single terminal.
+Imagine your Create3 robot project has:
+
+- A LiDAR driver node
+- A teleoperation node
+- RViz (or Foxglove) visualization
+- A SLAM node
+
+You might need to open four terminals and run all those nodes separately, as we previously did with TurtleSim and Teleop. The more complex your project gets, the more nodes you migh need to run.
+
+Launch files allow us to run multiple nodes at once, including defining arguments to pass them on startup. This allows us to launch a complete application with whatever configuration we need using a single command and on a single terminal. Think of a launch file as a startup script for your robot. It will help you save time, reduce mistakes, manage parameters and topic remapping. They become very useful once a robot system consists of multiple interacting ROS 2 nodes.
 
 ROS launch files can be written in Python, YAML, or XML. A launch file written in Python may be more complex to write than one in XML or YAML, but it is more dynamic and has access to low-level features that are not available in the other formats. Detailed explanation about the launch file formats can be found in the [ROS 2 Documentation](https://docs.ros.org/en/jazzy/How-To-Guides/Launch-file-different-formats.html).
 
@@ -23,11 +32,11 @@ In the next activity, we will create an XML launch file to load TurtleSim and te
 
 ### 3.1.1 Activity: Creating a Launch File
 
-In this activity, we will create a simple file that launches the TurtleSim and the teleoperation nodes from one command. This activity can also be found on the [ROS 2 Documentation](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Launch/Creating-Launch-Files.html), where you can also check out equivalent launch files in YAML and Python.
+In this activity, we will create a simple file that launches the TurtleSim and the teleoperation nodes from one command. This activity can also be found on the [ROS 2 Documentation](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Launch/Creating-Launch-Files.html), where you can check out equivalent launch files in YAML and Python.
 
 #### Step 1 - Steup
 
-Most of the time, you will find launch files stored inside a `launch` directory inside each package's directory. In our case, we will just create it inside our `src` directory. First, navigate to the `/create3_ws/src` directory and create a `launch` directory:
+Most of the time, you will find launch files stored inside a `launch` directory on each package's directory. In our case, we will just create it inside our `src` directory. First, navigate to the `/create3_ws/src` directory and create a `launch` directory:
 
 ```bash
  cd ~/create3_ws/src
@@ -41,7 +50,7 @@ Create an empty XML file inside your new `launch` directory:
 touch turtlesim_teleop_launch.xml
 ```
 
-We will also need to install the xterm package for this exercise, so install it now with:
+We will also need to install the `xterm` package for this exercise, so install it now with:
 
 ```bash
 sudo apt install xterm
@@ -49,7 +58,7 @@ sudo apt install xterm
 
 #### Step 2 - Write the launch file
 
-We are going to create a simple launch file that launches both `turtlesim_node` and  `turtle_teleop_key` executables from the `turtlesim` package. Open your newly created file (for example, with VScode: `code touch turtlesim_teleop_launch.xml`). Copy and paste the code below into the launch file:
+We are going to create a simple launch file that launches both `turtlesim_node` and  `turtle_teleop_key` nodes from the `turtlesim` package. Open your newly created file (for example, with VScode: `code turtlesim_teleop_launch.xml`) and paste the following code into it:
 
 ```xml
 <launch>
@@ -58,9 +67,9 @@ We are going to create a simple launch file that launches both `turtlesim_node` 
 </launch>
 ```
 
-As you can see, the syntax for launch files is relatively intuitive: to run a node you must define its package name (`pkg`) and executable file name (`exec`). Optionally, you can also add other parameters like `output` and `launch-prefix`.
+The syntax for launch files is relatively intuitive: to run a node you must define its package name (`pkg`) and executable file name (`exec`). Optionally, you can also add other parameters like `output` and `launch-prefix`.
 
-`turtle_teleop_key` requires keyboard input from the terminal. When launched from a launch file, it may not properly capture keystrokes depending on your terminal. We installed `xterm` because this terminal works well in those situations. Then, we added the option `launch-prefix="xterm -e"` to instruct it to open a new `xterm` window to run teleop on it.
+`turtle_teleop_key` requires keyboard input from the terminal. When launched from a launch file, it may not properly capture keystrokes depending on the terminal program being used. We installed `xterm` because this terminal works well in those situations. Then, we added the option `launch-prefix="xterm -e"` to instruct it to open a new `xterm` window to run teleop on it.
 
 #### Step 3 - Launch
 
@@ -82,15 +91,16 @@ Then, run it using `ros2 launch`:
 ros2 launch turtlesim_teleop_launch.xml
 ```
 
-You should now be able to see two windows, one for the teleop node, and one for the turtlesim node. The one for the teleop node is the smaller one on the right of Figure 1, which is the `xterm` terminal.
+You should now be able to see two windows, one for the teleop node, and one for the turtlesim node. The one for the teleop node is the smaller one on the right side of Figure 1, which is the `xterm` terminal.
 
 ![TurtleSim and Teleop on xterm](images/screenshot_turtlesim-teleop_launch.png)
 
 ##### Figure 1. Result of running the `turtlesim_teleop_launch.xml` launch file: the original terminal is in the back. TurtleSim window in in the center, and the small terminal next to it is xterm running the teleoperation node.
 
-Stop the nodes and close the terminal windows when you are done with this activity.
-
+You can build launch files to run several nodes simultaneously. 
 > You can find out a lot more of what launch files are capable of by following the [ROS 2 tutorials](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Launch/Launch-Main.html).
+
+Stop the nodes with <CTRL+C> and close the terminal windows when you are done with this activity.
 
 ## 3.2 ROS Bags
 
