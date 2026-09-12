@@ -392,6 +392,6 @@ After completing this Chapter, you should be familiar with the Create3 topics an
 
 ## Navigation menu
 
-- Continue to [Chapter 6 - Create3 Actions](../../Part_2-Create3/Chapter-6/readme.md)
-- Go to [Part 2 - Create3](../../Part_2-Create3/readme.md)
+- Go back to [Chapter 4](../../Part_2-Create3/Chapter-4/readme.md)
+- Continue to [Chapter 6](../../Part_2-Create3/Chapter-6/readme.md)
 - Go to the [Main page](../../readme.md)

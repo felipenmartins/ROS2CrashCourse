@@ -97,7 +97,6 @@ You should now be able to see two windows, one for the teleop node, and one for 
 
 ##### Figure 1. Result of running the `turtlesim_teleop_launch.xml` launch file: the original terminal is in the back. TurtleSim window in in the center, and the small terminal next to it is xterm running the teleoperation node.
 
-You can build launch files to run several nodes simultaneously. 
 > You can find out a lot more of what launch files are capable of by following the [ROS 2 tutorials](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Launch/Launch-Main.html).
 
 Stop the nodes with <CTRL+C> and close the terminal windows when you are done with this activity.
@@ -589,16 +588,16 @@ First, run the ros2 launch command. As soon as Gazebo window opens, go to the ot
 
 RViz typically continues to work correctly even when Gazebo rendering is poor. Once Gazebo simulation is playing, you are encouraged to play around with RViz to see what it can do. If possible, control the robot in Gazebo and see the data changing in RViz.
 
-To close RViz and Gazebo, go to the terminal where you launched them and press `CTRL + C`. **It is not recommended to close the windows manually as it might cause issues!**
+To close RViz and Gazebo, go to the terminal where you launched them and press <CTRL+C>. **It is not recommended to close the windows manually as it might cause issues!**
 
 ## Conclusion
 
-In this chapter you studied and practiced important ROS 2 concepts, such as transforms (TFs), launch files, and ROS Bags. You also added packages to your existing workspace to a simple Create3 simulation using Gazebo while visualizing data in RViz. 
+In this chapter you studied and practiced important ROS 2 concepts, such as transforms (TFs), launch files, and ROS Bags. You also added packages to your existing workspace to a simple Create3 simulation using Gazebo while visualizing data in RViz.
 
-After completing Part 1, you should have a good understanding of the main fundamental concepts of ROS 2. If you have access to a Create3 robot, continue to Part 2 to practice what you learned with a real robot.
+After completing Part 1, you should have a good understanding of the main fundamental concepts of ROS 2. If you have access to a Create3 robot, continue to Part 2 to practice what you learned with a real robot. In Chapter 4 you will familiarize yourself with the Create3 robot, and in the subsequent chapters you will control it using ROS 2.
 
 ## Navigation menu
 
-- Continue to [Part 2 - Create3](../../Part_2-Create3/readme.md)
-- Go back to [Part 1 - ROS](../../Part_1-ROS/readme.md)
+- Go back to [Chapter 2](../../Part_1-ROS/Chapter-2/readme.md)
+- Continue to [Chapter 4](../../Part_2-Create3/Chapter-4/readme.md)
 - Go to the [Main page](../../readme.md)

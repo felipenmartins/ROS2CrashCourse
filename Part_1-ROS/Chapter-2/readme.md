@@ -800,6 +800,6 @@ In the next chapter you will learn more about other tools that are part of the R
 
 ## Navigation menu
 
-- Continue to [Chapter 3 - Integrating, Visualizing, and Simulating Robots in ROS 2](../../Part_1-ROS/Chapter-3/readme.md)
-- Go back to [Part 1 - ROS](../../Part_1-ROS/readme.md)
+- Go back to [Chapter 1](../../Part_1-ROS/Chapter-1/readme.md)
+- Continue to [Chapter 3](../../Part_1-ROS/Chapter-3/readme.md)
 - Go to the [Main page](../../readme.md)

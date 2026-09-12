@@ -355,5 +355,5 @@ In this course you went from learning ROS 2 fundamentals to implementing Python 
 
 ## Navigation menu
 
-- Go to [Part 2 - Create3](../../Part_2-Create3/readme.md)
+- Go back to [Chapter 5](../../Part_2-Create3/Chapter-5/readme.md)
 - Go to the [Main page](../../readme.md)

@@ -102,6 +102,6 @@ After completing this Chapter, you should be familiar with the iRobot Create3, i
 
 ## Navigation menu
 
-- Continue to [Chapter 5 - Create3 Topics](../../Part_2-Create3/Chapter-5/readme.md)
-- Go to [Part 2 - Create3](../../Part_2-Create3/readme.md)
+- Go back to [Chapter 3](../../Part_1-ROS/Chapter-3/readme.md)
+- Continue to [Chapter 5](../../Part_2-Create3/Chapter-5/readme.md)
 - Go to the [Main page](../../readme.md)

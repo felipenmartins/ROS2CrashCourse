@@ -16,27 +16,27 @@ ROS 2 Crash Course is organized in 2 parts: Part 1 covers core concepts of ROS 2
 
 The course structure is:
 
-### [Part 1 - ROS](/Part_1-ROS/readme.md)
+### Part 1 - ROS
 
 This part covers fundamental ROS 2 concepts. It can be followed even if you don't have access to a physical robot.
 
-- **Chapter 1 - ROS 2 Foundations and Core Concepts**
+- [**Chapter 1 - ROS 2 Foundations and Core Concepts**](/Part_1-ROS/Chapter-1/readme.md)
   - ROS overview and history
   - Why use ROS?
   - Main concepts (packages, workspaces, nodes, topics etc.)
     - _Activity: Creating your own workspace and running your first nodes_
 
-- **Chapter 2 - Building ROS 2 Applications**
+- [**Chapter 2 - Building ROS 2 Applications**](/Part_1-ROS/Chapter-2/readme.md)
   - TurtleSim
   - Nodes
     - _Activity: Running and inspecting nodes_
   - Topics
     - _Activity: Working with topics_
     - _Activity: Writting Python code for topics_
-  - Actions
-    - _Activity: Getting familiar with actions_
+  - Actions and Services
+    - _Activity: Getting familiar with actions and services_
 
-- **Chapter 3 - Integrating, Visualizing, and Simulating Robots in ROS 2**
+- [**Chapter 3 - Integrating, Visualizing, and Simulating Robots in ROS 2**](/Part_1-ROS/Chapter-3/readme.md)
   - Launch files
     - _Activity: Creating a Launch File_
   - ROS Bags
@@ -49,22 +49,22 @@ This part covers fundamental ROS 2 concepts. It can be followed even if you don'
   - Packages
     - _Activity: Adding Create3 packages to run a simulation_
 
-### [Part 2 - Create3](/Part_2-Create3/readme.md)
+### Part 2 - Create3
 
 This part contains a quick introduction to the [iRobot Create3](https://iroboteducation.github.io/create3_docs/) educational robot using iRobot's Python Web Playground, followed by activities to practice ROS 2 concepts with the robot.
 
-- **Chapter 4 - Introduction to the iRobot Create3**
+- [**Chapter 4 - Introduction to the iRobot Create3**](/Part_2-Create3/Chapter-4/readme.md)
   - Robot Overview
   - Powering the robot ON
   - Powering the robot OFF
   - _Activity: Programming the Create3 with Python Web Playground_
 
-- **Chapter 5 - Create3 Topics**
+- [**Chapter 5 - Create3 Topics**](/Part_2-Create3/Chapter-5/readme.md)
   - _Activity: Preparing the Create3 for ROS_
   - _Activity: Investigating the Create3 topics_
   - _Activity: Programming the Create3 with ROS 2_
 
-- **Chapter 6 - Create3 Actions**
+- [**Chapter 6 - Create3 Actions**](/Part_2-Create3/Chapter-6/readme.md)
   - List of all available actions
   - _Activity: Call actions to control the robot_
   - _Activity: Call actions from ROS nodes_

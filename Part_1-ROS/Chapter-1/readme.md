@@ -421,6 +421,5 @@ After completing this chapter, you should have a general understanding of the fu
 
 ## Navigation menu
 
-- Continue to [Chapter 2 - Building ROS 2 Applications](../../Part_1-ROS/Chapter-2/readme.md)
-- Go back to [Part 1 - ROS](../../Part_1-ROS/readme.md)
+- Continue to [Chapter 2](../../Part_1-ROS/Chapter-2/readme.md)
 - Go to the [Main page](../../readme.md)
