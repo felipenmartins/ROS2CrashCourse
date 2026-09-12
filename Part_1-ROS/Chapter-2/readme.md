@@ -1,15 +1,15 @@
 # Chapter 2 - Building ROS 2 Applications
 
-This chapter dives into two essential communication paradigms in ROS (Node-Topic and ROS Actions), and shows how to create Python code to implement ROS 2 nodes that communicate with each other.
+This chapter dives into two essential communication paradigms in ROS (Node-Topic, Services and Actions), and shows how to create Python code to implement ROS 2 nodes that communicate with each other.
 
 ## Objectives
 
 By the end of this chapter you should be able to:
 
-- Interact with and inspect ROS nodes, topics, and actions from the terminal.  
+- Interact with and inspect ROS nodes, topics, services, and actions from the terminal.  
 - Read sensor data from various topics.
 - Create custom nodes using Python3 that can both subscribe and publish to ROS topics.
-- Understand how ROS actions work.
+- Understand how ROS services and actions work.
 
 ## 2.1 TurtleSim
 
@@ -91,8 +91,6 @@ When running it for the first time, the window will be blank. Select `Plugins > 
 With `rqt` you can also plot graphs, inspect topics, call services, change parameters and more. Play with the options a bit to see some of the different visualization possibilities.
 
 You can close the `rqt` window now, but keep the TurtleSim and Teleop nodes running for the next activity.
-
----
 
 ### 2.2.3 Topics
 
@@ -200,8 +198,6 @@ angular:
 ```
 
 You can stop the running nodes for now: go the respective terminals and type <CTRL+C>.
-
----
 
 ### 2.2.5 Activity: Writting Python code for topics
 
@@ -438,26 +434,22 @@ With both nodes running, you should be able to see the "talker" node's message b
 
 Run the commands `ros2 topic list` and `ros2 topic echo` to check that the messages are being published to the correct topic. After you are done, you can stop the execution of the nodes and close the terminal windows.
 
----
+## 2.3 Actions and Services
 
-## 2.3 Actions
+The node-topic communication paradigm is very flexible. However, on demand actions that might take a long action (or sequence of actions) are not well suited for this method.
 
-The node-topic communication paradigm is very flexible. However, applications that take a long action (or sequence of actions) after getting a request are not well suited for this method.
-
-Actions are a type of communication intended for such long running tasks. They consist of three parts: **goal**, **feedback**, and **result**. Actions return a steady-stream of feedback between the request and its completion, and can be canceled at any time during their executions.
+**Actions** are a type of communication intended for long running tasks. They consist of three parts: **goal**, **feedback**, and **result**. Actions return a steady-stream of feedback between the request and its completion, and can be canceled at any time during their executions.
 
 Actions use a client-server model, similar to the publisher-subscriber model of node-topic communication. An “action client” node sends a goal to an “action server” node that acknowledges it, executes the associated actions, and returns a stream of feedback and a result. In summary, we use ROS 2 Actions when we want to start a task, monitor its progress, and get the result later. Figure 4 illustrates this concept.
 
 ![Actions ROS2](images/actions_animation.gif)
 ##### Figure 4. An “action client” node (left) sends a goal to an “action server” node (right) that acknowledges it and returns a stream of feedback and a result. _Source: [ROS 2 Documentation: Jazzy](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html)_
 
-### Actions vs Services
+Figure 4 also illustrates the concept of ROS 2 **Services**, which can be thought of as the simpler, synchronous cousin of Actions. With services, a node will make a request and wait for a response. Services are best suited for quick operations that do not require monitoring, like checking the percentage of the robot battery or resetting the odometry. In contrast, Actions are preferred for things like navigating to a goal pose, follow a path, or docking with the charging station.
 
-Figure 4 also illustrates the concept of ROS 2 **Services**, which can be thought of as the simpler, synchronous cousin of Actions. With services, a node will make a request and wait for a response. Services are best suited for quick operations that do not require monitoring, like checking the percentage of the robot battery or resetting the odometry. In contrast, you would want to use ROS 2 **Actions** for things like navigating to a goal pose, follow a path, or docking with the charging station.
+### 2.3.1 Activity: Getting familiar with actions and services
 
-### 2.3.1 Activity: Getting familiar with actions
-
-In this activity, we will get get familiar with how actions work by sending an action goal and inspecting actions from the terminal. We will be using the `turtlesim` package again. This activity can also be found in the [ROS2 docs](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html).
+In this activity, we will get get familiar with how actions and services work by calling services and sending  action goals from the terminal. We will be using the `turtlesim` package again. A similar activity can also be found in the [ROS 2 docs](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html).
 
 #### Step 1 - Setup
 
@@ -473,9 +465,106 @@ On another terminal, run:
 ros2 run turtlesim turtle_teleop_key
 ```
 
-#### Step 2 - Using Actions
+Click the arrow keys to move the turtle around a little.
 
-When you launch the `/teleop_turtle` node, you will see the following message in your terminal:
+#### Step 2 - Inspecting and calling Services
+
+The nodes that are running offer several services (they have service servers). You can list all available services by openning another terminal and running:
+
+```bash
+ros2 service list
+```
+
+The result of the command above is similar to:
+
+```text
+/clear
+/kill
+/reset
+/spawn
+/teleop_turtle/describe_parameters
+/teleop_turtle/get_parameter_types
+/teleop_turtle/get_parameters
+/teleop_turtle/get_type_description
+/teleop_turtle/list_parameters
+/teleop_turtle/set_parameters
+/teleop_turtle/set_parameters_atomically
+/turtle1/set_pen
+/turtle1/teleport_absolute
+/turtle1/teleport_relative
+/turtlesim/describe_parameters
+/turtlesim/get_parameter_types
+/turtlesim/get_parameters
+/turtlesim/get_type_description
+/turtlesim/list_parameters
+/turtlesim/set_parameters
+/turtlesim/set_parameters_atomically
+```
+
+Let's focus on a subset of the services shown above to better understand them.
+
+Service types are defined similarly to topic types, but with two parts: one message for the request and another for the response. You can find out the type of services by running `ros2 service type <service_name>`. Let's find out the type of the `/clear` service:
+
+```bash
+ros2 service type /clear
+```
+
+The result shows that the `/clear` service has the type `std_srvs/srv/Empty`, which means that the service call sends no data and its response aldo receives no data.
+
+You can also see the list of services and their types by running:
+
+```bash
+ros2 service list -t
+```
+
+To call a service, you must also inform its type. Use the command below to call the `/clear` service:
+
+```bash
+ros2 service call /clear std_srvs/srv/Empty
+```
+
+Observe that this service cleared the path followed by the turtle. Now, call the service `/reset`, which has the same type as `/clear`. What does this service do?
+
+Let's call one more service, but now with a different type. From the list obtained with the `-t` option, you can see that the service `/turtle1/teleport_absolute` has a type `turtlesim/srv/TeleportAbsolute`. Let's first investigate how such type looks like:
+
+```bash
+ros2 interface show turtlesim/srv/TeleportAbsolute
+```
+
+The result of the above command is:
+
+```bash
+float32 x
+float32 y
+float32 theta
+---
+```
+
+The characters `---` divide the message type in two sections: the first section corresponds to the structure of the service _request_ (data types `float32` and variable names `x`, `y`, and `theta`); the subsequent section describes the structure of the _result_, which is empty for this type of service (this means that the service will be executed, but no message will be sent in return).
+
+Let's call this service to teleport the turtle to a different location. The syntax is `ros2 service call <service_name> <service_type> <arguments>`. The `<arguments>` need to be in YAML format, so the command will look like this:
+
+```bash
+ros2 service call /turtle1/teleport_absolute turtlesim/srv/TeleportAbsolute "{x: 1.0, y: 1.0, theta: 1.7}"
+```
+
+After running the above command, the turtle will be teleported to the pose indicated in the arguments, and the terminal will show:
+
+```text
+waiting for service to become available...
+requester: making request: turtlesim.srv.TeleportAbsolute_Request(x=1.0, y=1.0, theta=1.7)
+
+response:
+turtlesim.srv.TeleportAbsolute_Response()
+```
+
+You can find more information about services in the [ROS 2 docs](https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Services/Understanding-ROS2-Services.html).
+
+As illustrated above, services are used for quick operations that do not require monitoring. In the next steps we are going to work with actions, which are used for longer tasks that provide feedback during the execution.
+
+#### Step 3 - Using Actions
+
+In the terminal where you launch the `/teleop_turtle` node, you see the following message in your terminal:
 
 ```bash
 Use arrow keys to move the turtle.
@@ -504,7 +593,7 @@ Not only can the client-side (your input in the teleop) preempt goals, but the s
 
 The server-side aborted the first goal because it was interrupted.
 
-#### Step 3 - Inspecting Actions
+#### Step 4 - Inspecting Actions
 
 If you inspect the `/turtlesim` node you can see all available actions. Open a new terminal and run the command:
 
@@ -641,17 +730,11 @@ float32 delta
 float32 remaining
 ```
 
-The characters `---` divide the message type in three sections: the first section  corresponds to the structure of the goal _request_ (data type `float32` and variable name `theta`); the subsequent section describes the structure of the _result_; the third section shows the structure of the _feedback_. Go back to the animation in Firgure 4 and observe the behavior of the request, feedback and result messages.
+Just like we saw for the services, the characters `---` divide the message type in sections; however there are three sections now: the first section corresponds to the structure of the goal _request_ (data type `float32` and variable name `theta`); the subsequent section describes the structure of the _result_; the third section shows the structure of the _feedback_. Go back to the animation in Firgure 4 and observe the behavior of the request, feedback and result messages.
 
-#### Step 4 - Sending Action Goals
+#### Step 5 - Sending Action Goals
 
-Now, let’s send an action goal from the command line with the following syntax:
-
-```bash
-ros2 action send_goal <action_name> <action_type> <values>
-```
-
-`<values>` needs to be in YAML format, so the command will look like:
+Now, let’s send an action goal with the syntax `ros2 action send_goal <action_name> <action_type> <values>`. `<values>` needs to be in YAML format, so the command will look like this:
 
 ```bash
 ros2 action send_goal /turtle1/rotate_absolute turtlesim/action/RotateAbsolute "{theta: 1.57}"
@@ -706,8 +789,6 @@ Goal finished with status: SUCCEEDED
 You will continue to receive feedback (the remaining angle) until the goal is achieved.
 
 The ROS 2 Documentation page contains a tutorial that you can now follow to practice with [writing action server and client nodes in Python](https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html).
-
----
 
 ## Conclusion
 
